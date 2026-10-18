@@ -1,28 +1,102 @@
 <!doctype html>
-<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lumière Admin — Prototype</title>
-<meta name="description" content="Danh sách màn hình prototype Web Admin">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/tokens.css">
-<link rel="stylesheet" href="css/utilities.css">
-<link rel="stylesheet" href="css/components.css">
-<link rel="stylesheet" href="css/admin.css">
-<link rel="stylesheet" href="css/prototype.css">
-</head>
-<body>
-<script src="js/icons.js"></script>
-<main class="dh">
-<div class="dh-head"><span class="brand-mark"><svg class="i" aria-hidden="true"><use href="#i-door"/></svg></span><div><h1>Lumière Admin — Prototype</h1></div></div>
-<p class="lead">Prototype bấm được của Web Admin, 18 màn hình. Bấm nút / menu trong màn để chuyển trang; bấm vùng trống để hiện các vùng bấm được; phím <kbd>←</kbd> <kbd>→</kbd> chuyển màn kế tiếp. Đổi ngôn ngữ VI / JA ở thanh trên của mỗi màn.</p>
-<a class="btn dh-start" href="pages/AD-01.html">Bắt đầu demo từ màn đăng nhập ›</a>
-<div class="dh-path"><h2>Kịch bản demo gợi ý</h2>
-<div><b>Lễ tân nhận khách</b><a href="pages/AD-01.html">Đăng nhập</a>→<a href="pages/AD-02.html">Tổng quan</a>→<a href="pages/AD-03.html">Danh sách đặt phòng</a>→<a href="pages/AD-04.html">Chi tiết · Nhận phòng</a>→<a href="pages/AD-08.html">Tình trạng buồng</a></div>
-<div><b>Đặt phòng tại quầy</b><a href="pages/AD-03.html">Danh sách</a>→<a href="pages/AD-05.html">Đặt tại quầy</a>→<a href="pages/AD-04.html">Chi tiết đặt phòng</a></div>
-<div><b>Quản lý giá & sản phẩm</b><a href="pages/AD-06.html">Giá & tồn kho</a>→<a href="pages/AD-07.html">Loại phòng</a>→<a href="pages/AD-09.html">Gói giá & hủy</a>→<a href="pages/AD-10.html">Dịch vụ thêm</a></div>
-<div><b>Marketing & CSKH</b><a href="pages/AD-11.html">Khuyến mãi</a>→<a href="pages/AD-12.html">Đánh giá</a>→<a href="pages/AD-13.html">Khách & điểm</a></div>
-<div><b>Kế toán</b><a href="pages/AD-14.html">Thanh toán & hoàn tiền</a>→<a href="pages/AD-15.html">Báo cáo</a></div>
-</div>
-<div class="dh-grid"><section class="dh-grp"><h3>Bắt đầu</h3><a href="pages/AD-01.html"><b>AD-01</b>Đăng nhập quản trị<em>/login</em></a><a href="pages/AD-02.html"><b>AD-02</b>Tổng quan<em>/dashboard</em></a></section><section class="dh-grp"><h3>Vận hành</h3><a href="pages/AD-03.html"><b>AD-03</b>Danh sách đặt phòng<em>/bookings?checkin=2026-10-15..2026-10-31</em></a><a href="pages/AD-04.html"><b>AD-04</b>Chi tiết đặt phòng<em>/bookings/HB261018A7K2</em></a><a href="pages/AD-05.html"><b>AD-05</b>Đặt phòng tại quầy<em>/bookings/new</em></a><a href="pages/AD-08.html"><b>AD-08</b>Phòng &amp; tình trạng buồng<em>/rooms</em></a></section><section class="dh-grp"><h3>Sản phẩm</h3><a href="pages/AD-06.html"><b>AD-06</b>Giá &amp; tồn kho<em>/inventory?from=2026-11-17</em></a><a href="pages/AD-07.html"><b>AD-07</b>Loại phòng<em>/room-types/2</em></a><a href="pages/AD-09.html"><b>AD-09</b>Gói giá &amp; chính sách hủy<em>/rate-plans</em></a><a href="pages/AD-10.html"><b>AD-10</b>Dịch vụ thêm<em>/services</em></a></section><section class="dh-grp"><h3>Khách hàng</h3><a href="pages/AD-11.html"><b>AD-11</b>Khuyến mãi &amp; voucher<em>/vouchers/new</em></a><a href="pages/AD-12.html"><b>AD-12</b>Đánh giá<em>/reviews?status=PENDING</em></a><a href="pages/AD-13.html"><b>AD-13</b>Khách hàng &amp; điểm<em>/customers/12845</em></a></section><section class="dh-grp"><h3>Tài chính</h3><a href="pages/AD-14.html"><b>AD-14</b>Thanh toán &amp; hoàn tiền<em>/payments?tab=refunds</em></a><a href="pages/AD-15.html"><b>AD-15</b>Báo cáo<em>/reports/revenue?month=2026-09</em></a></section><section class="dh-grp"><h3>Hệ thống</h3><a href="pages/AD-16.html"><b>AD-16</b>Khách sạn (chi nhánh)<em>/hotels/1</em></a><a href="pages/AD-17.html"><b>AD-17</b>Admin &amp; phân quyền<em>/roles</em></a><a href="pages/AD-18.html"><b>AD-18</b>Cấu hình hệ thống<em>/settings</em></a></section></div>
-</main>
-</body></html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lumière Admin — Prototype</title>
+    <meta name="description" content="Danh sách màn hình prototype Web Admin" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/utilities.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/admin.css" />
+    <link rel="stylesheet" href="css/prototype.css" />
+  </head>
+  <body>
+    <script src="js/icons.js"></script>
+    <main class="dh">
+      <div class="dh-head">
+        <span class="brand-mark"
+          ><svg class="i" aria-hidden="true"><use href="#i-door" /></svg
+        ></span>
+        <div><h1>Lumière Admin — Prototype</h1></div>
+      </div>
+      <p class="lead">
+        Prototype bấm được của Web Admin, 18 màn hình. Bấm nút / menu trong màn để chuyển trang; bấm vùng trống để hiện
+        các vùng bấm được; phím <kbd>←</kbd> <kbd>→</kbd> chuyển màn kế tiếp. Đổi ngôn ngữ VI / JA ở thanh trên của mỗi
+        màn.
+      </p>
+      <a class="btn dh-start" href="pages/AD-01.html">Bắt đầu demo từ màn đăng nhập ›</a>
+      <div class="dh-path">
+        <h2>Kịch bản demo gợi ý</h2>
+        <div>
+          <b>Lễ tân nhận khách</b><a href="pages/AD-01.html">Đăng nhập</a>→<a href="pages/AD-02.html">Tổng quan</a>→<a
+            href="pages/AD-03.html"
+            >Danh sách đặt phòng</a
+          >→<a href="pages/AD-04.html">Chi tiết · Nhận phòng</a>→<a href="pages/AD-08.html">Tình trạng buồng</a>
+        </div>
+        <div>
+          <b>Đặt phòng tại quầy</b><a href="pages/AD-03.html">Danh sách</a>→<a href="pages/AD-05.html">Đặt tại quầy</a
+          >→<a href="pages/AD-04.html">Chi tiết đặt phòng</a>
+        </div>
+        <div>
+          <b>Quản lý giá & sản phẩm</b><a href="pages/AD-06.html">Giá & tồn kho</a>→<a href="pages/AD-07.html"
+            >Loại phòng</a
+          >→<a href="pages/AD-09.html">Gói giá & hủy</a>→<a href="pages/AD-10.html">Dịch vụ thêm</a>
+        </div>
+        <div>
+          <b>Marketing & CSKH</b><a href="pages/AD-11.html">Khuyến mãi</a>→<a href="pages/AD-12.html">Đánh giá</a>→<a
+            href="pages/AD-13.html"
+            >Khách & điểm</a
+          >
+        </div>
+        <div>
+          <b>Kế toán</b><a href="pages/AD-14.html">Thanh toán & hoàn tiền</a>→<a href="pages/AD-15.html">Báo cáo</a>
+        </div>
+      </div>
+      <div class="dh-grid">
+        <section class="dh-grp">
+          <h3>Bắt đầu</h3>
+          <a href="pages/AD-01.html"><b>AD-01</b>Đăng nhập quản trị<em>/login</em></a
+          ><a href="pages/AD-02.html"><b>AD-02</b>Tổng quan<em>/dashboard</em></a>
+        </section>
+        <section class="dh-grp">
+          <h3>Vận hành</h3>
+          <a href="pages/AD-03.html"><b>AD-03</b>Danh sách đặt phòng<em>/bookings?checkin=2026-10-15..2026-10-31</em></a
+          ><a href="pages/AD-04.html"><b>AD-04</b>Chi tiết đặt phòng<em>/bookings/HB261018A7K2</em></a
+          ><a href="pages/AD-05.html"><b>AD-05</b>Đặt phòng tại quầy<em>/bookings/new</em></a
+          ><a href="pages/AD-08.html"><b>AD-08</b>Phòng &amp; tình trạng buồng<em>/rooms</em></a>
+        </section>
+        <section class="dh-grp">
+          <h3>Sản phẩm</h3>
+          <a href="pages/AD-06.html"><b>AD-06</b>Giá &amp; tồn kho<em>/inventory?from=2026-11-17</em></a
+          ><a href="pages/AD-07.html"><b>AD-07</b>Loại phòng<em>/room-types/2</em></a
+          ><a href="pages/AD-09.html"><b>AD-09</b>Gói giá &amp; chính sách hủy<em>/rate-plans</em></a
+          ><a href="pages/AD-10.html"><b>AD-10</b>Dịch vụ thêm<em>/services</em></a>
+        </section>
+        <section class="dh-grp">
+          <h3>Khách hàng</h3>
+          <a href="pages/AD-11.html"><b>AD-11</b>Khuyến mãi &amp; voucher<em>/vouchers/new</em></a
+          ><a href="pages/AD-12.html"><b>AD-12</b>Đánh giá<em>/reviews?status=PENDING</em></a
+          ><a href="pages/AD-13.html"><b>AD-13</b>Khách hàng &amp; điểm<em>/customers/12845</em></a>
+        </section>
+        <section class="dh-grp">
+          <h3>Tài chính</h3>
+          <a href="pages/AD-14.html"><b>AD-14</b>Thanh toán &amp; hoàn tiền<em>/payments?tab=refunds</em></a
+          ><a href="pages/AD-15.html"><b>AD-15</b>Báo cáo<em>/reports/revenue?month=2026-09</em></a>
+        </section>
+        <section class="dh-grp">
+          <h3>Hệ thống</h3>
+          <a href="pages/AD-16.html"><b>AD-16</b>Khách sạn (chi nhánh)<em>/hotels/1</em></a
+          ><a href="pages/AD-17.html"><b>AD-17</b>Admin &amp; phân quyền<em>/roles</em></a
+          ><a href="pages/AD-18.html"><b>AD-18</b>Cấu hình hệ thống<em>/settings</em></a>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

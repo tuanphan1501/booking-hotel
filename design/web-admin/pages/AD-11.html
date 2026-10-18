@@ -1,27 +1,332 @@
 <!doctype html>
-<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AD-11 Khuyến mãi &amp; voucher — Lumière Admin</title>
-<meta name="description" content="Tab Khuyến mãi tự động có form tương tự (loại, % giảm, điều kiện ngày).">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/tokens.css">
-<link rel="stylesheet" href="../css/utilities.css">
-<link rel="stylesheet" href="../css/components.css">
-<link rel="stylesheet" href="../css/admin.css">
-<link rel="stylesheet" href="../css/prototype.css">
-</head>
-<body class="proto" data-screen="AD-11">
-<script src="../js/icons.js"></script>
-<div class="adm"><nav class="side"><div class="logo"><span class="brand-mark"><svg class="i s" aria-hidden="true"><use href="#i-door"/></svg></span>Lumière Admin</div><div class="hotel"><svg class="i s" aria-hidden="true"><use href="#i-building"/></svg><span class="grow"><span data-ja="ルミエール ダナン">Lumière Đà Nẵng</span></span><svg class="i s" aria-hidden="true"><use href="#i-down"/></svg></div><a class=""><svg class="i " aria-hidden="true"><use href="#i-dash"/></svg><span data-ja="ダッシュボード">Tổng quan</span></a><div class="grp"><span data-ja="運営">Vận hành</span></div><a class=""><svg class="i " aria-hidden="true"><use href="#i-list"/></svg><span data-ja="予約">Đặt phòng</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-plus"/></svg><span data-ja="フロント予約">Đặt tại quầy</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-door"/></svg><span data-ja="客室・清掃">Phòng & buồng</span></a><div class="grp"><span data-ja="商品">Sản phẩm</span></div><a class=""><svg class="i " aria-hidden="true"><use href="#i-cal"/></svg><span data-ja="在庫・料金">Giá & tồn kho</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-bed"/></svg><span data-ja="客室タイプ">Loại phòng</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-shield"/></svg><span data-ja="プラン・キャンセル">Gói giá & hủy</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-coffee"/></svg><span data-ja="オプション">Dịch vụ thêm</span></a><div class="grp"><span data-ja="顧客">Khách hàng</span></div><a class="on"><svg class="i " aria-hidden="true"><use href="#i-ticket"/></svg><span data-ja="プロモーション">Khuyến mãi</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-star"/></svg><span data-ja="レビュー">Đánh giá</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-users"/></svg><span data-ja="顧客・ポイント">Khách & điểm</span></a><div class="grp"><span data-ja="会計">Tài chính</span></div><a class=""><svg class="i " aria-hidden="true"><use href="#i-money"/></svg><span data-ja="決済・返金">Thanh toán</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-chart"/></svg><span data-ja="レポート">Báo cáo</span></a><div class="grp"><span data-ja="システム">Hệ thống</span></div><a class=""><svg class="i " aria-hidden="true"><use href="#i-building"/></svg><span data-ja="ホテル">Khách sạn</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-lock"/></svg><span data-ja="管理者・権限">Admin & quyền</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-gear"/></svg><span data-ja="設定">Cấu hình</span></a></nav><div class="amain"><div class="abar"><div class="crumb"><span data-ja="顧客">Khách hàng</span> / <b><span data-ja="プロモーション・クーポン">Khuyến mãi & voucher</span></b></div><div class="inp s" style="width:240px"><svg class="i s" aria-hidden="true"><use href="#i-search"/></svg><span class="sub"><span data-ja="予約番号・顧客を検索">Tìm mã đặt phòng, khách…</span></span></div><div class="ab-lang"><b class="ann">L</b><button data-setlang="vi" aria-pressed="true">VI</button><button data-setlang="ja" aria-pressed="false">JA</button></div><button class="ib" style="width:38px;height:38px;position:relative"><svg class="i " aria-hidden="true"><use href="#i-bell"/></svg><span style="position:absolute;top:7px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--rose)"></span></button><span class="avatar">LH</span></div><div class="split"><div class="apage"><div class="ph-row"><h1><span data-ja="プロモーション">Khuyến mãi</span></h1><div class="seg" style="width:300px"><b class="ann">1</b><span><span data-ja="自動適用">Tự động</span></span><span class="on">Voucher</span></div></div><div class="panel p0"><b class="ann">2</b><table class="tbl"><tr><th><span data-ja="コード">Mã</span></th><th><span data-ja="割引">Giảm</span></th><th><span data-ja="有効期間">Hiệu lực</span></th><th><span data-ja="利用数">Đã dùng</span></th><th><span data-ja="対象">Phạm vi</span></th><th><span data-ja="状態">Trạng thái</span></th></tr><tr class=""><td class="w6">WELCOME200</td><td><span class="num " data-m="200000"></span></td><td><span class="" data-d="2026-10-01" data-f="dm"></span> – <span class="" data-d="2026-12-31" data-f="dm"></span></td><td><div class="num">412 / 2.000</div><div class="progress" style="height:4px;width:90px;margin-top:4px"><i style="width:21%;background:var(--brand)"></i></div></td><td><span data-ja="全ホテル">Toàn chuỗi</span></td><td><span class="chip brand"><span data-ja="実施中">Đang chạy</span></span></td></tr><tr class=""><td class="w6">GOLD15</td><td>15% (≤ 1tr)</td><td><span class="" data-d="2026-10-01" data-f="dm"></span> – <span class="" data-d="2027-03-31" data-f="dm"></span></td><td><div class="num">58 / ∞</div><div class="progress" style="height:4px;width:90px;margin-top:4px"><i style="width:5%;background:var(--brand)"></i></div></td><td><span data-ja="Gold以上">Hạng ≥ Gold</span></td><td><span class="chip brand"><span data-ja="実施中">Đang chạy</span></span></td></tr><tr class="hl"><td class="w6">DANANG11</td><td>11% (≤ 500k)</td><td><span class="" data-d="2026-11-11" data-f="dm"></span> – <span class="" data-d="2026-11-11" data-f="dm"></span></td><td><div class="num">0 / 300</div><div class="progress" style="height:4px;width:90px;margin-top:4px"><i style="width:0%;background:var(--brand)"></i></div></td><td><span data-ja="ダナン">Đà Nẵng</span></td><td><span class="chip sky"><span data-ja="開始前">Sắp chạy</span></span></td></tr><tr class=""><td class="w6">SUMMER26</td><td><span class="num " data-m="300000"></span></td><td><span class="" data-d="2026-06-01" data-f="dm"></span> – <span class="" data-d="2026-08-31" data-f="dm"></span></td><td><div class="num">1.104 / 1.200</div><div class="progress" style="height:4px;width:90px;margin-top:4px"><i style="width:92%;background:var(--brand)"></i></div></td><td><span data-ja="全ホテル">Toàn chuỗi</span></td><td><span class="chip "><span data-ja="終了">Hết hạn</span></span></td></tr></table></div></div><aside class="drawer"><div class="row between"><span class="t-m"><span data-ja="クーポンを編集">Sửa voucher</span></span><button class="ib" style="width:36px;height:36px"><svg class="i " aria-hidden="true"><use href="#i-close"/></svg></button></div><div class="row g12"><div class="fld" style="width:140px"><label><b class="ann">3</b><span data-ja="コード">Mã</span> *</label><div class="inp s w6">DANANG11</div></div><div class="fld grow"><label><span data-ja="表示名">Tên hiển thị</span> *</label><div class="inp s">Sale 11/11</div></div></div><div class="fld"><label><b class="ann">4</b><span data-ja="割引種別">Kiểu giảm</span></label><div class="seg"><span class="on">%</span><span><span data-ja="金額">Số tiền</span></span></div></div><div class="row g12"><div class="fld grow"><label><span data-ja="割引率">Giảm</span> *</label><div class="inp s">11 %</div></div><div class="fld grow"><label><span data-ja="上限額">Giảm tối đa</span></label><div class="inp s num"><span class="num " data-n="500000"></span></div></div></div><div class="row g12"><div class="fld grow"><label><b class="ann">5</b><span data-ja="開始">Bắt đầu</span> *</label><div class="inp s"><span class="" data-d="2026-11-11" data-f="dmy"></span> 00:00</div></div><div class="fld grow"><label><span data-ja="終了">Kết thúc</span> *</label><div class="inp s"><span class="" data-d="2026-11-11" data-f="dmy"></span> 23:59</div></div></div><div class="row g12"><div class="fld grow"><label><b class="ann">6</b><span data-ja="総利用上限">Tổng lượt</span></label><div class="inp s">300</div></div><div class="fld grow"><label><span data-ja="1人あたり">Lượt / khách</span></label><div class="inp s">1</div></div></div><div class="fld"><label><b class="ann">7</b><span data-ja="対象">Áp dụng</span></label><div class="inp s">Lumière Đà Nẵng<svg class="i s" aria-hidden="true"><use href="#i-down"/></svg></div><div class="inp s"><span data-ja="全ランク">Mọi hạng thành viên</span><svg class="i s" aria-hidden="true"><use href="#i-down"/></svg></div><div class="help"><span data-ja="最低利用金額">Đơn tối thiểu</span>: <span class="num " data-m="2000000"></span></div></div><div class="row between t-s"><b class="ann">8</b><span data-ja="アプリで公開">Hiện công khai trên app</span><span class="sw on"></span></div><div class="row g12" style="margin-top:auto"><button class="btn sm sec grow"><span data-ja="キャンセル">Hủy</span></button><button class="btn sm grow"><span data-ja="クーポンを保存">Lưu voucher</span></button></div></aside></div></div></div>
-<div class="proto-bar" aria-label="Prototype">
-<a href="../index.html" title="Danh sách màn hình">☰</a>
-<a data-nav="prev" href="AD-10.html" title="Màn trước (←)">‹</a>
-<select class="proto-jump" aria-label="Chuyển màn"><optgroup label="Bắt đầu"><option value="AD-01">AD-01 · Đăng nhập quản trị</option><option value="AD-02">AD-02 · Tổng quan</option></optgroup><optgroup label="Vận hành"><option value="AD-03">AD-03 · Danh sách đặt phòng</option><option value="AD-04">AD-04 · Chi tiết đặt phòng</option><option value="AD-05">AD-05 · Đặt phòng tại quầy</option><option value="AD-08">AD-08 · Phòng &amp; tình trạng buồng</option></optgroup><optgroup label="Sản phẩm"><option value="AD-06">AD-06 · Giá &amp; tồn kho</option><option value="AD-07">AD-07 · Loại phòng</option><option value="AD-09">AD-09 · Gói giá &amp; chính sách hủy</option><option value="AD-10">AD-10 · Dịch vụ thêm</option></optgroup><optgroup label="Khách hàng"><option value="AD-11" selected>AD-11 · Khuyến mãi &amp; voucher</option><option value="AD-12">AD-12 · Đánh giá</option><option value="AD-13">AD-13 · Khách hàng &amp; điểm</option></optgroup><optgroup label="Tài chính"><option value="AD-14">AD-14 · Thanh toán &amp; hoàn tiền</option><option value="AD-15">AD-15 · Báo cáo</option></optgroup><optgroup label="Hệ thống"><option value="AD-16">AD-16 · Khách sạn (chi nhánh)</option><option value="AD-17">AD-17 · Admin &amp; phân quyền</option><option value="AD-18">AD-18 · Cấu hình hệ thống</option></optgroup></select>
-<a data-nav="next" href="AD-12.html" title="Màn sau (→)">›</a>
-<label title="Hiện số chú thích"><input type="checkbox" id="annToggle">Chú thích</label>
-</div>
-<script src="../js/i18n.js"></script>
-<script src="../js/links.js"></script>
-<script src="../js/prototype.js"></script>
-<script src="../js/app.js"></script>
-</body></html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AD-11 Khuyến mãi &amp; voucher — Lumière Admin</title>
+    <meta name="description" content="Tab Khuyến mãi tự động có form tương tự (loại, % giảm, điều kiện ngày)." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/tokens.css" />
+    <link rel="stylesheet" href="../css/utilities.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+    <link rel="stylesheet" href="../css/prototype.css" />
+  </head>
+  <body class="proto" data-screen="AD-11">
+    <script src="../js/icons.js"></script>
+    <div class="adm">
+      <nav class="side">
+        <div class="logo">
+          <span class="brand-mark"
+            ><svg class="i s" aria-hidden="true"><use href="#i-door" /></svg></span
+          >Lumière Admin
+        </div>
+        <div class="hotel">
+          <svg class="i s" aria-hidden="true"><use href="#i-building" /></svg
+          ><span class="grow"><span data-ja="ルミエール ダナン">Lumière Đà Nẵng</span></span
+          ><svg class="i s" aria-hidden="true"><use href="#i-down" /></svg>
+        </div>
+        <a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-dash" /></svg
+          ><span data-ja="ダッシュボード">Tổng quan</span></a
+        >
+        <div class="grp"><span data-ja="運営">Vận hành</span></div>
+        <a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-list" /></svg><span data-ja="予約">Đặt phòng</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-plus" /></svg
+          ><span data-ja="フロント予約">Đặt tại quầy</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-door" /></svg
+          ><span data-ja="客室・清掃">Phòng & buồng</span></a
+        >
+        <div class="grp"><span data-ja="商品">Sản phẩm</span></div>
+        <a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-cal" /></svg
+          ><span data-ja="在庫・料金">Giá & tồn kho</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-bed" /></svg><span data-ja="客室タイプ">Loại phòng</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-shield" /></svg
+          ><span data-ja="プラン・キャンセル">Gói giá & hủy</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-coffee" /></svg
+          ><span data-ja="オプション">Dịch vụ thêm</span></a
+        >
+        <div class="grp"><span data-ja="顧客">Khách hàng</span></div>
+        <a class="on"
+          ><svg class="i" aria-hidden="true"><use href="#i-ticket" /></svg
+          ><span data-ja="プロモーション">Khuyến mãi</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><span data-ja="レビュー">Đánh giá</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-users" /></svg
+          ><span data-ja="顧客・ポイント">Khách & điểm</span></a
+        >
+        <div class="grp"><span data-ja="会計">Tài chính</span></div>
+        <a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-money" /></svg
+          ><span data-ja="決済・返金">Thanh toán</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-chart" /></svg><span data-ja="レポート">Báo cáo</span></a
+        >
+        <div class="grp"><span data-ja="システム">Hệ thống</span></div>
+        <a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-building" /></svg><span data-ja="ホテル">Khách sạn</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-lock" /></svg
+          ><span data-ja="管理者・権限">Admin & quyền</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-gear" /></svg><span data-ja="設定">Cấu hình</span></a
+        >
+      </nav>
+      <div class="amain">
+        <div class="abar">
+          <div class="crumb">
+            <span data-ja="顧客">Khách hàng</span> /
+            <b><span data-ja="プロモーション・クーポン">Khuyến mãi & voucher</span></b>
+          </div>
+          <div class="inp s" style="width: 240px">
+            <svg class="i s" aria-hidden="true"><use href="#i-search" /></svg
+            ><span class="sub"><span data-ja="予約番号・顧客を検索">Tìm mã đặt phòng, khách…</span></span>
+          </div>
+          <div class="ab-lang">
+            <b class="ann">L</b><button data-setlang="vi" aria-pressed="true">VI</button
+            ><button data-setlang="ja" aria-pressed="false">JA</button>
+          </div>
+          <button class="ib" style="width: 38px; height: 38px; position: relative">
+            <svg class="i" aria-hidden="true"><use href="#i-bell" /></svg
+            ><span
+              style="
+                position: absolute;
+                top: 7px;
+                right: 8px;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: var(--rose);
+              "
+            ></span></button
+          ><span class="avatar">LH</span>
+        </div>
+        <div class="split">
+          <div class="apage">
+            <div class="ph-row">
+              <h1><span data-ja="プロモーション">Khuyến mãi</span></h1>
+              <div class="seg" style="width: 300px">
+                <b class="ann">1</b><span><span data-ja="自動適用">Tự động</span></span
+                ><span class="on">Voucher</span>
+              </div>
+            </div>
+            <div class="panel p0">
+              <b class="ann">2</b>
+              <table class="tbl">
+                <tr>
+                  <th><span data-ja="コード">Mã</span></th>
+                  <th><span data-ja="割引">Giảm</span></th>
+                  <th><span data-ja="有効期間">Hiệu lực</span></th>
+                  <th><span data-ja="利用数">Đã dùng</span></th>
+                  <th><span data-ja="対象">Phạm vi</span></th>
+                  <th><span data-ja="状態">Trạng thái</span></th>
+                </tr>
+                <tr class="">
+                  <td class="w6">WELCOME200</td>
+                  <td><span class="num" data-m="200000"></span></td>
+                  <td>
+                    <span class="" data-d="2026-10-01" data-f="dm"></span> –
+                    <span class="" data-d="2026-12-31" data-f="dm"></span>
+                  </td>
+                  <td>
+                    <div class="num">412 / 2.000</div>
+                    <div class="progress" style="height: 4px; width: 90px; margin-top: 4px">
+                      <i style="width: 21%; background: var(--brand)"></i>
+                    </div>
+                  </td>
+                  <td><span data-ja="全ホテル">Toàn chuỗi</span></td>
+                  <td>
+                    <span class="chip brand"><span data-ja="実施中">Đang chạy</span></span>
+                  </td>
+                </tr>
+                <tr class="">
+                  <td class="w6">GOLD15</td>
+                  <td>15% (≤ 1tr)</td>
+                  <td>
+                    <span class="" data-d="2026-10-01" data-f="dm"></span> –
+                    <span class="" data-d="2027-03-31" data-f="dm"></span>
+                  </td>
+                  <td>
+                    <div class="num">58 / ∞</div>
+                    <div class="progress" style="height: 4px; width: 90px; margin-top: 4px">
+                      <i style="width: 5%; background: var(--brand)"></i>
+                    </div>
+                  </td>
+                  <td><span data-ja="Gold以上">Hạng ≥ Gold</span></td>
+                  <td>
+                    <span class="chip brand"><span data-ja="実施中">Đang chạy</span></span>
+                  </td>
+                </tr>
+                <tr class="hl">
+                  <td class="w6">DANANG11</td>
+                  <td>11% (≤ 500k)</td>
+                  <td>
+                    <span class="" data-d="2026-11-11" data-f="dm"></span> –
+                    <span class="" data-d="2026-11-11" data-f="dm"></span>
+                  </td>
+                  <td>
+                    <div class="num">0 / 300</div>
+                    <div class="progress" style="height: 4px; width: 90px; margin-top: 4px">
+                      <i style="width: 0%; background: var(--brand)"></i>
+                    </div>
+                  </td>
+                  <td><span data-ja="ダナン">Đà Nẵng</span></td>
+                  <td>
+                    <span class="chip sky"><span data-ja="開始前">Sắp chạy</span></span>
+                  </td>
+                </tr>
+                <tr class="">
+                  <td class="w6">SUMMER26</td>
+                  <td><span class="num" data-m="300000"></span></td>
+                  <td>
+                    <span class="" data-d="2026-06-01" data-f="dm"></span> –
+                    <span class="" data-d="2026-08-31" data-f="dm"></span>
+                  </td>
+                  <td>
+                    <div class="num">1.104 / 1.200</div>
+                    <div class="progress" style="height: 4px; width: 90px; margin-top: 4px">
+                      <i style="width: 92%; background: var(--brand)"></i>
+                    </div>
+                  </td>
+                  <td><span data-ja="全ホテル">Toàn chuỗi</span></td>
+                  <td>
+                    <span class="chip"><span data-ja="終了">Hết hạn</span></span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <aside class="drawer">
+            <div class="row between">
+              <span class="t-m"><span data-ja="クーポンを編集">Sửa voucher</span></span
+              ><button class="ib" style="width: 36px; height: 36px">
+                <svg class="i" aria-hidden="true"><use href="#i-close" /></svg>
+              </button>
+            </div>
+            <div class="row g12">
+              <div class="fld" style="width: 140px">
+                <label><b class="ann">3</b><span data-ja="コード">Mã</span> *</label>
+                <div class="inp s w6">DANANG11</div>
+              </div>
+              <div class="fld grow">
+                <label><span data-ja="表示名">Tên hiển thị</span> *</label>
+                <div class="inp s">Sale 11/11</div>
+              </div>
+            </div>
+            <div class="fld">
+              <label><b class="ann">4</b><span data-ja="割引種別">Kiểu giảm</span></label>
+              <div class="seg">
+                <span class="on">%</span><span><span data-ja="金額">Số tiền</span></span>
+              </div>
+            </div>
+            <div class="row g12">
+              <div class="fld grow">
+                <label><span data-ja="割引率">Giảm</span> *</label>
+                <div class="inp s">11 %</div>
+              </div>
+              <div class="fld grow">
+                <label><span data-ja="上限額">Giảm tối đa</span></label>
+                <div class="inp s num"><span class="num" data-n="500000"></span></div>
+              </div>
+            </div>
+            <div class="row g12">
+              <div class="fld grow">
+                <label><b class="ann">5</b><span data-ja="開始">Bắt đầu</span> *</label>
+                <div class="inp s"><span class="" data-d="2026-11-11" data-f="dmy"></span> 00:00</div>
+              </div>
+              <div class="fld grow">
+                <label><span data-ja="終了">Kết thúc</span> *</label>
+                <div class="inp s"><span class="" data-d="2026-11-11" data-f="dmy"></span> 23:59</div>
+              </div>
+            </div>
+            <div class="row g12">
+              <div class="fld grow">
+                <label><b class="ann">6</b><span data-ja="総利用上限">Tổng lượt</span></label>
+                <div class="inp s">300</div>
+              </div>
+              <div class="fld grow">
+                <label><span data-ja="1人あたり">Lượt / khách</span></label>
+                <div class="inp s">1</div>
+              </div>
+            </div>
+            <div class="fld">
+              <label><b class="ann">7</b><span data-ja="対象">Áp dụng</span></label>
+              <div class="inp s">
+                Lumière Đà Nẵng<svg class="i s" aria-hidden="true"><use href="#i-down" /></svg>
+              </div>
+              <div class="inp s">
+                <span data-ja="全ランク">Mọi hạng thành viên</span
+                ><svg class="i s" aria-hidden="true"><use href="#i-down" /></svg>
+              </div>
+              <div class="help">
+                <span data-ja="最低利用金額">Đơn tối thiểu</span>: <span class="num" data-m="2000000"></span>
+              </div>
+            </div>
+            <div class="row between t-s">
+              <b class="ann">8</b><span data-ja="アプリで公開">Hiện công khai trên app</span><span class="sw on"></span>
+            </div>
+            <div class="row g12" style="margin-top: auto">
+              <button class="btn sm sec grow"><span data-ja="キャンセル">Hủy</span></button
+              ><button class="btn sm grow"><span data-ja="クーポンを保存">Lưu voucher</span></button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+    <div class="proto-bar" aria-label="Prototype">
+      <a href="../index.html" title="Danh sách màn hình">☰</a>
+      <a data-nav="prev" href="AD-10.html" title="Màn trước (←)">‹</a>
+      <select class="proto-jump" aria-label="Chuyển màn">
+        <optgroup label="Bắt đầu">
+          <option value="AD-01">AD-01 · Đăng nhập quản trị</option>
+          <option value="AD-02">AD-02 · Tổng quan</option>
+        </optgroup>
+        <optgroup label="Vận hành">
+          <option value="AD-03">AD-03 · Danh sách đặt phòng</option>
+          <option value="AD-04">AD-04 · Chi tiết đặt phòng</option>
+          <option value="AD-05">AD-05 · Đặt phòng tại quầy</option>
+          <option value="AD-08">AD-08 · Phòng &amp; tình trạng buồng</option>
+        </optgroup>
+        <optgroup label="Sản phẩm">
+          <option value="AD-06">AD-06 · Giá &amp; tồn kho</option>
+          <option value="AD-07">AD-07 · Loại phòng</option>
+          <option value="AD-09">AD-09 · Gói giá &amp; chính sách hủy</option>
+          <option value="AD-10">AD-10 · Dịch vụ thêm</option>
+        </optgroup>
+        <optgroup label="Khách hàng">
+          <option value="AD-11" selected>AD-11 · Khuyến mãi &amp; voucher</option>
+          <option value="AD-12">AD-12 · Đánh giá</option>
+          <option value="AD-13">AD-13 · Khách hàng &amp; điểm</option>
+        </optgroup>
+        <optgroup label="Tài chính">
+          <option value="AD-14">AD-14 · Thanh toán &amp; hoàn tiền</option>
+          <option value="AD-15">AD-15 · Báo cáo</option>
+        </optgroup>
+        <optgroup label="Hệ thống">
+          <option value="AD-16">AD-16 · Khách sạn (chi nhánh)</option>
+          <option value="AD-17">AD-17 · Admin &amp; phân quyền</option>
+          <option value="AD-18">AD-18 · Cấu hình hệ thống</option>
+        </optgroup>
+      </select>
+      <a data-nav="next" href="AD-12.html" title="Màn sau (→)">›</a>
+      <label title="Hiện số chú thích"><input type="checkbox" id="annToggle" />Chú thích</label>
+    </div>
+    <script src="../js/i18n.js"></script>
+    <script src="../js/links.js"></script>
+    <script src="../js/prototype.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>

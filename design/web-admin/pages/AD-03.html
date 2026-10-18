@@ -1,27 +1,343 @@
 <!doctype html>
-<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AD-03 Danh sách đặt phòng — Lumière Admin</title>
-<meta name="description" content="Bộ lọc lưu trên URL; xuất CSV theo bộ lọc hiện tại.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/tokens.css">
-<link rel="stylesheet" href="../css/utilities.css">
-<link rel="stylesheet" href="../css/components.css">
-<link rel="stylesheet" href="../css/admin.css">
-<link rel="stylesheet" href="../css/prototype.css">
-</head>
-<body class="proto" data-screen="AD-03">
-<script src="../js/icons.js"></script>
-<div class="adm"><nav class="side"><div class="logo"><span class="brand-mark"><svg class="i s" aria-hidden="true"><use href="#i-door"/></svg></span>Lumière Admin</div><div class="hotel"><svg class="i s" aria-hidden="true"><use href="#i-building"/></svg><span class="grow"><span data-ja="ルミエール ダナン">Lumière Đà Nẵng</span></span><svg class="i s" aria-hidden="true"><use href="#i-down"/></svg></div><a class=""><svg class="i " aria-hidden="true"><use href="#i-dash"/></svg><span data-ja="ダッシュボード">Tổng quan</span></a><div class="grp"><span data-ja="運営">Vận hành</span></div><a class="on"><svg class="i " aria-hidden="true"><use href="#i-list"/></svg><span data-ja="予約">Đặt phòng</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-plus"/></svg><span data-ja="フロント予約">Đặt tại quầy</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-door"/></svg><span data-ja="客室・清掃">Phòng & buồng</span></a><div class="grp"><span data-ja="商品">Sản phẩm</span></div><a class=""><svg class="i " aria-hidden="true"><use href="#i-cal"/></svg><span data-ja="在庫・料金">Giá & tồn kho</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-bed"/></svg><span data-ja="客室タイプ">Loại phòng</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-shield"/></svg><span data-ja="プラン・キャンセル">Gói giá & hủy</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-coffee"/></svg><span data-ja="オプション">Dịch vụ thêm</span></a><div class="grp"><span data-ja="顧客">Khách hàng</span></div><a class=""><svg class="i " aria-hidden="true"><use href="#i-ticket"/></svg><span data-ja="プロモーション">Khuyến mãi</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-star"/></svg><span data-ja="レビュー">Đánh giá</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-users"/></svg><span data-ja="顧客・ポイント">Khách & điểm</span></a><div class="grp"><span data-ja="会計">Tài chính</span></div><a class=""><svg class="i " aria-hidden="true"><use href="#i-money"/></svg><span data-ja="決済・返金">Thanh toán</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-chart"/></svg><span data-ja="レポート">Báo cáo</span></a><div class="grp"><span data-ja="システム">Hệ thống</span></div><a class=""><svg class="i " aria-hidden="true"><use href="#i-building"/></svg><span data-ja="ホテル">Khách sạn</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-lock"/></svg><span data-ja="管理者・権限">Admin & quyền</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-gear"/></svg><span data-ja="設定">Cấu hình</span></a></nav><div class="amain"><div class="abar"><div class="crumb"><span data-ja="運営">Vận hành</span> / <b><span data-ja="予約一覧">Danh sách đặt phòng</span></b></div><div class="inp s" style="width:240px"><svg class="i s" aria-hidden="true"><use href="#i-search"/></svg><span class="sub"><span data-ja="予約番号・顧客を検索">Tìm mã đặt phòng, khách…</span></span></div><div class="ab-lang"><b class="ann">L</b><button data-setlang="vi" aria-pressed="true">VI</button><button data-setlang="ja" aria-pressed="false">JA</button></div><button class="ib" style="width:38px;height:38px;position:relative"><svg class="i " aria-hidden="true"><use href="#i-bell"/></svg><span style="position:absolute;top:7px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--rose)"></span></button><span class="avatar">LH</span></div><div class="apage"><div class="ph-row"><h1><span data-ja="予約">Đặt phòng</span></h1><button class="btn sm sec"><b class="ann">1</b><svg class="i s" aria-hidden="true"><use href="#i-download"/></svg><span data-ja="CSV出力">Xuất CSV</span></button><button class="btn sm"><b class="ann">2</b><svg class="i s" aria-hidden="true"><use href="#i-plus"/></svg><span data-ja="フロント予約">Đặt tại quầy</span></button></div><div class="row wrap"><b class="ann">3</b><div class="inp s" style="width:260px"><svg class="i s" aria-hidden="true"><use href="#i-search"/></svg><span class="sub"><span data-ja="番号・氏名・電話・メール">Mã, tên, SĐT, email</span></span></div><span class="sel"><span data-ja="チェックイン">Nhận phòng</span>: <span class="" data-d="2026-10-15" data-f="dm"></span> – <span class="" data-d="2026-10-31" data-f="dm"></span><svg class="i s" aria-hidden="true"><use href="#i-down"/></svg></span><span class="sel"><span data-ja="ステータス：すべて">Trạng thái: Tất cả</span><svg class="i s" aria-hidden="true"><use href="#i-down"/></svg></span><span class="sel"><span data-ja="経路：すべて">Kênh: Tất cả</span><svg class="i s" aria-hidden="true"><use href="#i-down"/></svg></span><span class="sel"><span data-ja="客室タイプ">Loại phòng</span><svg class="i s" aria-hidden="true"><use href="#i-down"/></svg></span><a class="t-s brand w6"><span data-ja="クリア">Xóa lọc</span></a></div><div class="panel p0"><b class="ann">4</b><table class="tbl"><tr><th><span data-ja="予約番号">Mã đặt phòng</span></th><th><span data-ja="宿泊者">Khách</span></th><th><span data-ja="IN – OUT">Nhận – trả</span></th><th><span data-ja="客室">Phòng</span></th><th><span data-ja="経路">Kênh</span></th><th class="r"><span data-ja="合計">Tổng tiền</span></th><th class="r"><span data-ja="入金済">Đã thu</span></th><th><span data-ja="ステータス">Trạng thái</span></th><th><span data-ja="作成日時">Tạo lúc</span></th></tr><tr class="hl"><td class="link">HB261018A7K2</td><td>Nguyễn Văn Minh<div class=t-xs><span class=gold>Gold</span></div></td><td><span class="" data-d="2026-11-20" data-f="dm"></span> – <span class="" data-d="2026-11-22" data-f="dm"></span></td><td>Deluxe Ocean × 1</td><td><span data-ja="アプリ">App</span></td><td class="r"><span class="num " data-m="3515400"></span></td><td class="r"><span class="num " data-m="3415400"></span></td><td><span class="chip brand"><span data-ja="✓ 予約確定">✓ Đã xác nhận</span></span></td><td class="sub"><span class="" data-d="2026-10-18" data-f="dm"></span> 17:42</td></tr><tr class=""><td class="link">HB261018Z1R7</td><td>Trần Mai Anh</td><td><span class="" data-d="2026-10-25" data-f="dm"></span> – <span class="" data-d="2026-10-26" data-f="dm"></span></td><td>Superior × 2</td><td><span data-ja="アプリ">App</span></td><td class="r"><span class="num " data-m="2940000"></span></td><td class="r"><span class="num " data-m="0"></span></td><td><span class="chip amber"><span data-ja="決済待ち">Chờ thanh toán</span></span></td><td class="sub"><span class="" data-d="2026-10-18" data-f="dm"></span> 17:51</td></tr><tr class=""><td class="link">HB261017P0Q5</td><td>Phạm Quốc Bảo</td><td><span class="" data-d="2026-10-18" data-f="dm"></span> – <span class="" data-d="2026-10-20" data-f="dm"></span></td><td>Superior × 1</td><td><span data-ja="フロント">Quầy</span></td><td class="r"><span class="num " data-m="2721600"></span></td><td class="r"><span class="num " data-m="1000000"></span></td><td><span class="chip brand"><span data-ja="✓ 予約確定">✓ Đã xác nhận</span></span></td><td class="sub"><span class="" data-d="2026-10-17" data-f="dm"></span> 10:05</td></tr><tr class=""><td class="link">HB261011M7X3</td><td>Lê Thu Hà<div class=t-xs><span class=gold>Silver</span></div></td><td><span class="" data-d="2026-10-18" data-f="dm"></span> – <span class="" data-d="2026-10-21" data-f="dm"></span></td><td>Deluxe Ocean × 1</td><td><span data-ja="アプリ">App</span></td><td class="r"><span class="num " data-m="5120000"></span></td><td class="r"><span class="num " data-m="5120000"></span></td><td><span class="chip sky"><span data-ja="滞在中">Đang ở</span></span></td><td class="sub"><span class="" data-d="2026-10-11" data-f="dm"></span> 08:30</td></tr><tr class=""><td class="link">HB261005C2D8</td><td>Tanaka Yuki<div class=t-xs><span class=gold>Gold</span></div></td><td><span class="" data-d="2026-10-18" data-f="dm"></span> – <span class="" data-d="2026-10-23" data-f="dm"></span></td><td>Junior Suite × 1</td><td><span data-ja="アプリ">App</span></td><td class="r"><span class="num " data-m="14200000"></span></td><td class="r"><span class="num " data-m="14200000"></span></td><td><span class="chip brand"><span data-ja="✓ 予約確定">✓ Đã xác nhận</span></span></td><td class="sub"><span class="" data-d="2026-10-05" data-f="dm"></span> 21:14</td></tr><tr class=""><td class="link">HB261009H4S2</td><td>Đỗ Gia Huy</td><td><span class="" data-d="2026-10-16" data-f="dm"></span> – <span class="" data-d="2026-10-18" data-f="dm"></span></td><td>Deluxe Garden × 1</td><td><span data-ja="アプリ">App</span></td><td class="r"><span class="num " data-m="2880000"></span></td><td class="r"><span class="num " data-m="2880000"></span></td><td><span class="chip "><span data-ja="チェックアウト済">Đã trả phòng</span></span></td><td class="sub"><span class="" data-d="2026-10-09" data-f="dm"></span> 12:40</td></tr><tr class=""><td class="link">HB261002W8E1</td><td>Võ Thanh Tâm</td><td><span class="" data-d="2026-10-17" data-f="dm"></span> – <span class="" data-d="2026-10-19" data-f="dm"></span></td><td>Superior × 1</td><td><span data-ja="アプリ">App</span></td><td class="r"><span class="num " data-m="2400000"></span></td><td class="r"><span class="num " data-m="2400000"></span></td><td><span class="chip rose"><span data-ja="キャンセル">Đã hủy</span></span></td><td class="sub"><span class="" data-d="2026-10-02" data-f="dm"></span> 19:03</td></tr></table><div class="row between" style="padding:12px 16px;border-top:1px solid var(--line)"><b class="ann">5</b><span class="t-s sub"><span data-ja="184件中 1–7件">Hiển thị 1–7 trên 184</span></span><span class="row g4"><span class="sel"><svg class="i s" aria-hidden="true"><use href="#i-back"/></svg></span><span class="sel" style="background:var(--ink);color:#fff">1</span><span class="sel">2</span><span class="sel">3</span><span class="sel"><svg class="i s" aria-hidden="true"><use href="#i-chev"/></svg></span><span class="sel"><span data-ja="20件/頁">20 / trang</span></span></span></div></div></div></div></div>
-<div class="proto-bar" aria-label="Prototype">
-<a href="../index.html" title="Danh sách màn hình">☰</a>
-<a data-nav="prev" href="AD-02.html" title="Màn trước (←)">‹</a>
-<select class="proto-jump" aria-label="Chuyển màn"><optgroup label="Bắt đầu"><option value="AD-01">AD-01 · Đăng nhập quản trị</option><option value="AD-02">AD-02 · Tổng quan</option></optgroup><optgroup label="Vận hành"><option value="AD-03" selected>AD-03 · Danh sách đặt phòng</option><option value="AD-04">AD-04 · Chi tiết đặt phòng</option><option value="AD-05">AD-05 · Đặt phòng tại quầy</option><option value="AD-08">AD-08 · Phòng &amp; tình trạng buồng</option></optgroup><optgroup label="Sản phẩm"><option value="AD-06">AD-06 · Giá &amp; tồn kho</option><option value="AD-07">AD-07 · Loại phòng</option><option value="AD-09">AD-09 · Gói giá &amp; chính sách hủy</option><option value="AD-10">AD-10 · Dịch vụ thêm</option></optgroup><optgroup label="Khách hàng"><option value="AD-11">AD-11 · Khuyến mãi &amp; voucher</option><option value="AD-12">AD-12 · Đánh giá</option><option value="AD-13">AD-13 · Khách hàng &amp; điểm</option></optgroup><optgroup label="Tài chính"><option value="AD-14">AD-14 · Thanh toán &amp; hoàn tiền</option><option value="AD-15">AD-15 · Báo cáo</option></optgroup><optgroup label="Hệ thống"><option value="AD-16">AD-16 · Khách sạn (chi nhánh)</option><option value="AD-17">AD-17 · Admin &amp; phân quyền</option><option value="AD-18">AD-18 · Cấu hình hệ thống</option></optgroup></select>
-<a data-nav="next" href="AD-04.html" title="Màn sau (→)">›</a>
-<label title="Hiện số chú thích"><input type="checkbox" id="annToggle">Chú thích</label>
-</div>
-<script src="../js/i18n.js"></script>
-<script src="../js/links.js"></script>
-<script src="../js/prototype.js"></script>
-<script src="../js/app.js"></script>
-</body></html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AD-03 Danh sách đặt phòng — Lumière Admin</title>
+    <meta name="description" content="Bộ lọc lưu trên URL; xuất CSV theo bộ lọc hiện tại." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/tokens.css" />
+    <link rel="stylesheet" href="../css/utilities.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+    <link rel="stylesheet" href="../css/prototype.css" />
+  </head>
+  <body class="proto" data-screen="AD-03">
+    <script src="../js/icons.js"></script>
+    <div class="adm">
+      <nav class="side">
+        <div class="logo">
+          <span class="brand-mark"
+            ><svg class="i s" aria-hidden="true"><use href="#i-door" /></svg></span
+          >Lumière Admin
+        </div>
+        <div class="hotel">
+          <svg class="i s" aria-hidden="true"><use href="#i-building" /></svg
+          ><span class="grow"><span data-ja="ルミエール ダナン">Lumière Đà Nẵng</span></span
+          ><svg class="i s" aria-hidden="true"><use href="#i-down" /></svg>
+        </div>
+        <a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-dash" /></svg
+          ><span data-ja="ダッシュボード">Tổng quan</span></a
+        >
+        <div class="grp"><span data-ja="運営">Vận hành</span></div>
+        <a class="on"
+          ><svg class="i" aria-hidden="true"><use href="#i-list" /></svg><span data-ja="予約">Đặt phòng</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-plus" /></svg
+          ><span data-ja="フロント予約">Đặt tại quầy</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-door" /></svg
+          ><span data-ja="客室・清掃">Phòng & buồng</span></a
+        >
+        <div class="grp"><span data-ja="商品">Sản phẩm</span></div>
+        <a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-cal" /></svg
+          ><span data-ja="在庫・料金">Giá & tồn kho</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-bed" /></svg><span data-ja="客室タイプ">Loại phòng</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-shield" /></svg
+          ><span data-ja="プラン・キャンセル">Gói giá & hủy</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-coffee" /></svg
+          ><span data-ja="オプション">Dịch vụ thêm</span></a
+        >
+        <div class="grp"><span data-ja="顧客">Khách hàng</span></div>
+        <a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-ticket" /></svg
+          ><span data-ja="プロモーション">Khuyến mãi</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><span data-ja="レビュー">Đánh giá</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-users" /></svg
+          ><span data-ja="顧客・ポイント">Khách & điểm</span></a
+        >
+        <div class="grp"><span data-ja="会計">Tài chính</span></div>
+        <a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-money" /></svg
+          ><span data-ja="決済・返金">Thanh toán</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-chart" /></svg><span data-ja="レポート">Báo cáo</span></a
+        >
+        <div class="grp"><span data-ja="システム">Hệ thống</span></div>
+        <a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-building" /></svg><span data-ja="ホテル">Khách sạn</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-lock" /></svg
+          ><span data-ja="管理者・権限">Admin & quyền</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-gear" /></svg><span data-ja="設定">Cấu hình</span></a
+        >
+      </nav>
+      <div class="amain">
+        <div class="abar">
+          <div class="crumb">
+            <span data-ja="運営">Vận hành</span> / <b><span data-ja="予約一覧">Danh sách đặt phòng</span></b>
+          </div>
+          <div class="inp s" style="width: 240px">
+            <svg class="i s" aria-hidden="true"><use href="#i-search" /></svg
+            ><span class="sub"><span data-ja="予約番号・顧客を検索">Tìm mã đặt phòng, khách…</span></span>
+          </div>
+          <div class="ab-lang">
+            <b class="ann">L</b><button data-setlang="vi" aria-pressed="true">VI</button
+            ><button data-setlang="ja" aria-pressed="false">JA</button>
+          </div>
+          <button class="ib" style="width: 38px; height: 38px; position: relative">
+            <svg class="i" aria-hidden="true"><use href="#i-bell" /></svg
+            ><span
+              style="
+                position: absolute;
+                top: 7px;
+                right: 8px;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: var(--rose);
+              "
+            ></span></button
+          ><span class="avatar">LH</span>
+        </div>
+        <div class="apage">
+          <div class="ph-row">
+            <h1><span data-ja="予約">Đặt phòng</span></h1>
+            <button class="btn sm sec">
+              <b class="ann">1</b><svg class="i s" aria-hidden="true"><use href="#i-download" /></svg
+              ><span data-ja="CSV出力">Xuất CSV</span></button
+            ><button class="btn sm">
+              <b class="ann">2</b><svg class="i s" aria-hidden="true"><use href="#i-plus" /></svg
+              ><span data-ja="フロント予約">Đặt tại quầy</span>
+            </button>
+          </div>
+          <div class="row wrap">
+            <b class="ann">3</b>
+            <div class="inp s" style="width: 260px">
+              <svg class="i s" aria-hidden="true"><use href="#i-search" /></svg
+              ><span class="sub"><span data-ja="番号・氏名・電話・メール">Mã, tên, SĐT, email</span></span>
+            </div>
+            <span class="sel"
+              ><span data-ja="チェックイン">Nhận phòng</span>: <span class="" data-d="2026-10-15" data-f="dm"></span> –
+              <span class="" data-d="2026-10-31" data-f="dm"></span
+              ><svg class="i s" aria-hidden="true"><use href="#i-down" /></svg></span
+            ><span class="sel"
+              ><span data-ja="ステータス：すべて">Trạng thái: Tất cả</span
+              ><svg class="i s" aria-hidden="true"><use href="#i-down" /></svg></span
+            ><span class="sel"
+              ><span data-ja="経路：すべて">Kênh: Tất cả</span
+              ><svg class="i s" aria-hidden="true"><use href="#i-down" /></svg></span
+            ><span class="sel"
+              ><span data-ja="客室タイプ">Loại phòng</span
+              ><svg class="i s" aria-hidden="true"><use href="#i-down" /></svg></span
+            ><a class="t-s brand w6"><span data-ja="クリア">Xóa lọc</span></a>
+          </div>
+          <div class="panel p0">
+            <b class="ann">4</b>
+            <table class="tbl">
+              <tr>
+                <th><span data-ja="予約番号">Mã đặt phòng</span></th>
+                <th><span data-ja="宿泊者">Khách</span></th>
+                <th><span data-ja="IN – OUT">Nhận – trả</span></th>
+                <th><span data-ja="客室">Phòng</span></th>
+                <th><span data-ja="経路">Kênh</span></th>
+                <th class="r"><span data-ja="合計">Tổng tiền</span></th>
+                <th class="r"><span data-ja="入金済">Đã thu</span></th>
+                <th><span data-ja="ステータス">Trạng thái</span></th>
+                <th><span data-ja="作成日時">Tạo lúc</span></th>
+              </tr>
+              <tr class="hl">
+                <td class="link">HB261018A7K2</td>
+                <td>
+                  Nguyễn Văn Minh
+                  <div class="t-xs"><span class="gold">Gold</span></div>
+                </td>
+                <td>
+                  <span class="" data-d="2026-11-20" data-f="dm"></span> –
+                  <span class="" data-d="2026-11-22" data-f="dm"></span>
+                </td>
+                <td>Deluxe Ocean × 1</td>
+                <td><span data-ja="アプリ">App</span></td>
+                <td class="r"><span class="num" data-m="3515400"></span></td>
+                <td class="r"><span class="num" data-m="3415400"></span></td>
+                <td>
+                  <span class="chip brand"><span data-ja="✓ 予約確定">✓ Đã xác nhận</span></span>
+                </td>
+                <td class="sub"><span class="" data-d="2026-10-18" data-f="dm"></span> 17:42</td>
+              </tr>
+              <tr class="">
+                <td class="link">HB261018Z1R7</td>
+                <td>Trần Mai Anh</td>
+                <td>
+                  <span class="" data-d="2026-10-25" data-f="dm"></span> –
+                  <span class="" data-d="2026-10-26" data-f="dm"></span>
+                </td>
+                <td>Superior × 2</td>
+                <td><span data-ja="アプリ">App</span></td>
+                <td class="r"><span class="num" data-m="2940000"></span></td>
+                <td class="r"><span class="num" data-m="0"></span></td>
+                <td>
+                  <span class="chip amber"><span data-ja="決済待ち">Chờ thanh toán</span></span>
+                </td>
+                <td class="sub"><span class="" data-d="2026-10-18" data-f="dm"></span> 17:51</td>
+              </tr>
+              <tr class="">
+                <td class="link">HB261017P0Q5</td>
+                <td>Phạm Quốc Bảo</td>
+                <td>
+                  <span class="" data-d="2026-10-18" data-f="dm"></span> –
+                  <span class="" data-d="2026-10-20" data-f="dm"></span>
+                </td>
+                <td>Superior × 1</td>
+                <td><span data-ja="フロント">Quầy</span></td>
+                <td class="r"><span class="num" data-m="2721600"></span></td>
+                <td class="r"><span class="num" data-m="1000000"></span></td>
+                <td>
+                  <span class="chip brand"><span data-ja="✓ 予約確定">✓ Đã xác nhận</span></span>
+                </td>
+                <td class="sub"><span class="" data-d="2026-10-17" data-f="dm"></span> 10:05</td>
+              </tr>
+              <tr class="">
+                <td class="link">HB261011M7X3</td>
+                <td>
+                  Lê Thu Hà
+                  <div class="t-xs"><span class="gold">Silver</span></div>
+                </td>
+                <td>
+                  <span class="" data-d="2026-10-18" data-f="dm"></span> –
+                  <span class="" data-d="2026-10-21" data-f="dm"></span>
+                </td>
+                <td>Deluxe Ocean × 1</td>
+                <td><span data-ja="アプリ">App</span></td>
+                <td class="r"><span class="num" data-m="5120000"></span></td>
+                <td class="r"><span class="num" data-m="5120000"></span></td>
+                <td>
+                  <span class="chip sky"><span data-ja="滞在中">Đang ở</span></span>
+                </td>
+                <td class="sub"><span class="" data-d="2026-10-11" data-f="dm"></span> 08:30</td>
+              </tr>
+              <tr class="">
+                <td class="link">HB261005C2D8</td>
+                <td>
+                  Tanaka Yuki
+                  <div class="t-xs"><span class="gold">Gold</span></div>
+                </td>
+                <td>
+                  <span class="" data-d="2026-10-18" data-f="dm"></span> –
+                  <span class="" data-d="2026-10-23" data-f="dm"></span>
+                </td>
+                <td>Junior Suite × 1</td>
+                <td><span data-ja="アプリ">App</span></td>
+                <td class="r"><span class="num" data-m="14200000"></span></td>
+                <td class="r"><span class="num" data-m="14200000"></span></td>
+                <td>
+                  <span class="chip brand"><span data-ja="✓ 予約確定">✓ Đã xác nhận</span></span>
+                </td>
+                <td class="sub"><span class="" data-d="2026-10-05" data-f="dm"></span> 21:14</td>
+              </tr>
+              <tr class="">
+                <td class="link">HB261009H4S2</td>
+                <td>Đỗ Gia Huy</td>
+                <td>
+                  <span class="" data-d="2026-10-16" data-f="dm"></span> –
+                  <span class="" data-d="2026-10-18" data-f="dm"></span>
+                </td>
+                <td>Deluxe Garden × 1</td>
+                <td><span data-ja="アプリ">App</span></td>
+                <td class="r"><span class="num" data-m="2880000"></span></td>
+                <td class="r"><span class="num" data-m="2880000"></span></td>
+                <td>
+                  <span class="chip"><span data-ja="チェックアウト済">Đã trả phòng</span></span>
+                </td>
+                <td class="sub"><span class="" data-d="2026-10-09" data-f="dm"></span> 12:40</td>
+              </tr>
+              <tr class="">
+                <td class="link">HB261002W8E1</td>
+                <td>Võ Thanh Tâm</td>
+                <td>
+                  <span class="" data-d="2026-10-17" data-f="dm"></span> –
+                  <span class="" data-d="2026-10-19" data-f="dm"></span>
+                </td>
+                <td>Superior × 1</td>
+                <td><span data-ja="アプリ">App</span></td>
+                <td class="r"><span class="num" data-m="2400000"></span></td>
+                <td class="r"><span class="num" data-m="2400000"></span></td>
+                <td>
+                  <span class="chip rose"><span data-ja="キャンセル">Đã hủy</span></span>
+                </td>
+                <td class="sub"><span class="" data-d="2026-10-02" data-f="dm"></span> 19:03</td>
+              </tr>
+            </table>
+            <div class="row between" style="padding: 12px 16px; border-top: 1px solid var(--line)">
+              <b class="ann">5</b><span class="t-s sub"><span data-ja="184件中 1–7件">Hiển thị 1–7 trên 184</span></span
+              ><span class="row g4"
+                ><span class="sel"
+                  ><svg class="i s" aria-hidden="true"><use href="#i-back" /></svg></span
+                ><span class="sel" style="background: var(--ink); color: #fff">1</span><span class="sel">2</span
+                ><span class="sel">3</span
+                ><span class="sel"
+                  ><svg class="i s" aria-hidden="true"><use href="#i-chev" /></svg></span
+                ><span class="sel"><span data-ja="20件/頁">20 / trang</span></span></span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="proto-bar" aria-label="Prototype">
+      <a href="../index.html" title="Danh sách màn hình">☰</a>
+      <a data-nav="prev" href="AD-02.html" title="Màn trước (←)">‹</a>
+      <select class="proto-jump" aria-label="Chuyển màn">
+        <optgroup label="Bắt đầu">
+          <option value="AD-01">AD-01 · Đăng nhập quản trị</option>
+          <option value="AD-02">AD-02 · Tổng quan</option>
+        </optgroup>
+        <optgroup label="Vận hành">
+          <option value="AD-03" selected>AD-03 · Danh sách đặt phòng</option>
+          <option value="AD-04">AD-04 · Chi tiết đặt phòng</option>
+          <option value="AD-05">AD-05 · Đặt phòng tại quầy</option>
+          <option value="AD-08">AD-08 · Phòng &amp; tình trạng buồng</option>
+        </optgroup>
+        <optgroup label="Sản phẩm">
+          <option value="AD-06">AD-06 · Giá &amp; tồn kho</option>
+          <option value="AD-07">AD-07 · Loại phòng</option>
+          <option value="AD-09">AD-09 · Gói giá &amp; chính sách hủy</option>
+          <option value="AD-10">AD-10 · Dịch vụ thêm</option>
+        </optgroup>
+        <optgroup label="Khách hàng">
+          <option value="AD-11">AD-11 · Khuyến mãi &amp; voucher</option>
+          <option value="AD-12">AD-12 · Đánh giá</option>
+          <option value="AD-13">AD-13 · Khách hàng &amp; điểm</option>
+        </optgroup>
+        <optgroup label="Tài chính">
+          <option value="AD-14">AD-14 · Thanh toán &amp; hoàn tiền</option>
+          <option value="AD-15">AD-15 · Báo cáo</option>
+        </optgroup>
+        <optgroup label="Hệ thống">
+          <option value="AD-16">AD-16 · Khách sạn (chi nhánh)</option>
+          <option value="AD-17">AD-17 · Admin &amp; phân quyền</option>
+          <option value="AD-18">AD-18 · Cấu hình hệ thống</option>
+        </optgroup>
+      </select>
+      <a data-nav="next" href="AD-04.html" title="Màn sau (→)">›</a>
+      <label title="Hiện số chú thích"><input type="checkbox" id="annToggle" />Chú thích</label>
+    </div>
+    <script src="../js/i18n.js"></script>
+    <script src="../js/links.js"></script>
+    <script src="../js/prototype.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>

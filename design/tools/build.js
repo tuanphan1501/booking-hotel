@@ -24,10 +24,21 @@ const write = (rel, s) => {
   fs.writeFileSync(p, typeof s === "string" ? s.replace(/\n?$/, "\n") : s);
 };
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-const plain = (h) => h.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").trim();
-function balanced(html, start) { // đoạn <div ...>...</div> cân bằng bắt đầu tại start
-  const re = /<(\/?)div\b[^>]*>/g; re.lastIndex = start; let d = 0, m;
-  while ((m = re.exec(html))) { d += m[1] ? -1 : 1; if (d === 0) return html.slice(start, re.lastIndex); }
+const plain = (h) =>
+  h
+    .replace(/<[^>]+>/g, "")
+    .replace(/&amp;/g, "&")
+    .trim();
+function balanced(html, start) {
+  // đoạn <div ...>...</div> cân bằng bắt đầu tại start
+  const re = /<(\/?)div\b[^>]*>/g;
+  re.lastIndex = start;
+  let d = 0,
+    m;
+  while ((m = re.exec(html))) {
+    d += m[1] ? -1 : 1;
+    if (d === 0) return html.slice(start, re.lastIndex);
+  }
   throw new Error("unbalanced at " + start);
 }
 const banner = (t) => `/* ${t} — sinh từ HotelBooking_Mockup.html bởi design/tools/build.js, không sửa tay */\n`;
@@ -41,11 +52,32 @@ const WA = "web-admin/";
 write(WA + "css/tokens.css", banner("Design tokens & reset") + L(7, 23) + "\n" + L(274, 274));
 write(WA + "css/utilities.css", banner("Thang chữ & tiện ích bố cục") + L(79, 95));
 write(WA + "css/components.css", banner("Component dùng chung") + L(97, 178));
-write(WA + "css/admin.css", banner("Bố cục & component Web Admin") + L(180, 182) + "\n" + L(187, 259) + "\n" + L(272, 272).replace(".browser{overflow-x:auto}", ""));
-write(WA + "assets/icons.svg", sprite.replace('<svg width="0" height="0" style="position:absolute" aria-hidden="true">', '<svg xmlns="http://www.w3.org/2000/svg">'));
-write(WA + "js/icons.js", "// SVG sprite (icon nét 1,75px + minh họa). Chèn vào đầu <body> để dùng <use href=\"#i-...\">. Bản file: assets/icons.svg\n" +
-  banner("").trim() + "\n" + `document.body.insertAdjacentHTML("afterbegin", ${JSON.stringify(sprite)});`);
-write(WA + "js/i18n.js", `// Đa ngôn ngữ VI / JA: phần tử có data-ja đổi nội dung; data-m (tiền), data-mc (tiền rút gọn), data-n (số), data-d + data-f (ngày).
+write(
+  WA + "css/admin.css",
+  banner("Bố cục & component Web Admin") +
+    L(180, 182) +
+    "\n" +
+    L(187, 259) +
+    "\n" +
+    L(272, 272).replace(".browser{overflow-x:auto}", "")
+);
+write(
+  WA + "assets/icons.svg",
+  sprite.replace(
+    '<svg width="0" height="0" style="position:absolute" aria-hidden="true">',
+    '<svg xmlns="http://www.w3.org/2000/svg">'
+  )
+);
+write(
+  WA + "js/icons.js",
+  '// SVG sprite (icon nét 1,75px + minh họa). Chèn vào đầu <body> để dùng <use href="#i-...">. Bản file: assets/icons.svg\n' +
+    banner("").trim() +
+    "\n" +
+    `document.body.insertAdjacentHTML("afterbegin", ${JSON.stringify(sprite)});`
+);
+write(
+  WA + "js/i18n.js",
+  `// Đa ngôn ngữ VI / JA: phần tử có data-ja đổi nội dung; data-m (tiền), data-mc (tiền rút gọn), data-n (số), data-d + data-f (ngày).
 ${banner("").trim()}
 (function(){
 ${L(388, 395)}
@@ -54,8 +86,11 @@ ${L(397, 406)}
   };
   document.addEventListener("click",e=>{const b=e.target.closest("[data-setlang]");if(b)setLang(b.dataset.setlang);});
   window.HB={fmtMoney,fmtCompact,fmtDate};
-})();`);
-write(WA + "js/app.js", `// Khởi tạo trang: ngôn ngữ (lưu localStorage, ?lang=ja) và chú thích số (?ann=1).
+})();`
+);
+write(
+  WA + "js/app.js",
+  `// Khởi tạo trang: ngôn ngữ (lưu localStorage, ?lang=ja) và chú thích số (?ann=1).
 (function(){
   const ann=document.getElementById("annToggle");
   if(ann)ann.addEventListener("change",()=>{document.body.classList.toggle("ann-on",ann.checked);try{localStorage.setItem("hb-ann",ann.checked?"1":"0")}catch(e){}});
@@ -63,13 +98,19 @@ write(WA + "js/app.js", `// Khởi tạo trang: ngôn ngữ (lưu localStorage, 
   const q=new URLSearchParams(location.search);if(q.get("lang"))l=q.get("lang");if(q.get("ann"))a=q.get("ann")==="1";
   if(ann){ann.checked=a;document.body.classList.toggle("ann-on",a);}
   setLang(l);
-})();`);
-write(WA + "js/links.js", "// Bảng liên kết giữa các màn (nguồn: design/tools/proto-links.js)\n" + `window.PROTO_LINKS=${JSON.stringify(links, null, 1)};`);
+})();`
+);
+write(
+  WA + "js/links.js",
+  "// Bảng liên kết giữa các màn (nguồn: design/tools/proto-links.js)\n" +
+    `window.PROTO_LINKS=${JSON.stringify(links, null, 1)};`
+);
 
 const ad = lines[382];
 const adScreens = [];
 {
-  const re = /<div class="ad-shot" id="([^"]+)">/g; let m;
+  const re = /<div class="ad-shot" id="([^"]+)">/g;
+  let m;
   while ((m = re.exec(ad))) {
     const shot = balanced(ad, m.index);
     const cap = balanced(shot, shot.indexOf('<div class="cap"'));
@@ -101,11 +142,20 @@ ${FONTS}
 <link rel="stylesheet" href="${rel}css/admin.css">
 <link rel="stylesheet" href="${rel}css/prototype.css">
 </head>`;
-const jumpOptions = (cur) => adGroups.map(([g, ids]) => `<optgroup label="${g}">${ids.map((i) => `<option value="${i}"${i === cur ? " selected" : ""}>${i} · ${esc(adById[i].name)}</option>`).join("")}</optgroup>`).join("");
+const jumpOptions = (cur) =>
+  adGroups
+    .map(
+      ([g, ids]) =>
+        `<optgroup label="${g}">${ids.map((i) => `<option value="${i}"${i === cur ? " selected" : ""}>${i} · ${esc(adById[i].name)}</option>`).join("")}</optgroup>`
+    )
+    .join("");
 
 adScreens.forEach((s, i) => {
-  const prev = adScreens[i - 1], next = adScreens[i + 1];
-  write(`${WA}pages/${s.id}.html`, `${head(`${s.id} ${s.name} — Lumière Admin`, "../", s.note)}
+  const prev = adScreens[i - 1],
+    next = adScreens[i + 1];
+  write(
+    `${WA}pages/${s.id}.html`,
+    `${head(`${s.id} ${s.name} — Lumière Admin`, "../", s.note)}
 <body class="proto" data-screen="${s.id}">
 <script src="../js/icons.js"></script>
 ${s.adm}
@@ -120,10 +170,13 @@ ${s.adm}
 <script src="../js/links.js"></script>
 <script src="../js/prototype.js"></script>
 <script src="../js/app.js"></script>
-</body></html>`);
+</body></html>`
+  );
 });
 
-write(WA + "index.html", `${head("Lumière Admin — Prototype", "", "Danh sách màn hình prototype Web Admin")}
+write(
+  WA + "index.html",
+  `${head("Lumière Admin — Prototype", "", "Danh sách màn hình prototype Web Admin")}
 <body>
 <script src="js/icons.js"></script>
 <main class="dh">
@@ -139,7 +192,8 @@ write(WA + "index.html", `${head("Lumière Admin — Prototype", "", "Danh sách
 </div>
 <div class="dh-grid">${adGroups.map(([g, ids]) => `<section class="dh-grp"><h3>${g}</h3>${ids.map((i) => `<a href="pages/${i}.html"><b>${i}</b>${esc(adById[i].name)}<em>${esc(adById[i].url.replace("admin.lumiere-hotels.vn", ""))}</em></a>`).join("")}</section>`).join("")}</div>
 </main>
-</body></html>`);
+</body></html>`
+);
 
 // =====================================================================
 // 2. MOBILE — ảnh + đặc tả, không có HTML
@@ -147,10 +201,14 @@ write(WA + "index.html", `${head("Lumière Admin — Prototype", "", "Danh sách
 const MO = "mobile/";
 const mb = lines[381];
 const flows = [];
-mb.replace(/<section class="flow"><div class="flow-h"><h2>(.*?)<\/h2><p>(.*?)<\/p><\/div>/g, (m, h, p, idx) => { flows.push({ h: plain(h), p: plain(p), idx, ids: [] }); return m; });
+mb.replace(/<section class="flow"><div class="flow-h"><h2>(.*?)<\/h2><p>(.*?)<\/p><\/div>/g, (m, h, p, idx) => {
+  flows.push({ h: plain(h), p: plain(p), idx, ids: [] });
+  return m;
+});
 const screens = [];
 {
-  const re = /<div class="shot" id="([^"]+)">/g; let m;
+  const re = /<div class="shot" id="([^"]+)">/g;
+  let m;
   while ((m = re.exec(mb))) {
     const shot = balanced(mb, m.index);
     const phone = balanced(shot, shot.indexOf('<div class="phone">'));
@@ -165,15 +223,27 @@ if (missing.length) throw new Error("Thiếu spec cho: " + missing.join(", "));
 
 // 2a. icon + minh họa SVG rời (flutter_svg)
 for (const m of sprite.matchAll(/<symbol id="i-([a-z]+)" viewBox="([^"]+)"([^>]*)>([\s\S]*?)<\/symbol>/g))
-  write(`${MO}assets/icons/${m[1]}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="${m[2]}"${m[3]}>${m[4]}</svg>`);
+  write(
+    `${MO}assets/icons/${m[1]}.svg`,
+    `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="${m[2]}"${m[3]}>${m[4]}</svg>`
+  );
 const grads = (sprite.match(/<linearGradient[\s\S]*?<\/linearGradient>/g) || []).join("");
 for (const m of sprite.matchAll(/<symbol id="sc-([a-z]+)" viewBox="([^"]+)">([\s\S]*?)<\/symbol>/g))
-  write(`${MO}assets/illustrations/${m[1]}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${m[2]}"><defs>${grads}</defs>${m[3]}</svg>`);
+  write(
+    `${MO}assets/illustrations/${m[1]}.svg`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${m[2]}"><defs>${grads}</defs>${m[3]}</svg>`
+  );
 
 // 2b. ảnh PNG từng màn (sạch + có số chú thích), render bằng Chrome headless
 function findChrome() {
-  const c = [process.env.CHROME, "C:/Program Files/Google/Chrome/Application/chrome.exe", "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
-    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", "/usr/bin/google-chrome", "/usr/bin/chromium"].filter(Boolean);
+  const c = [
+    process.env.CHROME,
+    "C:/Program Files/Google/Chrome/Application/chrome.exe",
+    "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "/usr/bin/google-chrome",
+    "/usr/bin/chromium",
+  ].filter(Boolean);
   return c.find((p) => fs.existsSync(p));
 }
 if (!NO_PNG) {
@@ -182,17 +252,34 @@ if (!NO_PNG) {
   else {
     const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "hb-render-"));
     const css = L(7, 274);
-    for (const s of screens) for (const ann of [false, true]) {
-      const f = path.join(tmp, `${s.id}${ann ? "-ann" : ""}.html`);
-      fs.writeFileSync(f, `<!doctype html><html lang="vi"><head><meta charset="utf-8">${FONTS}<style>${css}
+    for (const s of screens)
+      for (const ann of [false, true]) {
+        const f = path.join(tmp, `${s.id}${ann ? "-ann" : ""}.html`);
+        fs.writeFileSync(
+          f,
+          `<!doctype html><html lang="vi"><head><meta charset="utf-8">${FONTS}<style>${css}
 html,body{background:#fff}body{padding:12px}.phone{box-shadow:none;transform:none!important;margin:0!important}</style></head><body class="${ann ? "ann-on" : ""}">${sprite}${s.phone}
 <script>(function(){${L(388, 395)}
-window.setLang=function(l){${L(397, 406)}};setLang("vi");})();</script></body></html>`);
-      const out = path.join(OUT, MO, "screens", `${s.id}${ann ? "_annotated" : ""}.png`);
-      fs.mkdirSync(path.dirname(out), { recursive: true });
-      execFileSync(chrome, ["--headless=new", "--disable-gpu", "--hide-scrollbars", "--force-device-scale-factor=2", "--default-background-color=00000000",
-        "--virtual-time-budget=4000", "--window-size=396,816", `--screenshot=${out}`, "file:///" + f.replace(/\\/g, "/")], { stdio: "ignore" });
-    }
+window.setLang=function(l){${L(397, 406)}};setLang("vi");})();</script></body></html>`
+        );
+        const out = path.join(OUT, MO, "screens", `${s.id}${ann ? "_annotated" : ""}.png`);
+        fs.mkdirSync(path.dirname(out), { recursive: true });
+        execFileSync(
+          chrome,
+          [
+            "--headless=new",
+            "--disable-gpu",
+            "--hide-scrollbars",
+            "--force-device-scale-factor=2",
+            "--default-background-color=00000000",
+            "--virtual-time-budget=4000",
+            "--window-size=396,816",
+            `--screenshot=${out}`,
+            "file:///" + f.replace(/\\/g, "/"),
+          ],
+          { stdio: "ignore" }
+        );
+      }
     fs.rmSync(tmp, { recursive: true, force: true });
     console.log(`PNG: ${screens.length * 2} ảnh → ${MO}screens/`);
   }
@@ -200,12 +287,17 @@ window.setLang=function(l){${L(397, 406)}};setLang("vi");})();</script></body></
 
 // 2c. đặc tả Markdown từng màn
 const mdRow = (r) => "| " + r.map((c) => String(c).replace(/\|/g, "\\|").replace(/\n/g, " ")).join(" | ") + " |";
-const mdTable = (h, rows) => (rows && rows.length ? [mdRow(h), mdRow(h.map(() => "---")), ...rows.map(mdRow)].join("\n") : "_(không có)_");
+const mdTable = (h, rows) =>
+  rows && rows.length ? [mdRow(h), mdRow(h.map(() => "---")), ...rows.map(mdRow)].join("\n") : "_(không có)_";
 const linkIds = (s, rel) => String(s).replace(/\b(MB-\d+[a-z]?)\b/g, (m) => (specs[m] ? `[${m}](${rel}${m}.md)` : m));
 screens.forEach((s, i) => {
-  const sp = specs[s.id], prev = screens[i - 1], next = screens[i + 1];
+  const sp = specs[s.id],
+    prev = screens[i - 1],
+    next = screens[i + 1];
   const nav = `[‹ ${prev ? prev.id : "—"}](${prev ? prev.id + ".md" : "../README.md"}) · [Danh sách](../README.md) · [${next ? next.id : "—"} ›](${next ? next.id + ".md" : "../README.md"})`;
-  write(`${MO}specs/${s.id}.md`, `# ${s.id} · ${sp.name}
+  write(
+    `${MO}specs/${s.id}.md`,
+    `# ${s.id} · ${sp.name}
 
 ${nav}
 
@@ -227,15 +319,24 @@ ${sp.layout.map((x) => "- " + linkIds(x, "")).join("\n")}
 
 Cột **No** trùng với số hồng trên ảnh có chú thích.
 
-${mdTable(["No", "Hạng mục", "Loại UI", "Dữ liệu / nguồn", "Ràng buộc / validate", "Hành động"], sp.items.map((r) => r.map((c) => linkIds(c, ""))))}
+${mdTable(
+  ["No", "Hạng mục", "Loại UI", "Dữ liệu / nguồn", "Ràng buộc / validate", "Hành động"],
+  sp.items.map((r) => r.map((c) => linkIds(c, "")))
+)}
 
 ## 3. API
 
-${mdTable(["Method", "Endpoint", "Ghi chú"], sp.api.map(([a, b, c]) => [a, "`" + b + "`", c]))}
+${mdTable(
+  ["Method", "Endpoint", "Ghi chú"],
+  sp.api.map(([a, b, c]) => [a, "`" + b + "`", c])
+)}
 
 ## 4. Trạng thái màn hình
 
-${mdTable(["Trạng thái", "Hiển thị / xử lý"], sp.states.map((r) => r.map((c) => linkIds(c, ""))))}
+${mdTable(
+  ["Trạng thái", "Hiển thị / xử lý"],
+  sp.states.map((r) => r.map((c) => linkIds(c, "")))
+)}
 
 ## 5. Quy tắc nghiệp vụ
 
@@ -243,7 +344,10 @@ ${sp.rules.map((x) => "- " + linkIds(x, "")).join("\n")}
 
 ## 6. Điều hướng
 
-${mdTable(["Thao tác", "Màn đích"], sp.nav.map(([a, b]) => [a, linkIds(b, "")]))}
+${mdTable(
+  ["Thao tác", "Màn đích"],
+  sp.nav.map(([a, b]) => [a, linkIds(b, "")])
+)}
 
 ## 7. i18n key gợi ý
 
@@ -256,13 +360,24 @@ ${sp.flutter.map((x) => "- " + x).join("\n")}
 ---
 
 ${nav}
-`);
+`
+  );
 });
 
 // 2d. README mobile (danh mục + nền tảng chung)
 const tpl = fs.readFileSync(path.join(__dirname, "mobile-readme.md"), "utf8");
-const index = flows.map((f) => `### ${f.h}\n\n_${f.p}_\n\n| Màn | Tên | Route | Ảnh |\n| --- | --- | --- | :---: |\n` +
-  f.ids.map((id) => `| [${id}](specs/${id}.md) | ${specs[id].name} | \`${specs[id].route}\` | <img src="screens/${id}.png" width="90" alt="${id}"> |`).join("\n")).join("\n\n");
+const index = flows
+  .map(
+    (f) =>
+      `### ${f.h}\n\n_${f.p}_\n\n| Màn | Tên | Route | Ảnh |\n| --- | --- | --- | :---: |\n` +
+      f.ids
+        .map(
+          (id) =>
+            `| [${id}](specs/${id}.md) | ${specs[id].name} | \`${specs[id].route}\` | <img src="screens/${id}.png" width="90" alt="${id}"> |`
+        )
+        .join("\n")
+  )
+  .join("\n\n");
 write(MO + "README.md", tpl.replace("{{SCREENS}}", index).replace("{{COUNT}}", String(screens.length)));
 
 // =====================================================================
@@ -270,7 +385,11 @@ write(MO + "README.md", tpl.replace("{{SCREENS}}", index).replace("{{COUNT}}", S
 // =====================================================================
 {
   const rv = lines[383];
-  const rows = [...rv.matchAll(/<tr>(<td>[\s\S]*?)<\/tr>/g)].map((m) => [...m[1].matchAll(/<td[^>]*>([\s\S]*?)<\/td>/g)].map((c) => plain(c[1].replace(/<span data-ja="[^"]*">/g, "<span>"))));
+  const rows = [...rv.matchAll(/<tr>(<td>[\s\S]*?)<\/tr>/g)].map((m) =>
+    [...m[1].matchAll(/<td[^>]*>([\s\S]*?)<\/td>/g)].map((c) =>
+      plain(c[1].replace(/<span data-ja="[^"]*">/g, "<span>"))
+    )
+  );
   const issues = rows.filter((r) => r.length === 5);
   const toks = [...rv.matchAll(/<div class="tok">[\s\S]*?<b>([^<]+)<\/b>\s*([^<]*)<[\s\S]*?<\/div><\/div>/g)];
   let doc = `# Review UI v1 → v2 & design system\n\n> Trích từ tab "Review & design system" của HotelBooking_Mockup.html. Áp dụng chung cho Mobile và Web Admin.\n\n## ${issues.length} vấn đề đã sửa\n\n`;
@@ -278,7 +397,11 @@ write(MO + "README.md", tpl.replace("{{SCREENS}}", index).replace("{{COUNT}}", S
   const proseStart = rv.indexOf('<div class="prose">');
   if (proseStart > 0) {
     const prose = balanced(rv, proseStart).replace(/<span data-ja="[^"]*">/g, "<span>");
-    doc += "\n\n## Quy ước\n\n" + [...prose.matchAll(/<h3>([\s\S]*?)<\/h3>\s*<p>([\s\S]*?)<\/p>/g)].map((m) => `### ${plain(m[1])}\n\n${plain(m[2])}`).join("\n\n");
+    doc +=
+      "\n\n## Quy ước\n\n" +
+      [...prose.matchAll(/<h3>([\s\S]*?)<\/h3>\s*<p>([\s\S]*?)<\/p>/g)]
+        .map((m) => `### ${plain(m[1])}\n\n${plain(m[2])}`)
+        .join("\n\n");
   }
   write("docs/ui-review.md", doc + "\n\nMàu chi tiết: xem `mobile/tokens/design-tokens.json`.\n");
 }

@@ -1,0 +1,12 @@
+{
+  "name": "booking-hotel-design",
+  "private": true,
+  "scripts": {
+    "build": "node tools/build.js && npm run format",
+    "build:no-png": "node tools/build.js --no-png && npm run format",
+    "format": "prettier --write \"web-admin/**/*.{html,css,js}\" \"tools/**/*.js\""
+  },
+  "devDependencies": {
+    "prettier": "3.3.3"
+  }
+}

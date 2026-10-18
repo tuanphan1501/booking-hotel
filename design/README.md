@@ -22,8 +22,11 @@ Nếu team mạnh PHP: thay Web admin + API bằng **Laravel 11** (admin dùng F
 ## Cập nhật
 
 ```
-node design/tools/build.js            # sinh lại toàn bộ (cần Chrome/Edge để xuất PNG)
-node design/tools/build.js --no-png   # bỏ qua xuất ảnh
+cd design
+npm install              # lần đầu: cài Prettier
+npm run build            # sinh lại toàn bộ + format code (cần Chrome/Edge để xuất PNG)
+npm run build:no-png     # bỏ qua xuất ảnh
+npm run format           # chỉ format HTML/CSS/JS
 ```
 
 - Spec màn mobile: sửa `tools/mobile-specs.js`; phần chung: `tools/mobile-readme.md`.

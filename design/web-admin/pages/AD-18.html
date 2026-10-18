@@ -1,27 +1,262 @@
 <!doctype html>
-<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AD-18 Cấu hình hệ thống — Lumière Admin</title>
-<meta name="description" content="Thay đổi áp dụng cho booking tạo sau thời điểm lưu.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/tokens.css">
-<link rel="stylesheet" href="../css/utilities.css">
-<link rel="stylesheet" href="../css/components.css">
-<link rel="stylesheet" href="../css/admin.css">
-<link rel="stylesheet" href="../css/prototype.css">
-</head>
-<body class="proto" data-screen="AD-18">
-<script src="../js/icons.js"></script>
-<div class="adm"><nav class="side"><div class="logo"><span class="brand-mark"><svg class="i s" aria-hidden="true"><use href="#i-door"/></svg></span>Lumière Admin</div><div class="hotel"><svg class="i s" aria-hidden="true"><use href="#i-building"/></svg><span class="grow"><span data-ja="全ホテル">Toàn chuỗi</span></span><svg class="i s" aria-hidden="true"><use href="#i-down"/></svg></div><a class=""><svg class="i " aria-hidden="true"><use href="#i-dash"/></svg><span data-ja="ダッシュボード">Tổng quan</span></a><div class="grp"><span data-ja="運営">Vận hành</span></div><a class=""><svg class="i " aria-hidden="true"><use href="#i-list"/></svg><span data-ja="予約">Đặt phòng</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-plus"/></svg><span data-ja="フロント予約">Đặt tại quầy</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-door"/></svg><span data-ja="客室・清掃">Phòng & buồng</span></a><div class="grp"><span data-ja="商品">Sản phẩm</span></div><a class=""><svg class="i " aria-hidden="true"><use href="#i-cal"/></svg><span data-ja="在庫・料金">Giá & tồn kho</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-bed"/></svg><span data-ja="客室タイプ">Loại phòng</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-shield"/></svg><span data-ja="プラン・キャンセル">Gói giá & hủy</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-coffee"/></svg><span data-ja="オプション">Dịch vụ thêm</span></a><div class="grp"><span data-ja="顧客">Khách hàng</span></div><a class=""><svg class="i " aria-hidden="true"><use href="#i-ticket"/></svg><span data-ja="プロモーション">Khuyến mãi</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-star"/></svg><span data-ja="レビュー">Đánh giá</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-users"/></svg><span data-ja="顧客・ポイント">Khách & điểm</span></a><div class="grp"><span data-ja="会計">Tài chính</span></div><a class=""><svg class="i " aria-hidden="true"><use href="#i-money"/></svg><span data-ja="決済・返金">Thanh toán</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-chart"/></svg><span data-ja="レポート">Báo cáo</span></a><div class="grp"><span data-ja="システム">Hệ thống</span></div><a class=""><svg class="i " aria-hidden="true"><use href="#i-building"/></svg><span data-ja="ホテル">Khách sạn</span></a><a class=""><svg class="i " aria-hidden="true"><use href="#i-lock"/></svg><span data-ja="管理者・権限">Admin & quyền</span></a><a class="on"><svg class="i " aria-hidden="true"><use href="#i-gear"/></svg><span data-ja="設定">Cấu hình</span></a></nav><div class="amain"><div class="abar"><div class="crumb"><span data-ja="システム">Hệ thống</span> / <b><span data-ja="システム設定">Cấu hình hệ thống</span></b></div><div class="inp s" style="width:240px"><svg class="i s" aria-hidden="true"><use href="#i-search"/></svg><span class="sub"><span data-ja="予約番号・顧客を検索">Tìm mã đặt phòng, khách…</span></span></div><div class="ab-lang"><b class="ann">L</b><button data-setlang="vi" aria-pressed="true">VI</button><button data-setlang="ja" aria-pressed="false">JA</button></div><button class="ib" style="width:38px;height:38px;position:relative"><svg class="i " aria-hidden="true"><use href="#i-bell"/></svg><span style="position:absolute;top:7px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--rose)"></span></button><span class="avatar">LH</span></div><div class="apage"><div class="ph-row"><h1><span data-ja="設定">Cấu hình</span></h1><button class="btn sm"><b class="ann">1</b><span data-ja="設定を保存">Lưu cấu hình</span></button></div><div class="g2e"><div class="panel col g12"><h3 style="margin:0"><b class="ann">2</b><span data-ja="税・サービス料">Thuế & phí</span></h3><div class="row g12"><div class="fld grow"><label>VAT (%)</label><div class="inp s">8</div></div><div class="fld grow"><label><span data-ja="サービス料（%）">Phí phục vụ (%)</span></label><div class="inp s">5</div></div></div><div class="row between t-s"><span data-ja="オプションにもサ料を適用">Áp phí phục vụ cho dịch vụ thêm</span><span class="sw on"></span></div></div><div class="panel col g12"><h3 style="margin:0"><b class="ann">3</b><span data-ja="ポイント">Điểm thưởng</span></h3><div class="row g12"><div class="fld grow"><label><span data-ja="1pt付与単位（₫）">Tích 1 điểm mỗi (₫)</span></label><div class="inp s num"><span class="num " data-n="10000"></span></div></div><div class="fld grow"><label><span data-ja="1pt＝（₫）">1 điểm = (₫)</span></label><div class="inp s num"><span class="num " data-n="100"></span></div></div></div><div class="row g12"><div class="fld grow"><label><span data-ja="利用上限（%）">Dùng tối đa (% đơn)</span></label><div class="inp s">50</div></div><div class="fld grow"><label><span data-ja="有効期限（月）">Hạn điểm (tháng)</span></label><div class="inp s">12</div></div></div></div><div class="panel p0"><div style="padding:14px 16px"><h3 style="margin:0"><b class="ann">4</b><span data-ja="会員ランク">Hạng thành viên</span></h3></div><table class="tbl"><tr><th><span data-ja="ランク">Hạng</span></th><th class="r"><span data-ja="12ヶ月利用額">Chi tiêu 12 tháng</span></th><th class="r"><span data-ja="倍率">Hệ số điểm</span></th></tr><tr><td class="w6">Member</td><td class="r"><span class="num " data-m="0"></span></td><td class="r">×1,0</td></tr><tr><td class="w6">Silver</td><td class="r"><span class="num " data-m="10000000"></span></td><td class="r">×1,1</td></tr><tr><td class="w6">Gold</td><td class="r"><span class="num " data-m="30000000"></span></td><td class="r">×1,25</td></tr><tr><td class="w6">Platinum</td><td class="r"><span class="num " data-m="80000000"></span></td><td class="r">×1,5</td></tr></table></div><div class="panel col g12"><h3 style="margin:0"><b class="ann">5</b><span data-ja="言語・地域">Ngôn ngữ & khu vực</span></h3><div class="fld"><label><span data-ja="対応言語">Ngôn ngữ hỗ trợ</span></label><div class="row g4"><span class="chip brand">Tiếng Việt · <span data-ja="既定">mặc định</span></span><span class="chip brand">日本語</span><span class="chip out" style="min-height:28px">+ English</span></div></div><div class="row g12"><div class="fld grow"><label><span data-ja="タイムゾーン">Múi giờ</span></label><div class="inp s">Asia/Ho_Chi_Minh</div></div><div class="fld grow"><label><span data-ja="通貨">Tiền tệ</span></label><div class="inp s">VND (₫)</div></div></div></div></div></div></div></div>
-<div class="proto-bar" aria-label="Prototype">
-<a href="../index.html" title="Danh sách màn hình">☰</a>
-<a data-nav="prev" href="AD-17.html" title="Màn trước (←)">‹</a>
-<select class="proto-jump" aria-label="Chuyển màn"><optgroup label="Bắt đầu"><option value="AD-01">AD-01 · Đăng nhập quản trị</option><option value="AD-02">AD-02 · Tổng quan</option></optgroup><optgroup label="Vận hành"><option value="AD-03">AD-03 · Danh sách đặt phòng</option><option value="AD-04">AD-04 · Chi tiết đặt phòng</option><option value="AD-05">AD-05 · Đặt phòng tại quầy</option><option value="AD-08">AD-08 · Phòng &amp; tình trạng buồng</option></optgroup><optgroup label="Sản phẩm"><option value="AD-06">AD-06 · Giá &amp; tồn kho</option><option value="AD-07">AD-07 · Loại phòng</option><option value="AD-09">AD-09 · Gói giá &amp; chính sách hủy</option><option value="AD-10">AD-10 · Dịch vụ thêm</option></optgroup><optgroup label="Khách hàng"><option value="AD-11">AD-11 · Khuyến mãi &amp; voucher</option><option value="AD-12">AD-12 · Đánh giá</option><option value="AD-13">AD-13 · Khách hàng &amp; điểm</option></optgroup><optgroup label="Tài chính"><option value="AD-14">AD-14 · Thanh toán &amp; hoàn tiền</option><option value="AD-15">AD-15 · Báo cáo</option></optgroup><optgroup label="Hệ thống"><option value="AD-16">AD-16 · Khách sạn (chi nhánh)</option><option value="AD-17">AD-17 · Admin &amp; phân quyền</option><option value="AD-18" selected>AD-18 · Cấu hình hệ thống</option></optgroup></select>
-<a data-nav="next" aria-disabled="true" title="Màn sau (→)">›</a>
-<label title="Hiện số chú thích"><input type="checkbox" id="annToggle">Chú thích</label>
-</div>
-<script src="../js/i18n.js"></script>
-<script src="../js/links.js"></script>
-<script src="../js/prototype.js"></script>
-<script src="../js/app.js"></script>
-</body></html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AD-18 Cấu hình hệ thống — Lumière Admin</title>
+    <meta name="description" content="Thay đổi áp dụng cho booking tạo sau thời điểm lưu." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/tokens.css" />
+    <link rel="stylesheet" href="../css/utilities.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+    <link rel="stylesheet" href="../css/prototype.css" />
+  </head>
+  <body class="proto" data-screen="AD-18">
+    <script src="../js/icons.js"></script>
+    <div class="adm">
+      <nav class="side">
+        <div class="logo">
+          <span class="brand-mark"
+            ><svg class="i s" aria-hidden="true"><use href="#i-door" /></svg></span
+          >Lumière Admin
+        </div>
+        <div class="hotel">
+          <svg class="i s" aria-hidden="true"><use href="#i-building" /></svg
+          ><span class="grow"><span data-ja="全ホテル">Toàn chuỗi</span></span
+          ><svg class="i s" aria-hidden="true"><use href="#i-down" /></svg>
+        </div>
+        <a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-dash" /></svg
+          ><span data-ja="ダッシュボード">Tổng quan</span></a
+        >
+        <div class="grp"><span data-ja="運営">Vận hành</span></div>
+        <a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-list" /></svg><span data-ja="予約">Đặt phòng</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-plus" /></svg
+          ><span data-ja="フロント予約">Đặt tại quầy</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-door" /></svg
+          ><span data-ja="客室・清掃">Phòng & buồng</span></a
+        >
+        <div class="grp"><span data-ja="商品">Sản phẩm</span></div>
+        <a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-cal" /></svg
+          ><span data-ja="在庫・料金">Giá & tồn kho</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-bed" /></svg><span data-ja="客室タイプ">Loại phòng</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-shield" /></svg
+          ><span data-ja="プラン・キャンセル">Gói giá & hủy</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-coffee" /></svg
+          ><span data-ja="オプション">Dịch vụ thêm</span></a
+        >
+        <div class="grp"><span data-ja="顧客">Khách hàng</span></div>
+        <a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-ticket" /></svg
+          ><span data-ja="プロモーション">Khuyến mãi</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><span data-ja="レビュー">Đánh giá</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-users" /></svg
+          ><span data-ja="顧客・ポイント">Khách & điểm</span></a
+        >
+        <div class="grp"><span data-ja="会計">Tài chính</span></div>
+        <a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-money" /></svg
+          ><span data-ja="決済・返金">Thanh toán</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-chart" /></svg><span data-ja="レポート">Báo cáo</span></a
+        >
+        <div class="grp"><span data-ja="システム">Hệ thống</span></div>
+        <a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-building" /></svg><span data-ja="ホテル">Khách sạn</span></a
+        ><a class=""
+          ><svg class="i" aria-hidden="true"><use href="#i-lock" /></svg
+          ><span data-ja="管理者・権限">Admin & quyền</span></a
+        ><a class="on"
+          ><svg class="i" aria-hidden="true"><use href="#i-gear" /></svg><span data-ja="設定">Cấu hình</span></a
+        >
+      </nav>
+      <div class="amain">
+        <div class="abar">
+          <div class="crumb">
+            <span data-ja="システム">Hệ thống</span> / <b><span data-ja="システム設定">Cấu hình hệ thống</span></b>
+          </div>
+          <div class="inp s" style="width: 240px">
+            <svg class="i s" aria-hidden="true"><use href="#i-search" /></svg
+            ><span class="sub"><span data-ja="予約番号・顧客を検索">Tìm mã đặt phòng, khách…</span></span>
+          </div>
+          <div class="ab-lang">
+            <b class="ann">L</b><button data-setlang="vi" aria-pressed="true">VI</button
+            ><button data-setlang="ja" aria-pressed="false">JA</button>
+          </div>
+          <button class="ib" style="width: 38px; height: 38px; position: relative">
+            <svg class="i" aria-hidden="true"><use href="#i-bell" /></svg
+            ><span
+              style="
+                position: absolute;
+                top: 7px;
+                right: 8px;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: var(--rose);
+              "
+            ></span></button
+          ><span class="avatar">LH</span>
+        </div>
+        <div class="apage">
+          <div class="ph-row">
+            <h1><span data-ja="設定">Cấu hình</span></h1>
+            <button class="btn sm"><b class="ann">1</b><span data-ja="設定を保存">Lưu cấu hình</span></button>
+          </div>
+          <div class="g2e">
+            <div class="panel col g12">
+              <h3 style="margin: 0"><b class="ann">2</b><span data-ja="税・サービス料">Thuế & phí</span></h3>
+              <div class="row g12">
+                <div class="fld grow">
+                  <label>VAT (%)</label>
+                  <div class="inp s">8</div>
+                </div>
+                <div class="fld grow">
+                  <label><span data-ja="サービス料（%）">Phí phục vụ (%)</span></label>
+                  <div class="inp s">5</div>
+                </div>
+              </div>
+              <div class="row between t-s">
+                <span data-ja="オプションにもサ料を適用">Áp phí phục vụ cho dịch vụ thêm</span
+                ><span class="sw on"></span>
+              </div>
+            </div>
+            <div class="panel col g12">
+              <h3 style="margin: 0"><b class="ann">3</b><span data-ja="ポイント">Điểm thưởng</span></h3>
+              <div class="row g12">
+                <div class="fld grow">
+                  <label><span data-ja="1pt付与単位（₫）">Tích 1 điểm mỗi (₫)</span></label>
+                  <div class="inp s num"><span class="num" data-n="10000"></span></div>
+                </div>
+                <div class="fld grow">
+                  <label><span data-ja="1pt＝（₫）">1 điểm = (₫)</span></label>
+                  <div class="inp s num"><span class="num" data-n="100"></span></div>
+                </div>
+              </div>
+              <div class="row g12">
+                <div class="fld grow">
+                  <label><span data-ja="利用上限（%）">Dùng tối đa (% đơn)</span></label>
+                  <div class="inp s">50</div>
+                </div>
+                <div class="fld grow">
+                  <label><span data-ja="有効期限（月）">Hạn điểm (tháng)</span></label>
+                  <div class="inp s">12</div>
+                </div>
+              </div>
+            </div>
+            <div class="panel p0">
+              <div style="padding: 14px 16px">
+                <h3 style="margin: 0"><b class="ann">4</b><span data-ja="会員ランク">Hạng thành viên</span></h3>
+              </div>
+              <table class="tbl">
+                <tr>
+                  <th><span data-ja="ランク">Hạng</span></th>
+                  <th class="r"><span data-ja="12ヶ月利用額">Chi tiêu 12 tháng</span></th>
+                  <th class="r"><span data-ja="倍率">Hệ số điểm</span></th>
+                </tr>
+                <tr>
+                  <td class="w6">Member</td>
+                  <td class="r"><span class="num" data-m="0"></span></td>
+                  <td class="r">×1,0</td>
+                </tr>
+                <tr>
+                  <td class="w6">Silver</td>
+                  <td class="r"><span class="num" data-m="10000000"></span></td>
+                  <td class="r">×1,1</td>
+                </tr>
+                <tr>
+                  <td class="w6">Gold</td>
+                  <td class="r"><span class="num" data-m="30000000"></span></td>
+                  <td class="r">×1,25</td>
+                </tr>
+                <tr>
+                  <td class="w6">Platinum</td>
+                  <td class="r"><span class="num" data-m="80000000"></span></td>
+                  <td class="r">×1,5</td>
+                </tr>
+              </table>
+            </div>
+            <div class="panel col g12">
+              <h3 style="margin: 0"><b class="ann">5</b><span data-ja="言語・地域">Ngôn ngữ & khu vực</span></h3>
+              <div class="fld">
+                <label><span data-ja="対応言語">Ngôn ngữ hỗ trợ</span></label>
+                <div class="row g4">
+                  <span class="chip brand">Tiếng Việt · <span data-ja="既定">mặc định</span></span
+                  ><span class="chip brand">日本語</span
+                  ><span class="chip out" style="min-height: 28px">+ English</span>
+                </div>
+              </div>
+              <div class="row g12">
+                <div class="fld grow">
+                  <label><span data-ja="タイムゾーン">Múi giờ</span></label>
+                  <div class="inp s">Asia/Ho_Chi_Minh</div>
+                </div>
+                <div class="fld grow">
+                  <label><span data-ja="通貨">Tiền tệ</span></label>
+                  <div class="inp s">VND (₫)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="proto-bar" aria-label="Prototype">
+      <a href="../index.html" title="Danh sách màn hình">☰</a>
+      <a data-nav="prev" href="AD-17.html" title="Màn trước (←)">‹</a>
+      <select class="proto-jump" aria-label="Chuyển màn">
+        <optgroup label="Bắt đầu">
+          <option value="AD-01">AD-01 · Đăng nhập quản trị</option>
+          <option value="AD-02">AD-02 · Tổng quan</option>
+        </optgroup>
+        <optgroup label="Vận hành">
+          <option value="AD-03">AD-03 · Danh sách đặt phòng</option>
+          <option value="AD-04">AD-04 · Chi tiết đặt phòng</option>
+          <option value="AD-05">AD-05 · Đặt phòng tại quầy</option>
+          <option value="AD-08">AD-08 · Phòng &amp; tình trạng buồng</option>
+        </optgroup>
+        <optgroup label="Sản phẩm">
+          <option value="AD-06">AD-06 · Giá &amp; tồn kho</option>
+          <option value="AD-07">AD-07 · Loại phòng</option>
+          <option value="AD-09">AD-09 · Gói giá &amp; chính sách hủy</option>
+          <option value="AD-10">AD-10 · Dịch vụ thêm</option>
+        </optgroup>
+        <optgroup label="Khách hàng">
+          <option value="AD-11">AD-11 · Khuyến mãi &amp; voucher</option>
+          <option value="AD-12">AD-12 · Đánh giá</option>
+          <option value="AD-13">AD-13 · Khách hàng &amp; điểm</option>
+        </optgroup>
+        <optgroup label="Tài chính">
+          <option value="AD-14">AD-14 · Thanh toán &amp; hoàn tiền</option>
+          <option value="AD-15">AD-15 · Báo cáo</option>
+        </optgroup>
+        <optgroup label="Hệ thống">
+          <option value="AD-16">AD-16 · Khách sạn (chi nhánh)</option>
+          <option value="AD-17">AD-17 · Admin &amp; phân quyền</option>
+          <option value="AD-18" selected>AD-18 · Cấu hình hệ thống</option>
+        </optgroup>
+      </select>
+      <a data-nav="next" aria-disabled="true" title="Màn sau (→)">›</a>
+      <label title="Hiện số chú thích"><input type="checkbox" id="annToggle" />Chú thích</label>
+    </div>
+    <script src="../js/i18n.js"></script>
+    <script src="../js/links.js"></script>
+    <script src="../js/prototype.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>

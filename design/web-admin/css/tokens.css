@@ -1,19 +1,77 @@
 /* Design tokens & reset — sinh từ HotelBooking_Mockup.html bởi design/tools/build.js, không sửa tay */
-:root{
-  --ink:#2B1A16; --ink-2:#5C4640; --ink-3:#7A615A; --line:#EFE3DF; --line-2:#F6EEEB; --paper:#FBF6F4; --surface:#fff;
-  --brand:#B42318; --brand-ink:#8A1A12; --brand-wash:#FDECE9; --brand-soft:#F3B4AA; --gold:#9A6516; --gold-wash:#F8EDDA; --gold-hi:#C98A2E;
-  --rose:#9F1239; --rose-wash:#FCE7EE; --amber:#B4540A; --amber-wash:#FDF0E1; --sky:#6E4B3E; --sky-wash:#F3EAE6;
-  --r-s:8px; --r-m:12px; --r-l:18px; --r-xl:24px;
-  --shadow:0 1px 2px rgba(43,26,22,.06),0 4px 14px rgba(43,26,22,.06);
-  --f-vi:"Be Vietnam Pro","Noto Sans","Segoe UI",system-ui,sans-serif;
-  --f-ja:"Noto Sans JP","Hiragino Sans","Yu Gothic UI","Noto Sans CJK JP",system-ui,sans-serif;
+:root {
+  --ink: #2b1a16;
+  --ink-2: #5c4640;
+  --ink-3: #7a615a;
+  --line: #efe3df;
+  --line-2: #f6eeeb;
+  --paper: #fbf6f4;
+  --surface: #fff;
+  --brand: #b42318;
+  --brand-ink: #8a1a12;
+  --brand-wash: #fdece9;
+  --brand-soft: #f3b4aa;
+  --gold: #9a6516;
+  --gold-wash: #f8edda;
+  --gold-hi: #c98a2e;
+  --rose: #9f1239;
+  --rose-wash: #fce7ee;
+  --amber: #b4540a;
+  --amber-wash: #fdf0e1;
+  --sky: #6e4b3e;
+  --sky-wash: #f3eae6;
+  --r-s: 8px;
+  --r-m: 12px;
+  --r-l: 18px;
+  --r-xl: 24px;
+  --shadow: 0 1px 2px rgba(43, 26, 22, 0.06), 0 4px 14px rgba(43, 26, 22, 0.06);
+  --f-vi: "Be Vietnam Pro", "Noto Sans", "Segoe UI", system-ui, sans-serif;
+  --f-ja: "Noto Sans JP", "Hiragino Sans", "Yu Gothic UI", "Noto Sans CJK JP", system-ui, sans-serif;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--f-vi);background:var(--paper);color:var(--ink);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
-html[lang=ja] body{font-family:var(--f-ja)}
-.num{font-variant-numeric:tabular-nums}
-.i{width:20px;height:20px;flex:none;display:inline-block;vertical-align:middle}
-.i.s{width:16px;height:16px}.i.l{width:24px;height:24px}
-button{font:inherit;color:inherit}
-:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: var(--f-vi);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+html[lang="ja"] body {
+  font-family: var(--f-ja);
+}
+.num {
+  font-variant-numeric: tabular-nums;
+}
+.i {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+.i.s {
+  width: 16px;
+  height: 16px;
+}
+.i.l {
+  width: 24px;
+  height: 24px;
+}
+button {
+  font: inherit;
+  color: inherit;
+}
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
