@@ -87,7 +87,8 @@ class AppButton extends StatelessWidget {
           foregroundColor: foreground,
           disabledForegroundColor: isLoading ? foreground : AppColors.disabledFg,
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          // Keep the app font family (Be Vietnam Pro / Noto Sans JP); a bare TextStyle falls back to Roboto.
+          textStyle: Theme.of(context).textTheme.labelLarge?.copyWith(fontSize: 15, fontWeight: FontWeight.w600),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14),
             side: borderColor == null ? BorderSide.none : BorderSide(color: borderColor, width: 1.5),

@@ -26,6 +26,8 @@ return [
         'totp_help' => 'Mở ứng dụng Authenticator để lấy mã. Bỏ trống nếu tài khoản chưa bật 2 bước.',
         'submit' => 'Đăng nhập',
         'forgot_password' => 'Quên mật khẩu? Liên hệ Super Admin.',
+        'show_password' => 'Hiện mật khẩu',
+        'hide_password' => 'Ẩn mật khẩu',
         'sign_out' => 'Đăng xuất',
         'signed_out' => 'Bạn đã đăng xuất.',
     ],

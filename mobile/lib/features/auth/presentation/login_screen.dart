@@ -88,23 +88,21 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     final l10n = AppLocalizations.of(context);
 
     return Scaffold(
+      appBar: AppBar(
+        leadingWidth: 64,
+        leading: IconButton(
+          onPressed: () => context.canPop() ? context.pop() : context.go('/home'),
+          tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
+          icon: const AppIcon(AppIcons.close, size: 24, color: AppColors.ink),
+        ),
+      ),
       body: SafeArea(
+        top: false,
         child: Form(
           key: _formKey,
           child: AutofillGroup(
-            child: ListView(
-              padding: const EdgeInsets.fromLTRB(24, 4, 24, 24),
+            child: _CenteredFormLayout(
               children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: IconButton(
-                    onPressed: () => context.canPop() ? context.pop() : context.go('/home'),
-                    tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
-                    padding: EdgeInsets.zero,
-                    icon: const AppIcon(AppIcons.close, size: 24, color: AppColors.ink),
-                  ),
-                ),
-                const SizedBox(height: 12),
                 Text(l10n.authLoginTitle, style: AppText.xl),
                 const SizedBox(height: 8),
                 Text(l10n.authLoginSubtitle, style: AppText.b.copyWith(color: AppColors.ink2)),
@@ -193,6 +191,50 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   onPressed: _showComingSoon,
                 ),
               ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Scrollable form column that keeps the phone width of the design on tablets and the web.
+///
+/// - Content is limited to [maxWidth] and centered horizontally.
+/// - On phones the content starts at the top like the design; on wider screens it is also centered vertically.
+///
+/// Author: PH.Tuan · Created: 2026-10-19
+class _CenteredFormLayout extends StatelessWidget {
+  const _CenteredFormLayout({required this.children});
+
+  /// Width of the form column on large screens.
+  static const double maxWidth = 440;
+
+  /// Screens wider than this (tablets, web) center the form vertically too.
+  static const double _wideLayoutWidth = 600;
+
+  /// Horizontal page padding (design: 24 px).
+  static const double _horizontalPadding = 24;
+
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) => SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(_horizontalPadding, 8, _horizontalPadding, 24),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minHeight: constraints.maxHeight - 32),
+          child: Align(
+            alignment: constraints.maxWidth > _wideLayoutWidth ? Alignment.center : Alignment.topCenter,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: maxWidth),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: children,
+              ),
             ),
           ),
         ),

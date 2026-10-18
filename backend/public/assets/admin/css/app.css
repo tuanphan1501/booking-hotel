@@ -40,7 +40,7 @@ input.inp:focus {
   background: var(--ink);
 }
 
-.login__visual img {
+.login__photo {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -72,14 +72,45 @@ input.inp:focus {
 }
 
 .login__language {
-  position: absolute;
-  top: 20px;
-  right: 24px;
+  justify-content: center;
+  margin: 0 auto;
 }
 
-.login__form {
+.login__content {
   width: 360px;
   max-width: calc(100vw - 32px);
+}
+
+.login__forgot {
+  color: var(--brand);
+  font-weight: 600;
+}
+
+/* Password input with the show / hide eye button */
+.inp-reveal {
+  position: relative;
+}
+
+.inp-reveal input.inp {
+  padding-right: 48px;
+}
+
+.inp-reveal__toggle {
+  position: absolute;
+  top: 0;
+  right: 2px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 48px;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.inp-reveal__toggle[aria-pressed="true"] {
+  color: var(--brand);
 }
 
 .login__totp {
