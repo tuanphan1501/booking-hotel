@@ -1,4 +1,4 @@
-# design/ — Thiết kế Lumière Booking
+# design/ — Thiết kế Vivu Stay
 
 Tách từ `HotelBooking_Mockup.html` thành 2 phần độc lập:
 
@@ -7,17 +7,17 @@ Tách từ `HotelBooking_Mockup.html` thành 2 phần độc lập:
 | `web-admin/` | Dev web + demo khách | **Prototype HTML/CSS/JS bấm được** — mỗi màn AD-01…AD-18 một page (`pages/AD-xx.html`), menu/nút chuyển trang thật. Mở `web-admin/index.html`. |
 | `mobile/` | Dev Flutter | **Bộ thiết kế (không phải HTML)**: ảnh PNG 22 màn, spec Markdown từng màn, design tokens, theme Flutter, icon SVG. Mở `mobile/README.md`. |
 | `docs/ui-review.md` | Cả hai | Review UI v1 → v2 và quy ước design system |
+| `docs/ui-ux-review-admin.md` | Web | Review UI/UX chuẩn quốc tế của Web Admin đã code |
+| `brand/` | Cả hai | Logo Vivu Stay (SVG, PNG, icon app) và hướng dẫn |
 | `tools/` | Người cập nhật | Script build + dữ liệu spec / liên kết |
 
-## Công nghệ đề xuất (theo Basic Design §2.1)
+## Công nghệ đã chốt
 
-| Phần | Ngôn ngữ / framework | Lý do |
-| --- | --- | --- |
-| Mobile app | **Dart – Flutter 3.27+**, Riverpod, go_router, Dio | 1 codebase iOS + Android, UI tùy biến sát thiết kế, máy dev đã có Flutter SDK |
-| Web admin | **TypeScript – Next.js 15 (React) + Ant Design** | Bảng/lưới/form nhiều → Ant Design có sẵn; cùng TypeScript với backend |
-| Backend API | **TypeScript – NestJS** + PostgreSQL 16 + Redis | Transaction chặt (khóa tồn kho), OpenAPI sinh client cho app & admin |
-
-Nếu team mạnh PHP: thay Web admin + API bằng **Laravel 11** (admin dùng Filament hoặc Inertia + React) — DB và API không đổi.
+| Phần | Ngôn ngữ / framework |
+| --- | --- |
+| Mobile app | **Dart – Flutter 3.27+**, Riverpod, go_router, Dio |
+| Web admin + API | **PHP 8.3 – Laravel 13** (Blade, Sanctum) — code tại `backend/` |
+| Database | PostgreSQL 16 + Redis 7 |
 
 ## Cập nhật
 

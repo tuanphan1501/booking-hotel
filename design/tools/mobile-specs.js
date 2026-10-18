@@ -950,7 +950,7 @@ module.exports = {
     ],
     flutter: [
       "webview_flutter cho VNPay/Stripe; url_launcher (externalApplication) cho MoMo app",
-      "app_links bắt deep link lumiere://payment/result",
+      "app_links bắt deep link vivustay://payment/result",
       "Đồng bộ đồng hồ: offset = serverTime (header Date) − DateTime.now()",
     ],
   },

@@ -149,9 +149,9 @@ function buildPersonalSettings(base) {
 <div class="panel"><h3>${ic("user")}${vj("Hồ sơ", "プロフィール")}</h3>
 <div class="col g12">
 <div class="kv"><span class="k">${vj("Họ tên", "氏名")}</span><span class="v">Lê Hạnh</span></div>
-<div class="kv"><span class="k">Email</span><span class="v">le.hanh@lumiere-hotels.vn</span></div>
+<div class="kv"><span class="k">Email</span><span class="v">le.hanh@vivustay.vn</span></div>
 <div class="kv"><span class="k">${vj("Vai trò", "ロール")}</span><span class="v">${vj("Quản lý chi nhánh", "支店マネージャー")}</span></div>
-<div class="kv"><span class="k">${vj("Chi nhánh", "支店")}</span><span class="v">${vj("Lumière Đà Nẵng", "ルミエール ダナン")}</span></div></div></div>
+<div class="kv"><span class="k">${vj("Chi nhánh", "支店")}</span><span class="v">${vj("Vivu Stay Đà Nẵng", "ヴィヴステイ ダナン")}</span></div></div></div>
 <div class="panel"><h3>${ic("shield")}<b class="ann">3</b>${vj("Bảo mật", "セキュリティ")}</h3>
 ${row("lock", vj("Mật khẩu", "パスワード"), `<button class="btn sm sec">${vj("Đổi mật khẩu", "パスワード変更")}</button>`)}
 ${row("phone", vj("Xác thực 2 bước (TOTP)", "2段階認証（TOTP）"), `<span class="chip brand">${vj("Đang bật", "有効")}</span>`)}
@@ -173,7 +173,7 @@ ${row("money", vj("Hoàn tiền chờ duyệt", "承認待ちの返金"), sw(fal
   return {
     id: "AD-19",
     adm: withCrumb.replace(balanced(withCrumb, pageStart), page),
-    url: "admin.lumiere-hotels.vn/me/settings",
+    url: "admin.vivustay.vn/me/settings",
     name: "Cài đặt cá nhân",
     note: "Mở từ avatar. Ngôn ngữ đổi ngay, lưu vào admin_users.language; email thông báo dùng cùng ngôn ngữ.",
   };
@@ -213,7 +213,7 @@ adScreens.forEach((s, i) => {
     next = adScreens[i + 1];
   write(
     `${WA}pages/${s.id}.html`,
-    `${head(`${s.id} ${s.name} — Lumière Admin`, "../", s.note)}
+    `${head(`${s.id} ${s.name} — Vivu Stay Admin`, "../", s.note)}
 <body class="proto" data-screen="${s.id}">
 <script src="../js/icons.js"></script>
 ${s.adm}
@@ -234,11 +234,11 @@ ${s.adm}
 
 write(
   WA + "index.html",
-  `${head("Lumière Admin — Prototype", "", "Danh sách màn hình prototype Web Admin")}
+  `${head("Vivu Stay Admin — Prototype", "", "Danh sách màn hình prototype Web Admin")}
 <body>
 <script src="js/icons.js"></script>
 <main class="dh">
-<div class="dh-head"><span class="brand-mark"><svg class="i" aria-hidden="true"><use href="#i-door"/></svg></span><div><h1>Lumière Admin — Prototype</h1></div></div>
+<div class="dh-head"><span class="brand-mark"><svg class="i" aria-hidden="true"><use href="#i-door"/></svg></span><div><h1>Vivu Stay Admin — Prototype</h1></div></div>
 <p class="lead">Prototype bấm được của Web Admin, ${adScreens.length} màn hình. Bấm nút / menu trong màn để chuyển trang; bấm vùng trống để hiện các vùng bấm được; phím <kbd>←</kbd> <kbd>→</kbd> chuyển màn kế tiếp. Đổi ngôn ngữ VI / JA ở thanh trên của mỗi màn.</p>
 <a class="btn dh-start" href="pages/AD-01.html">Bắt đầu demo từ màn đăng nhập ›</a>
 <div class="dh-path"><h2>Kịch bản demo gợi ý</h2>
@@ -248,7 +248,7 @@ write(
 <div><b>Marketing & CSKH</b><a href="pages/AD-11.html">Khuyến mãi</a>→<a href="pages/AD-12.html">Đánh giá</a>→<a href="pages/AD-13.html">Khách & điểm</a></div>
 <div><b>Kế toán</b><a href="pages/AD-14.html">Thanh toán & hoàn tiền</a>→<a href="pages/AD-15.html">Báo cáo</a></div>
 </div>
-<div class="dh-grid">${adGroups.map(([g, ids]) => `<section class="dh-grp"><h3>${g}</h3>${ids.map((i) => `<a href="pages/${i}.html"><b>${i}</b>${esc(adById[i].name)}<em>${esc(adById[i].url.replace("admin.lumiere-hotels.vn", ""))}</em></a>`).join("")}</section>`).join("")}</div>
+<div class="dh-grid">${adGroups.map(([g, ids]) => `<section class="dh-grp"><h3>${g}</h3>${ids.map((i) => `<a href="pages/${i}.html"><b>${i}</b>${esc(adById[i].name)}<em>${esc(adById[i].url.replace("admin.vivustay.vn", ""))}</em></a>`).join("")}</section>`).join("")}</div>
 </main>
 </body></html>`
 );

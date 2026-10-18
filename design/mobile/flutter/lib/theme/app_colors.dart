@@ -1,4 +1,4 @@
-// Màu Lumière Hotel Booking — nguồn: design/mobile/tokens/design-tokens.json
+// Màu Vivu Stay — nguồn: design/mobile/tokens/design-tokens.json
 import 'package:flutter/material.dart';
 
 abstract final class AppColors {

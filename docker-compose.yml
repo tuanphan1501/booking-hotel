@@ -1,0 +1,33 @@
+# Local development services for Vivu Stay: PostgreSQL 16, Redis 7 and Mailpit.
+# Start: docker compose up -d   ·   Outgoing mail UI: http://localhost:8025
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: vivustay
+      POSTGRES_USER: vivustay
+      POSTGRES_PASSWORD: vivustay
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./backend/docker/postgres-init.sql:/docker-entrypoint-initdb.d/01-test-db.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vivustay -d vivustay"]
+      interval: 5s
+      retries: 30
+      start_period: 60s
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  mailpit:
+    image: axllent/mailpit:v1.20
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+volumes:
+  pgdata:

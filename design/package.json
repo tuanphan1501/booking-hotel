@@ -1,5 +1,5 @@
 {
-  "name": "lumiere-booking-design",
+  "name": "vivustay-design",
   "private": true,
   "scripts": {
     "build": "node tools/build.js && npm run format",
