@@ -1,0 +1,633 @@
+/*
+ * Laravel-specific styles for the Web Admin.
+ * tokens / utilities / components / admin.css are copied from design/web-admin/css — do not edit them here.
+ */
+
+/* Native inputs styled like the design's .inp blocks */
+input.inp {
+  width: 100%;
+  border: 0;
+  font: inherit;
+  font-size: 15px;
+  outline: none;
+}
+
+input.inp:focus {
+  box-shadow: inset 0 0 0 2px var(--brand);
+}
+
+/* Sidebar entries whose screens are not implemented yet */
+.side a.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Full-height layout instead of the mockup's fixed browser frame */
+.adm {
+  min-height: 100vh;
+}
+
+/* AD-01 sign-in screen */
+.login {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+.login__visual {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.login__visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.login__visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(43, 26, 22, 0) 40%, rgba(43, 26, 22, 0.85));
+}
+
+.login__brand {
+  position: absolute;
+  left: 32px;
+  bottom: 32px;
+  z-index: 1;
+  max-width: 340px;
+  color: #fff;
+}
+
+.login__panel {
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: #fff;
+}
+
+.login__language {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+}
+
+.login__form {
+  width: 360px;
+  max-width: calc(100vw - 32px);
+}
+
+.login__totp {
+  letter-spacing: 6px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 900px) {
+  .login {
+    grid-template-columns: 1fr;
+  }
+
+  .login__visual {
+    display: none;
+  }
+}
+
+/* Top bar: avatar + name linking to AD-19 Personal settings */
+.abar__profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.abar__profile:hover .abar__name {
+  color: var(--brand-ink);
+}
+
+/* Uploaded avatar picture (the initials badge keeps the design's .avatar look) */
+.avatar--image {
+  object-fit: cover;
+  padding: 0;
+  background: var(--line-2);
+}
+
+/* File input styled like the design's text inputs */
+.inp--file {
+  padding: 10px 14px;
+  min-height: auto;
+}
+
+/* Visually hidden but available to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- AD-19 Personal settings ---------- */
+.profile-hero {
+  position: relative;
+  background: #fff;
+  border-radius: var(--r-l);
+  box-shadow: inset 0 0 0 1px var(--line);
+  overflow: hidden;
+}
+
+.profile-hero__cover {
+  height: 112px;
+  background:
+    radial-gradient(120% 140% at 100% 0%, rgba(242, 192, 99, 0.45), transparent 55%),
+    linear-gradient(120deg, #8a1a12, var(--brand) 55%, #d4553f);
+}
+
+.profile-hero__body {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  padding: 0 24px 8px;
+  margin-top: -48px;
+  flex-wrap: wrap;
+}
+
+.profile-hero__identity {
+  flex: 1;
+  min-width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 6px;
+}
+
+.profile-hero__actions {
+  display: flex;
+  gap: 8px;
+  padding-bottom: 10px;
+}
+
+.profile-hero__actions label.btn {
+  cursor: pointer;
+}
+
+.profile-hero__hint {
+  padding: 0 24px 18px 156px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.profile-avatar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.profile-avatar__frame {
+  position: relative;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px #fff, 0 6px 20px rgba(43, 26, 22, 0.18);
+  transition: box-shadow 0.15s;
+}
+
+.profile-avatar__frame.is-dragging {
+  box-shadow: 0 0 0 4px #fff, 0 0 0 7px var(--brand);
+}
+
+.profile-avatar__frame .avatar {
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
+.profile-avatar__camera {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  color: #fff;
+  box-shadow: 0 0 0 3px #fff;
+  cursor: pointer;
+}
+
+.profile-avatar__camera:hover {
+  background: var(--brand);
+}
+
+.profile-avatar__confirm {
+  display: flex;
+  gap: 6px;
+}
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 16px;
+  align-items: start;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px;
+}
+
+.profile-form__footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.profile-form__footer [data-dirty-label] {
+  margin-right: auto;
+  color: var(--amber);
+}
+
+.settings-row {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 24px;
+}
+
+.settings-row__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.settings-row__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+input.inp:disabled {
+  background: var(--line-2);
+  color: var(--ink-3);
+}
+
+.choice-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.choice-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: inset 0 0 0 1.5px var(--line);
+  cursor: pointer;
+  transition: box-shadow 0.15s;
+}
+
+.choice-card:hover {
+  box-shadow: inset 0 0 0 1.5px var(--brand-soft);
+}
+
+.choice-card:has(input:checked) {
+  box-shadow: inset 0 0 0 2px var(--brand);
+  background: #fffaf9;
+}
+
+.choice-card:has(input:focus-visible) {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.choice-card__code {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 12px;
+  background: var(--line-2);
+  color: var(--ink-2);
+}
+
+.choice-card:has(input:checked) .choice-card__code {
+  background: var(--brand-wash);
+  color: var(--brand-ink);
+}
+
+.choice-card__text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.choice-card__check {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: var(--brand);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: 0.15s;
+}
+
+.choice-card:has(input:checked) .choice-card__check {
+  opacity: 1;
+  transform: none;
+}
+
+.profile-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.profile-facts > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.profile-facts dt {
+  color: var(--ink-2);
+}
+
+.profile-facts dd {
+  font-weight: 500;
+  text-align: right;
+}
+
+@media (max-width: 1100px) {
+  .profile-layout,
+  .settings-row {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-hero__hint {
+    padding-left: 24px;
+  }
+}
+
+/* Avatar review & crop dialog */
+.avatar-editor {
+  width: min(440px, calc(100vw - 32px));
+  border: 0;
+  border-radius: var(--r-xl);
+  padding: 0;
+  box-shadow: 0 30px 80px rgba(43, 26, 22, 0.35);
+  color: var(--ink);
+}
+
+.avatar-editor::backdrop {
+  background: rgba(30, 18, 15, 0.55);
+}
+
+.avatar-editor__header,
+.avatar-editor__footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px 14px 20px;
+}
+
+.avatar-editor__header {
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+
+.avatar-editor__footer {
+  border-top: 1px solid var(--line);
+}
+
+.avatar-editor__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 20px;
+  background: var(--paper);
+}
+
+.avatar-editor__viewport {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: repeating-conic-gradient(#efe4df 0 25%, #fbf6f4 0 50%) 0 0 / 20px 20px;
+}
+
+.avatar-editor__viewport canvas {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: none;
+  display: block;
+}
+
+.avatar-editor__viewport canvas:active {
+  cursor: grabbing;
+}
+
+/* Round crop mask: dim everything outside the circle */
+.avatar-editor__viewport::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  box-shadow: 0 0 0 200px rgba(43, 26, 22, 0.45), inset 0 0 0 2px rgba(255, 255, 255, 0.9);
+}
+
+.avatar-editor__zoom {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 280px;
+  color: var(--ink-3);
+}
+
+.avatar-editor__zoom input {
+  flex: 1;
+  accent-color: var(--brand);
+}
+
+.avatar-editor__previews {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+}
+
+.avatar-editor__previews figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+.avatar-editor__previews canvas {
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--line);
+  background: #fff;
+}
+
+.avatar-editor__previews figcaption {
+  font-size: 11.5px;
+  color: var(--ink-3);
+}
+
+/* Profile header: keep the identity below the cover; links styled as buttons have no underline */
+.profile-hero__body {
+  align-items: flex-start;
+}
+
+.profile-hero__identity {
+  padding-top: 60px;
+}
+
+.profile-hero__actions {
+  padding-top: 64px;
+}
+
+a.btn {
+  text-decoration: none;
+}
+
+/* ---------- Accessibility & responsive shell (UI/UX review) ---------- */
+
+/* Skip link: hidden until focused with the keyboard (WCAG 2.4.1) */
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -48px;
+  z-index: 100;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--ink);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+.apage:focus {
+  outline: none;
+}
+
+/* ☰ button: only shown when the sidebar is collapsed */
+.abar__menu {
+  display: none;
+}
+
+.nav-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(30, 18, 15, 0.5);
+}
+
+@media (max-width: 1100px) {
+  .abar {
+    padding: 0 16px;
+  }
+
+  .abar__menu {
+    display: grid;
+  }
+
+  .side {
+    display: flex;
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 50;
+    width: 260px;
+    height: 100vh;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+    visibility: hidden;
+  }
+
+  body.nav-open .side {
+    transform: none;
+    visibility: visible;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .apage {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .abar__name,
+  .abar__label {
+    display: none;
+  }
+
+  .kpis {
+    grid-template-columns: 1fr;
+  }
+
+  .tbl {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .profile-hero__body {
+    padding: 0 16px 8px;
+  }
+
+  .profile-hero__identity,
+  .profile-hero__actions {
+    padding-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .side,
+  .choice-card,
+  .choice-card__check {
+    transition: none;
+  }
+}
+
+/* Abbreviations with an explanation on hover / long press */
+abbr[title] {
+  text-decoration: underline dotted;
+  cursor: help;
+}
