@@ -1,4 +1,4 @@
-# design/ — Thiết kế Lumière Hotel Booking
+# design/ — Thiết kế Lumière Booking
 
 Tách từ `HotelBooking_Mockup.html` thành 2 phần độc lập:
 

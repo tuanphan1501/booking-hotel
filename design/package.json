@@ -1,5 +1,5 @@
 {
-  "name": "booking-hotel-design",
+  "name": "lumiere-booking-design",
   "private": true,
   "scripts": {
     "build": "node tools/build.js && npm run format",
