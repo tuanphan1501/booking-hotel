@@ -1,5 +1,5 @@
 {
-  "$description": "Design tokens Lumière Hotel Booking — dùng chung Mobile (Flutter) và Web Admin. Giá trị lấy từ :root của HotelBooking_Mockup.html.",
+  "$description": "Design tokens Vivu Stay — dùng chung Mobile (Flutter) và Web Admin. Giá trị lấy từ :root của HotelBooking_Mockup.html.",
   "color": {
     "ink": "#2B1A16",
     "ink2": "#5C4640",

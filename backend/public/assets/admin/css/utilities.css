@@ -1,0 +1,106 @@
+/* Thang chữ & tiện ích bố cục — sinh từ HotelBooking_Mockup.html bởi design/tools/build.js, không sửa tay */
+/* type */
+.t-xl {
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+.t-l {
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 700;
+}
+.t-m {
+  font-size: 17px;
+  line-height: 24px;
+  font-weight: 600;
+}
+.t-b {
+  font-size: 15px;
+  line-height: 22px;
+}
+.t-s {
+  font-size: 13px;
+  line-height: 18px;
+}
+.t-xs {
+  font-size: 12px;
+  line-height: 16px;
+}
+.sub {
+  color: var(--ink-3);
+}
+.sec {
+  color: var(--ink-2);
+}
+.w6 {
+  font-weight: 600;
+}
+.w7 {
+  font-weight: 700;
+}
+.brand {
+  color: var(--brand);
+}
+.rose {
+  color: var(--rose);
+}
+.gold {
+  color: var(--gold);
+}
+.amber {
+  color: var(--amber);
+}
+.price {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.strike {
+  text-decoration: line-through;
+  color: var(--ink-3);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* layout utils */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+}
+.between {
+  justify-content: space-between;
+}
+.g4 {
+  gap: 4px;
+}
+.g12 {
+  gap: 12px;
+}
+.g16 {
+  gap: 16px;
+}
+.wrap {
+  flex-wrap: wrap;
+}
+.grow {
+  flex: 1;
+  min-width: 0;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.ell {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.center {
+  text-align: center;
+}

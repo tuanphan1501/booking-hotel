@@ -1,0 +1,15 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "phpdoc_align": false,
+        "no_superfluous_phpdoc_tags": false,
+        "phpdoc_separation": {
+            "groups": [
+                ["author", "created", "copyright", "license"],
+                ["deprecated", "link", "see", "since"],
+                ["category", "package", "subpackage"],
+                ["property", "property-read", "property-write"]
+            ]
+        }
+    }
+}
