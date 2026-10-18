@@ -1,4 +1,4 @@
-import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb;
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -81,5 +81,5 @@ class AuthController extends Notifier<AuthState> {
   }
 
   /// Label grouping this device's tokens on the server, e.g. "Vivu Stay · android".
-  String _deviceName() => 'Vivu Stay · ${Platform.operatingSystem}';
+  String _deviceName() => 'Vivu Stay · ${kIsWeb ? 'web' : defaultTargetPlatform.name}';
 }
