@@ -121,6 +121,63 @@ const adScreens = [];
     adScreens.push({ id: m[1], adm, url, name, note });
   }
 }
+// Ngôn ngữ là cài đặt cá nhân (AD-19): bỏ nút VI/JA khỏi thanh trên, chỉ giữ ở màn đăng nhập AD-01
+for (const s of adScreens) {
+  const i = s.adm.indexOf('<div class="ab-lang">');
+  if (s.id !== "AD-01" && i >= 0) s.adm = s.adm.replace(balanced(s.adm, i), "");
+}
+adScreens.push(buildPersonalSettings(adScreens.find((s) => s.id === "AD-02").adm));
+
+// AD-19 Cài đặt cá nhân — dựng từ khung AD-02 (sidebar + thanh trên), thay phần nội dung
+function buildPersonalSettings(base) {
+  const ic = (n) => `<svg class="i" aria-hidden="true"><use href="#i-${n}"/></svg>`;
+  const vj = (vi, ja) => `<span data-ja="${ja}">${vi}</span>`;
+  const sw = (on) => `<span class="sw${on ? " on" : ""}"></span>`;
+  const row = (icon, label, right) =>
+    `<div class="list-row"><span class="ic">${ic(icon)}</span><span class="grow">${label}</span>${right}</div>`;
+  const page = `<div class="apage">
+<div class="ph-row"><h1>${vj("Cài đặt cá nhân", "個人設定")}</h1></div>
+<div class="g2e">
+<div class="panel"><h3>${ic("globe")}<b class="ann">1</b>${vj("Ngôn ngữ", "言語")}</h3>
+<p class="t-s sub" style="margin-bottom:8px">${vj("Áp dụng cho giao diện quản trị và email thông báo gửi cho bạn.", "管理画面とあなた宛の通知メールに適用されます。")}</p>
+<div class="list-row" data-setlang="vi" style="cursor:pointer"><span class="ic"><b>VI</b></span><span class="grow">Tiếng Việt<div class="t-xs sub">Vietnamese</div></span><span class="rd on" data-langopt="vi"></span></div>
+<div class="list-row" data-setlang="ja" style="cursor:pointer"><span class="ic"><b>JA</b></span><span class="grow">日本語<div class="t-xs sub">Japanese</div></span><span class="rd" data-langopt="ja"></span></div>
+<div class="divider" style="margin:10px 0"></div>
+<div class="col g4"><b class="ann">2</b><div class="t-s w6">${vj("Xem trước định dạng", "表示プレビュー")}</div>
+<div class="kv"><span class="k">${vj("Ngày", "日付")}</span><span class="v" data-d="2026-11-20" data-f="mdw"></span></div>
+<div class="kv"><span class="k">${vj("Số tiền", "金額")}</span><span class="v" data-m="3415400"></span></div></div></div>
+<div class="panel"><h3>${ic("user")}${vj("Hồ sơ", "プロフィール")}</h3>
+<div class="col g12">
+<div class="kv"><span class="k">${vj("Họ tên", "氏名")}</span><span class="v">Lê Hạnh</span></div>
+<div class="kv"><span class="k">Email</span><span class="v">le.hanh@lumiere-hotels.vn</span></div>
+<div class="kv"><span class="k">${vj("Vai trò", "ロール")}</span><span class="v">${vj("Quản lý chi nhánh", "支店マネージャー")}</span></div>
+<div class="kv"><span class="k">${vj("Chi nhánh", "支店")}</span><span class="v">${vj("Lumière Đà Nẵng", "ルミエール ダナン")}</span></div></div></div>
+<div class="panel"><h3>${ic("shield")}<b class="ann">3</b>${vj("Bảo mật", "セキュリティ")}</h3>
+${row("lock", vj("Mật khẩu", "パスワード"), `<button class="btn sm sec">${vj("Đổi mật khẩu", "パスワード変更")}</button>`)}
+${row("phone", vj("Xác thực 2 bước (TOTP)", "2段階認証（TOTP）"), `<span class="chip brand">${vj("Đang bật", "有効")}</span>`)}
+${row("clock", vj("Phiên đăng nhập khác", "他のセッション"), `<button class="btn sm sec">${vj("Đăng xuất tất cả", "すべてログアウト")}</button>`)}</div>
+<div class="panel"><h3>${ic("bell")}<b class="ann">4</b>${vj("Thông báo cho tôi", "自分宛の通知")}</h3>
+${row("ticket", vj("Đặt phòng mới", "新規予約"), sw(true))}
+${row("close", vj("Đặt phòng bị hủy", "予約キャンセル"), sw(true))}
+${row("money", vj("Hoàn tiền chờ duyệt", "承認待ちの返金"), sw(false))}</div>
+</div>
+<div class="row"><button class="btn sm danger">${ic("logout")}<b class="ann">5</b>${vj("Đăng xuất", "ログアウト")}</button></div>
+</div>`;
+  const side = base.replace(/<a class="on">/, '<a class="">');
+  const crumbStart = side.indexOf('<div class="crumb">');
+  const withCrumb = side.replace(
+    balanced(side, crumbStart),
+    `<div class="crumb">${vj("Tài khoản", "アカウント")} / <b>${vj("Cài đặt cá nhân", "個人設定")}</b></div>`
+  );
+  const pageStart = withCrumb.indexOf('<div class="apage">');
+  return {
+    id: "AD-19",
+    adm: withCrumb.replace(balanced(withCrumb, pageStart), page),
+    url: "admin.lumiere-hotels.vn/me/settings",
+    name: "Cài đặt cá nhân",
+    note: "Mở từ avatar. Ngôn ngữ đổi ngay, lưu vào admin_users.language; email thông báo dùng cùng ngôn ngữ.",
+  };
+}
 // nhóm theo sidebar
 const adGroups = [
   ["Bắt đầu", ["AD-01", "AD-02"]],
@@ -129,6 +186,7 @@ const adGroups = [
   ["Khách hàng", ["AD-11", "AD-12", "AD-13"]],
   ["Tài chính", ["AD-14", "AD-15"]],
   ["Hệ thống", ["AD-16", "AD-17", "AD-18"]],
+  ["Tài khoản", ["AD-19"]],
 ];
 const adById = Object.fromEntries(adScreens.map((s) => [s.id, s]));
 const head = (title, rel, desc) => `<!doctype html>

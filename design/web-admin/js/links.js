@@ -96,7 +96,7 @@ window.PROTO_LINKS = {
     },
     {
       s: ".avatar",
-      go: "AD-01?toast=Đã đăng xuất",
+      go: "AD-19",
     },
     {
       s: ".abar .ib",
@@ -199,7 +199,7 @@ window.PROTO_LINKS = {
     },
     {
       s: ".avatar",
-      go: "AD-01?toast=Đã đăng xuất",
+      go: "AD-19",
     },
     {
       s: ".abar .ib",
@@ -312,7 +312,7 @@ window.PROTO_LINKS = {
     },
     {
       s: ".avatar",
-      go: "AD-01?toast=Đã đăng xuất",
+      go: "AD-19",
     },
     {
       s: ".abar .ib",
@@ -431,7 +431,7 @@ window.PROTO_LINKS = {
     },
     {
       s: ".avatar",
-      go: "AD-01?toast=Đã đăng xuất",
+      go: "AD-19",
     },
     {
       s: ".abar .ib",
@@ -530,7 +530,7 @@ window.PROTO_LINKS = {
     },
     {
       s: ".avatar",
-      go: "AD-01?toast=Đã đăng xuất",
+      go: "AD-19",
     },
     {
       s: ".abar .ib",
@@ -634,7 +634,7 @@ window.PROTO_LINKS = {
     },
     {
       s: ".avatar",
-      go: "AD-01?toast=Đã đăng xuất",
+      go: "AD-19",
     },
     {
       s: ".abar .ib",
@@ -743,7 +743,7 @@ window.PROTO_LINKS = {
     },
     {
       s: ".avatar",
-      go: "AD-01?toast=Đã đăng xuất",
+      go: "AD-19",
     },
     {
       s: ".abar .ib",
@@ -842,7 +842,7 @@ window.PROTO_LINKS = {
     },
     {
       s: ".avatar",
-      go: "AD-01?toast=Đã đăng xuất",
+      go: "AD-19",
     },
     {
       s: ".abar .ib",
@@ -946,7 +946,7 @@ window.PROTO_LINKS = {
     },
     {
       s: ".avatar",
-      go: "AD-01?toast=Đã đăng xuất",
+      go: "AD-19",
     },
     {
       s: ".abar .ib",
@@ -1045,7 +1045,7 @@ window.PROTO_LINKS = {
     },
     {
       s: ".avatar",
-      go: "AD-01?toast=Đã đăng xuất",
+      go: "AD-19",
     },
     {
       s: ".abar .ib",
@@ -1149,7 +1149,7 @@ window.PROTO_LINKS = {
     },
     {
       s: ".avatar",
-      go: "AD-01?toast=Đã đăng xuất",
+      go: "AD-19",
     },
     {
       s: ".abar .ib",
@@ -1253,7 +1253,7 @@ window.PROTO_LINKS = {
     },
     {
       s: ".avatar",
-      go: "AD-01?toast=Đã đăng xuất",
+      go: "AD-19",
     },
     {
       s: ".abar .ib",
@@ -1362,7 +1362,7 @@ window.PROTO_LINKS = {
     },
     {
       s: ".avatar",
-      go: "AD-01?toast=Đã đăng xuất",
+      go: "AD-19",
     },
     {
       s: ".abar .ib",
@@ -1466,7 +1466,7 @@ window.PROTO_LINKS = {
     },
     {
       s: ".avatar",
-      go: "AD-01?toast=Đã đăng xuất",
+      go: "AD-19",
     },
     {
       s: ".abar .ib",
@@ -1565,7 +1565,7 @@ window.PROTO_LINKS = {
     },
     {
       s: ".avatar",
-      go: "AD-01?toast=Đã đăng xuất",
+      go: "AD-19",
     },
     {
       s: ".abar .ib",
@@ -1664,7 +1664,7 @@ window.PROTO_LINKS = {
     },
     {
       s: ".avatar",
-      go: "AD-01?toast=Đã đăng xuất",
+      go: "AD-19",
     },
     {
       s: ".abar .ib",
@@ -1763,7 +1763,7 @@ window.PROTO_LINKS = {
     },
     {
       s: ".avatar",
-      go: "AD-01?toast=Đã đăng xuất",
+      go: "AD-19",
     },
     {
       s: ".abar .ib",
@@ -1862,7 +1862,131 @@ window.PROTO_LINKS = {
     },
     {
       s: ".avatar",
+      go: "AD-19",
+    },
+    {
+      s: ".abar .ib",
+      toast: "3 thông báo mới",
+    },
+  ],
+  "AD-19": [
+    {
+      s: ".btn",
+      t: "Đổi mật khẩu",
+      toast: "Mở form đổi mật khẩu",
+    },
+    {
+      s: ".btn",
+      t: "Đăng xuất tất cả",
+      toast: "Đã đăng xuất các phiên khác",
+    },
+    {
+      s: ".btn",
+      t: "Đăng xuất",
       go: "AD-01?toast=Đã đăng xuất",
+    },
+    {
+      s: ".list-row",
+      t: "Đặt phòng mới",
+      toast: "Đã cập nhật cài đặt thông báo",
+    },
+    {
+      s: ".list-row",
+      t: "Đặt phòng bị hủy",
+      toast: "Đã cập nhật cài đặt thông báo",
+    },
+    {
+      s: ".list-row",
+      t: "Hoàn tiền chờ duyệt",
+      toast: "Đã cập nhật cài đặt thông báo",
+    },
+    {
+      s: ".side a",
+      n: 1,
+      go: "AD-02",
+    },
+    {
+      s: ".side a",
+      n: 2,
+      go: "AD-03",
+    },
+    {
+      s: ".side a",
+      n: 3,
+      go: "AD-05",
+    },
+    {
+      s: ".side a",
+      n: 4,
+      go: "AD-08",
+    },
+    {
+      s: ".side a",
+      n: 5,
+      go: "AD-06",
+    },
+    {
+      s: ".side a",
+      n: 6,
+      go: "AD-07",
+    },
+    {
+      s: ".side a",
+      n: 7,
+      go: "AD-09",
+    },
+    {
+      s: ".side a",
+      n: 8,
+      go: "AD-10",
+    },
+    {
+      s: ".side a",
+      n: 9,
+      go: "AD-11",
+    },
+    {
+      s: ".side a",
+      n: 10,
+      go: "AD-12",
+    },
+    {
+      s: ".side a",
+      n: 11,
+      go: "AD-13",
+    },
+    {
+      s: ".side a",
+      n: 12,
+      go: "AD-14",
+    },
+    {
+      s: ".side a",
+      n: 13,
+      go: "AD-15",
+    },
+    {
+      s: ".side a",
+      n: 14,
+      go: "AD-16",
+    },
+    {
+      s: ".side a",
+      n: 15,
+      go: "AD-17",
+    },
+    {
+      s: ".side a",
+      n: 16,
+      go: "AD-18",
+    },
+    {
+      s: ".side .logo",
+      go: "AD-02",
+    },
+    {
+      s: ".avatar",
+      go: "AD-19",
     },
     {
       s: ".abar .ib",
