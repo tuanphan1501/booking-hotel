@@ -25,6 +25,8 @@ abstract final class AppTheme {
       outlineVariant: AppColors.line2,
       scrim: AppColors.scrim,
     );
+    // Button themes need the family explicitly: their text style is not merged with ThemeData.fontFamily.
+    final buttonText = TextStyle(fontFamily: AppFonts.of(locale), fontSize: 15, fontWeight: FontWeight.w600);
     const r12 = BorderRadius.all(AppRadius.m);
     OutlineInputBorder border(Color c, double w) =>
         OutlineInputBorder(borderRadius: r12, borderSide: BorderSide(color: c, width: w));
@@ -61,7 +63,7 @@ abstract final class AppTheme {
           minimumSize: const Size(AppSize.touchMin, AppSize.button),
           padding: const EdgeInsets.symmetric(horizontal: 20),
           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(AppRadius.button)),
-          textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          textStyle: buttonText,
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
@@ -71,7 +73,7 @@ abstract final class AppTheme {
           minimumSize: const Size(AppSize.touchMin, AppSize.button),
           side: const BorderSide(color: AppColors.line, width: 1.5),
           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(AppRadius.button)),
-          textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          textStyle: buttonText,
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(

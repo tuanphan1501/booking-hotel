@@ -26,6 +26,8 @@ return [
         'totp_help' => 'Open your authenticator app to get the code. Leave empty if two-factor is not enabled.',
         'submit' => 'Sign in',
         'forgot_password' => 'Forgot your password? Contact a Super Admin.',
+        'show_password' => 'Show password',
+        'hide_password' => 'Hide password',
         'sign_out' => 'Sign out',
         'signed_out' => 'You have been signed out.',
     ],
