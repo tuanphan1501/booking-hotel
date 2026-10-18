@@ -89,11 +89,19 @@ const admin = {
   "AD-17": [{ s: ".btn", t: "Mời admin", ...T("Đã gửi lời mời qua email") }],
   "AD-18": [{ s: ".btn", t: "Lưu cấu hình", ...SAVED }],
 };
+admin["AD-19"] = [
+  { s: ".btn", t: "Đổi mật khẩu", ...T("Mở form đổi mật khẩu") },
+  { s: ".btn", t: "Đăng xuất tất cả", ...T("Đã đăng xuất các phiên khác") },
+  { s: ".btn", t: "Đăng xuất", go: "AD-01?toast=Đã đăng xuất" },
+  { s: ".list-row", t: "Đặt phòng mới", ...T("Đã cập nhật cài đặt thông báo") },
+  { s: ".list-row", t: "Đặt phòng bị hủy", ...T("Đã cập nhật cài đặt thông báo") },
+  { s: ".list-row", t: "Hoàn tiền chờ duyệt", ...T("Đã cập nhật cài đặt thông báo") },
+];
 for (const id in admin) {
   sideOrder.forEach((to, k) => admin[id].push({ s: ".side a", n: k + 1, go: to }));
   admin[id].push(
     { s: ".side .logo", go: "AD-02" },
-    { s: ".avatar", go: "AD-01?toast=Đã đăng xuất" },
+    { s: ".avatar", go: "AD-19" },
     { s: ".abar .ib", ...T("3 thông báo mới") }
   );
 }
