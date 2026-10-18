@@ -23,6 +23,21 @@ flutter run --dart-define=API_BASE_URL=http://10.0.2.2:8000/api/v1
 
 Demo customers are seeded by the backend (`minh.nguyen@gmail.com`, password = `SEED_DEMO_PASSWORD` in `backend/.env`).
 
+## Run on an iPhone (macOS)
+
+iOS apps can only be built with Xcode on macOS. On a Mac (or a MacBook booted into macOS):
+
+```bash
+./scripts/run-on-iphone.sh     # from the repository root
+```
+
+The script checks Xcode, installs Flutter / CocoaPods / Docker Desktop with Homebrew, starts the backend in Docker,
+then runs the app on the connected iPhone with `API_BASE_URL=http://<mac-name>.local:8000/api/v1`.
+
+On the iPhone: unlock it, tap **Trust This Computer**, enable **Settings › Privacy & Security › Developer Mode**,
+use the same Wi-Fi as the Mac and tap **Allow** when asked for Local Network access. The first run asks you to pick
+your Apple ID as signing team in Xcode (free accounts work; the app then stays installed for 7 days).
+
 ## Quality
 
 ```bash
