@@ -1,0 +1,72 @@
+{
+  "$description": "Design tokens Lumière Hotel Booking — dùng chung Mobile (Flutter) và Web Admin. Giá trị lấy từ :root của HotelBooking_Mockup.html.",
+  "color": {
+    "ink": "#2B1A16",
+    "ink2": "#5C4640",
+    "ink3": "#7A615A",
+    "line": "#EFE3DF",
+    "line2": "#F6EEEB",
+    "paper": "#FBF6F4",
+    "surface": "#FFFFFF",
+    "brand": "#B42318",
+    "brandInk": "#8A1A12",
+    "brandWash": "#FDECE9",
+    "brandSoft": "#F3B4AA",
+    "gold": "#9A6516",
+    "goldWash": "#F8EDDA",
+    "goldHi": "#C98A2E",
+    "rose": "#9F1239",
+    "roseWash": "#FCE7EE",
+    "amber": "#B4540A",
+    "amberWash": "#FDF0E1",
+    "sky": "#6E4B3E",
+    "skyWash": "#F3EAE6",
+    "disabledBg": "#E8DCD8",
+    "disabledFg": "#9C8781",
+    "placeholder": "#9C8781",
+    "controlBorder": "#C9B6B0",
+    "scrim": "rgba(30,18,15,0.5)",
+    "annotation": "#DB2777"
+  },
+  "font": {
+    "vi": "Be Vietnam Pro",
+    "ja": "Noto Sans JP"
+  },
+  "type": {
+    "xl": { "size": 24, "lineHeight": 30, "weight": 700, "letterSpacing": -0.2 },
+    "l": { "size": 20, "lineHeight": 26, "weight": 700 },
+    "m": { "size": 17, "lineHeight": 24, "weight": 600 },
+    "b": { "size": 15, "lineHeight": 22, "weight": 400 },
+    "s": { "size": 13, "lineHeight": 18, "weight": 400 },
+    "xs": { "size": 12, "lineHeight": 16, "weight": 400 },
+    "tab": { "size": 11.5, "lineHeight": 14, "weight": 500 }
+  },
+  "space": { "xs": 4, "s": 8, "m": 12, "l": 16, "xl": 24 },
+  "radius": { "s": 8, "m": 12, "l": 18, "xl": 24, "button": 14, "buttonSm": 10, "pill": 999 },
+  "size": {
+    "touchMin": 44,
+    "button": 48,
+    "buttonSm": 36,
+    "buttonXs": 30,
+    "input": 48,
+    "header": 52,
+    "iconButton": 44,
+    "icon": 20,
+    "iconS": 16,
+    "iconL": 24,
+    "checkbox": 22,
+    "switchW": 44,
+    "switchH": 26
+  },
+  "shadow": {
+    "card": [
+      { "x": 0, "y": 1, "blur": 2, "color": "rgba(43,26,22,0.06)" },
+      { "x": 0, "y": 4, "blur": 14, "color": "rgba(43,26,22,0.06)" }
+    ],
+    "sheet": [{ "x": 0, "y": -10, "blur": 30, "color": "rgba(43,26,22,0.18)" }]
+  },
+  "gradient": {
+    "keyCard": { "from": "#6A1D14", "to": "#2B1A16", "angle": 160, "glow": "rgba(234,88,12,0.42)" },
+    "progressGold": { "from": "#C98A2E", "to": "#E2C27E", "track": "#EFE4DA" }
+  }
+}

@@ -1,0 +1,50 @@
+/* Prototype Web Admin: màn hình full trình duyệt + thanh điều khiển nổi + chú thích số */
+html,body{min-height:100%}
+body.proto{background:var(--paper)}
+body.proto .adm{min-height:100vh}
+body.proto .side{position:sticky;top:0;height:100vh;overflow-y:auto}
+body.proto .amain{min-height:100vh}
+
+/* chú thích số (bật bằng nút "Chú thích") */
+.ann{display:none}
+body.ann-on .ann{display:grid;place-items:center;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:#DB2777;color:#fff;
+  font:700 11px/1 var(--f-vi);box-shadow:0 0 0 2px #fff,0 2px 6px rgba(0,0,0,.25);position:absolute;left:-6px;top:-8px;z-index:20;pointer-events:none}
+body.ann-on :has(> .ann){position:relative}
+
+/* thanh điều khiển prototype */
+.proto-bar{position:fixed;right:16px;bottom:16px;z-index:90;display:flex;align-items:center;gap:6px;background:var(--ink);color:#fff;border-radius:14px;padding:6px;box-shadow:0 12px 30px rgba(43,26,22,.3);font-size:13px}
+.proto-bar a,.proto-bar label{min-height:34px;min-width:34px;display:grid;place-items:center;padding:0 10px;border-radius:9px;color:#E6D8D4;text-decoration:none;background:rgba(255,255,255,.08);cursor:pointer;user-select:none}
+.proto-bar label{display:flex;gap:6px}
+.proto-bar label input{accent-color:var(--brand)}
+.proto-bar a:hover,.proto-bar label:hover{background:rgba(255,255,255,.18);color:#fff}
+.proto-bar a[aria-disabled=true]{opacity:.35;pointer-events:none}
+.proto-jump{min-height:34px;border-radius:9px;border:0;background:rgba(255,255,255,.08);color:#fff;font:inherit;font-size:13px;padding:0 8px;max-width:240px}
+.proto-jump option{color:var(--ink);background:#fff}
+.proto-bar .cap-mini{padding:0 8px;color:#CDB8B2;max-width:340px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+[data-go],[data-toast]{cursor:pointer}
+body.proto-hint [data-go],body.proto-hint [data-toast]{animation:protoHint 1.1s ease-out}
+@keyframes protoHint{0%,70%{box-shadow:0 0 0 3px rgba(219,39,119,.75);background-color:rgba(219,39,119,.12)}100%{box-shadow:none}}
+.proto-toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:.25s;z-index:100;max-width:min(92vw,520px);text-align:center}
+.proto-toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* trang danh mục */
+.dh{max-width:1180px;margin:0 auto;padding:40px 24px 56px;display:flex;flex-direction:column;gap:24px}
+.dh-head{display:flex;align-items:center;gap:14px}
+.dh-head .brand-mark{width:44px;height:44px;border-radius:14px;background:var(--brand);color:#fff;display:grid;place-items:center}
+.dh h1{font-size:28px;font-weight:700;letter-spacing:-.3px}
+.dh .lead{color:var(--ink-2);font-size:15px;line-height:1.6;max-width:780px}
+.dh .lead kbd{font:600 11px/1 var(--f-vi);background:#fff;border-radius:5px;box-shadow:inset 0 0 0 1px var(--line);padding:2px 6px}
+.dh-start{display:inline-flex;align-self:flex-start}
+.dh-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.dh-grp{background:#fff;border-radius:16px;box-shadow:inset 0 0 0 1px var(--line);padding:14px 16px}
+.dh-grp h3{font-size:13px;color:var(--ink-3);font-weight:600;margin-bottom:6px}
+.dh-grp a{display:flex;gap:10px;align-items:center;min-height:38px;color:var(--ink);text-decoration:none;font-size:14px;border-radius:8px;padding:0 6px}
+.dh-grp a:hover{background:var(--line-2)}
+.dh-grp a b{font-size:11.5px;background:var(--line-2);border-radius:6px;padding:1px 6px;min-width:50px;text-align:center}
+.dh-grp a em{font-style:normal;color:var(--ink-3);font-size:12.5px;margin-left:auto}
+.dh-path{background:#fff;border-radius:16px;box-shadow:inset 0 0 0 1px var(--line);padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.dh-path h2{font-size:16px;font-weight:700}
+.dh-path div{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--ink-3)}
+.dh-path div>b{min-width:170px;font-size:13.5px;color:var(--ink)}
+.dh-path a{background:var(--brand-wash);color:var(--brand-ink);border-radius:999px;padding:3px 10px;text-decoration:none;font-weight:600;font-size:12px}
