@@ -1,12 +1,10 @@
 {
   "@@locale": "en",
   "appName": "Vivu Stay",
-
   "welcomeTagline": "Book direct, best price guaranteed",
   "welcomeChooseLanguage": "Choose your language",
   "welcomeStart": "Get started",
   "welcomeChangeLater": "You can change it anytime in Account › Language",
-
   "authLoginTitle": "Welcome back",
   "authLoginSubtitle": "Sign in to book rooms and earn points.",
   "authLoginId": "Email or phone number",
@@ -23,24 +21,49 @@
   "authComingSoon": "Coming soon",
   "authLoginIdRequired": "Enter your email or phone number",
   "authPasswordRequired": "Enter your password",
-
   "tabHome": "Home",
   "tabTrips": "Trips",
   "tabOffers": "Offers",
   "tabAccount": "Account",
-
   "homeGreeting": "Hello",
   "homeGreetingName": "Hello, {name}",
-  "@homeGreetingName": { "placeholders": { "name": { "type": "String" } } },
+  "@homeGreetingName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "homePoints": "{points} pts",
-  "@homePoints": { "placeholders": { "points": { "type": "String" } } },
+  "@homePoints": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
   "searchDestination": "Destination",
   "searchDates": "Check-in – check-out",
   "searchNights": "{count, plural, =1{1 night} other{{count} nights}}",
-  "@searchNights": { "placeholders": { "count": { "type": "int" } } },
+  "@searchNights": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "searchGuests": "Guests & rooms",
   "searchGuestsValue": "{adults} adults · {rooms} room",
-  "@searchGuestsValue": { "placeholders": { "adults": { "type": "int" }, "rooms": { "type": "int" } } },
+  "@searchGuestsValue": {
+    "placeholders": {
+      "adults": {
+        "type": "int"
+      },
+      "rooms": {
+        "type": "int"
+      }
+    }
+  },
   "searchSubmit": "Search rooms",
   "homeOffers": "Offers for you",
   "homeEarlyBirdTitle": "Book early, save 10%",
@@ -48,14 +71,18 @@
   "homeChainHotels": "Hotels in our chain",
   "homeSeeAll": "See all",
   "priceFrom": "from {amount}",
-  "@priceFrom": { "placeholders": { "amount": { "type": "String" } } },
-
+  "@priceFrom": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "tripsEmptyTitle": "No upcoming trips",
   "tripsEmptyBody": "Your bookings will appear here.",
   "tripsFindRoom": "Find a room",
   "offersEmptyTitle": "Your voucher wallet is empty",
   "offersEmptyBody": "Saved vouchers will appear here.",
-
   "accountTitle": "Account",
   "accountSignInPrompt": "Sign in to manage your trips, points and vouchers.",
   "accountSignIn": "Sign in",
@@ -63,16 +90,29 @@
   "accountLogout": "Sign out",
   "accountLogoutConfirm": "Sign out of Vivu Stay on this device?",
   "accountMemberCode": "Member {code}",
-  "@accountMemberCode": { "placeholders": { "code": { "type": "String" } } },
+  "@accountMemberCode": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
   "commonCancel": "Cancel",
   "commonRetry": "Try again",
-
   "languageTitle": "Language",
   "languageDescription": "Choose the language for the app, emails and notifications.",
   "languagePreview": "Preview",
   "languagePreviewDate": "Date",
   "languagePreviewAmount": "Amount",
-
   "errorNetwork": "No connection. Check your network and try again.",
-  "errorUnknown": "Something went wrong. Please try again."
+  "errorUnknown": "Something went wrong. Please try again.",
+  "homeSignIn": "Sign in",
+  "accountPersonalInfo": "Personal information",
+  "accountFavorites": "Favorite hotels",
+  "accountNotifications": "Notification settings",
+  "accountChangePassword": "Change password",
+  "accountTerms": "Terms & privacy",
+  "accountHelp": "Help center",
+  "accountDelete": "Delete account",
+  "languageDataNote": "Hotel names, addresses and descriptions appear in the chosen language when the hotel provides a translation."
 }

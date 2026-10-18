@@ -1,3 +1,5 @@
+import 'package:characters/characters.dart';
+
 /// Signed-in customer, as returned by `GET /api/v1/me` and the sign-in response.
 ///
 /// Author: PH.Tuan · Created: 2026-10-18
@@ -50,9 +52,24 @@ class Customer {
   final String? memberTierCode;
   final String? memberTierName;
 
-  /// Short name used in greetings: the last word of a Vietnamese full name ("Nguyễn Văn Minh" → "Minh").
-  String get greetingName {
-    final words = fullName.trim().split(RegExp(r'\s+'));
-    return languageCode == 'vi' ? words.last : fullName;
+  /// Words of the full name, without extra spaces.
+  List<String> get _nameWords => fullName.trim().split(RegExp(r'\s+'));
+
+  /// Short name used in greetings: the given name of a Vietnamese full name ("Nguyễn Văn Minh" → "Minh").
+  String get greetingName => languageCode == 'vi' ? _nameWords.last : fullName;
+
+  /// Name shown on the home header: given name + family name ("Nguyễn Văn Minh" → "Minh Nguyễn"), as in MB-03.
+  String get displayName {
+    final words = _nameWords;
+    return words.length < 2 ? fullName : '${words.last} ${words.first}';
+  }
+
+  /// Avatar initials: given name + family name initials ("Nguyễn Văn Minh" → "MN").
+  String get initials {
+    final words = _nameWords;
+    final givenInitial = words.last.characters.first;
+    final familyInitial = words.length > 1 ? words.first.characters.first : '';
+
+    return (givenInitial + familyInitial).toUpperCase();
   }
 }

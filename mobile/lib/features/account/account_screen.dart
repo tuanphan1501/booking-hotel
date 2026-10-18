@@ -5,12 +5,22 @@ import 'package:go_router/go_router.dart';
 import '../../app/l10n/generated/app_localizations.dart';
 import '../../app/providers.dart';
 import '../../app/theme/app_colors.dart';
+import '../../app/theme/app_spacing.dart';
 import '../../app/theme/app_typography.dart';
+import '../../widgets/app_button.dart';
+import '../../widgets/app_card.dart';
+import '../../widgets/app_chip.dart';
+import '../../widgets/app_icon.dart';
 import '../auth/application/auth_controller.dart';
 import '../auth/domain/customer.dart';
 import 'language_screen.dart';
 
-/// MB-16 Account: profile card, language and sign-out. Guests see a sign-in prompt instead.
+/// MB-16 Account.
+///
+/// - Layout follows design/mobile/screens/MB-16.png: large title, profile card with tier chip,
+///   two grouped lists of settings, sign-out button and "Delete account" link.
+/// - Guests see a sign-in card instead of the profile; language stays available.
+/// - Rows whose screens do not exist yet show a "coming soon" message.
 ///
 /// Author: PH.Tuan · Created: 2026-10-18
 class AccountScreen extends ConsumerWidget {
@@ -35,72 +45,122 @@ class AccountScreen extends ConsumerWidget {
     }
   }
 
+  void _showComingSoon(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).authComingSoon)));
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final authState = ref.watch(authControllerProvider);
     final languageCode = ref.watch(localeProvider).languageCode;
+    final isSignedIn = authState is AuthSignedIn;
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.accountTitle, style: AppText.xl), centerTitle: false),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          switch (authState) {
-            AuthSignedIn(:final customer) => _ProfileCard(customer: customer),
-            AuthChecking() => const Card(
-                child: Padding(padding: EdgeInsets.all(24), child: Center(child: CircularProgressIndicator())),
-              ),
-            AuthGuest() => Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(AppSpace.l, AppSpace.m, AppSpace.l, AppSpace.xl),
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 4, bottom: AppSpace.l),
+              child: Text(l10n.accountTitle, style: AppText.xl.copyWith(fontSize: 28)),
+            ),
+            switch (authState) {
+              AuthSignedIn(:final customer) => _ProfileCard(customer: customer),
+              AuthChecking() => const AppCard(
+                  child: SizedBox(height: 56, child: Center(child: CircularProgressIndicator())),
+                ),
+              AuthGuest() => AppCard(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(l10n.accountSignInPrompt, style: AppText.b),
-                      const SizedBox(height: 12),
-                      FilledButton(
-                        onPressed: () => context.push('/login?returnTo=/account'),
-                        child: Text(l10n.accountSignIn),
-                      ),
+                      const SizedBox(height: AppSpace.m),
+                      AppButton(label: l10n.accountSignIn, onPressed: () => context.push('/login?returnTo=/account')),
                     ],
                   ),
                 ),
-              ),
-          },
-          const SizedBox(height: 16),
-          Card(
-            child: ListTile(
-              leading: const Icon(Icons.language),
-              title: Text(l10n.accountLanguage),
-              trailing: Row(
-                mainAxisSize: MainAxisSize.min,
+            },
+            const SizedBox(height: AppSpace.l),
+            AppCard(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
+              child: Column(
                 children: [
-                  Text(
-                    LanguageScreen.nativeNames[languageCode] ?? languageCode,
-                    style: AppText.s.copyWith(color: AppColors.ink3),
+                  if (isSignedIn) ...[
+                    AppListRow(
+                      icon: AppIcons.user,
+                      title: l10n.accountPersonalInfo,
+                      onTap: () => _showComingSoon(context),
+                    ),
+                    AppListRow(
+                      icon: AppIcons.heart,
+                      title: l10n.accountFavorites,
+                      onTap: () => _showComingSoon(context),
+                    ),
+                  ],
+                  AppListRow(
+                    icon: AppIcons.globe,
+                    title: l10n.accountLanguage,
+                    value: LanguageScreen.nativeNames[languageCode],
+                    onTap: () => context.push('/account/language'),
                   ),
-                  const Icon(Icons.chevron_right),
+                  AppListRow(
+                    icon: AppIcons.bell,
+                    title: l10n.accountNotifications,
+                    showDivider: false,
+                    onTap: () => _showComingSoon(context),
+                  ),
                 ],
               ),
-              onTap: () => context.push('/account/language'),
             ),
-          ),
-          if (authState is AuthSignedIn) ...[
-            const SizedBox(height: 24),
-            OutlinedButton.icon(
-              onPressed: () => _confirmLogout(context, ref),
-              icon: const Icon(Icons.logout),
-              label: Text(l10n.accountLogout),
+            const SizedBox(height: AppSpace.l),
+            AppCard(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
+              child: Column(
+                children: [
+                  if (isSignedIn)
+                    AppListRow(
+                      icon: AppIcons.lock,
+                      title: l10n.accountChangePassword,
+                      onTap: () => _showComingSoon(context),
+                    ),
+                  AppListRow(icon: AppIcons.document, title: l10n.accountTerms, onTap: () => _showComingSoon(context)),
+                  AppListRow(
+                    icon: AppIcons.help,
+                    title: l10n.accountHelp,
+                    showDivider: false,
+                    onTap: () => _showComingSoon(context),
+                  ),
+                ],
+              ),
             ),
+            if (isSignedIn) ...[
+              const SizedBox(height: AppSpace.l),
+              AppButton(
+                label: l10n.accountLogout,
+                icon: AppIcons.logout,
+                variant: AppButtonVariant.secondary,
+                onPressed: () => _confirmLogout(context, ref),
+              ),
+              const SizedBox(height: AppSpace.m),
+              Center(
+                child: TextButton(
+                  onPressed: () => _showComingSoon(context),
+                  child: Text(
+                    l10n.accountDelete,
+                    style: AppText.b.copyWith(color: AppColors.rose, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }
 }
 
-/// Signed-in customer: initials avatar, name, email, member code and tier.
+/// Signed-in customer: initials avatar, name, email and membership tier.
 class _ProfileCard extends StatelessWidget {
   const _ProfileCard({required this.customer});
 
@@ -108,41 +168,38 @@ class _ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final nameParts = customer.fullName.trim().split(RegExp(r'\s+'));
-    final initials = (nameParts.first.characters.first + (nameParts.length > 1 ? nameParts.last.characters.first : ''))
-        .toUpperCase();
-
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Row(
-          children: [
-            CircleAvatar(
-              radius: 28,
-              backgroundColor: AppColors.brandWash,
-              child: Text(initials, style: AppText.m.copyWith(color: AppColors.brandInk)),
+    return AppCard(
+      child: Row(
+        children: [
+          Container(
+            width: 56,
+            height: 56,
+            decoration: const BoxDecoration(color: AppColors.brandWash, shape: BoxShape.circle),
+            alignment: Alignment.center,
+            child: Text(customer.initials, style: AppText.l.copyWith(color: AppColors.brandInk)),
+          ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  customer.fullName,
+                  style: AppText.m.copyWith(fontWeight: FontWeight.w700),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                if (customer.email != null)
+                  Text(
+                    customer.email!,
+                    style: AppText.s.copyWith(color: AppColors.ink3),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+              ],
             ),
-            const SizedBox(width: 14),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(customer.fullName, style: AppText.m),
-                  if (customer.email != null) Text(customer.email!, style: AppText.s.copyWith(color: AppColors.ink3)),
-                  Text(l10n.accountMemberCode(customer.memberCode), style: AppText.xs.copyWith(color: AppColors.ink3)),
-                ],
-              ),
-            ),
-            if (customer.memberTierName != null)
-              Chip(
-                avatar: const Icon(Icons.diamond_outlined, size: 16, color: AppColors.gold),
-                label: Text(customer.memberTierName!),
-                backgroundColor: AppColors.goldWash,
-                labelStyle: AppText.xs.copyWith(color: AppColors.gold, fontWeight: FontWeight.w600),
-              ),
-          ],
-        ),
+          ),
+          if (customer.memberTierName != null)
+            AppChip(icon: AppIcons.gem, tone: AppChipTone.gold, label: customer.memberTierName!),
+        ],
       ),
     );
   }

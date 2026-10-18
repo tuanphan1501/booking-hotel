@@ -25,6 +25,7 @@ dependencies:
   # UI
   flutter_svg: ^2.0.16
   google_fonts: ^6.2.1
+  characters: ^1.4.1
 
 dev_dependencies:
   flutter_test:
@@ -38,6 +39,7 @@ flutter:
   assets:
     - assets/brand/
     - assets/illustrations/
+    - assets/icons/
 
 # App icon generated from the brand kit: dart run flutter_launcher_icons
 flutter_launcher_icons:

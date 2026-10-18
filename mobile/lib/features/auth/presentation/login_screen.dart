@@ -7,14 +7,19 @@ import '../../../app/providers.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../app/theme/app_typography.dart';
 import '../../../core/network/api_exception.dart';
+import '../../../widgets/app_button.dart';
+import '../../../widgets/app_controls.dart';
+import '../../../widgets/app_icon.dart';
 import '../../../widgets/app_text_field.dart';
 import '../application/auth_controller.dart';
 
 /// MB-02 Sign in with email/phone and password.
 ///
-/// - Field errors from the server (wrong password with remaining attempts, lockout) appear under
-///   the related field; network errors appear as a snackbar.
-/// - Google / Apple sign-in and the Sign-up tab are shown but not available yet.
+/// - Layout follows design/mobile/screens/MB-02.png: close button, title, segmented Sign in / Sign up,
+///   labeled fields, remember-me + forgot password, primary button, social buttons.
+/// - Server errors (wrong password with remaining attempts, lockout) appear under the password field;
+///   network errors appear as a snackbar.
+/// - Sign up, forgot password and Google / Apple sign-in are not available yet ("coming soon").
 /// - After success, returns to [returnTo] (e.g. the booking flow) or the home tab.
 ///
 /// Author: PH.Tuan · Created: 2026-10-18
@@ -83,34 +88,33 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     final l10n = AppLocalizations.of(context);
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.close),
-          tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
-          onPressed: () => context.canPop() ? context.pop() : context.go('/home'),
-        ),
-      ),
       body: SafeArea(
         child: Form(
           key: _formKey,
           child: AutofillGroup(
             child: ListView(
-              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              padding: const EdgeInsets.fromLTRB(24, 4, 24, 24),
               children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: IconButton(
+                    onPressed: () => context.canPop() ? context.pop() : context.go('/home'),
+                    tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
+                    padding: EdgeInsets.zero,
+                    icon: const AppIcon(AppIcons.close, size: 24, color: AppColors.ink),
+                  ),
+                ),
+                const SizedBox(height: 12),
                 Text(l10n.authLoginTitle, style: AppText.xl),
-                const SizedBox(height: 6),
+                const SizedBox(height: 8),
                 Text(l10n.authLoginSubtitle, style: AppText.b.copyWith(color: AppColors.ink2)),
                 const SizedBox(height: 20),
-                SegmentedButton<int>(
-                  segments: [
-                    ButtonSegment(value: 0, label: Text(l10n.authSubmit)),
-                    ButtonSegment(value: 1, label: Text(l10n.authSignUpTab)),
-                  ],
-                  selected: const {0},
-                  showSelectedIcon: false,
-                  onSelectionChanged: (_) => _showComingSoon(),
+                AppSegmentedControl(
+                  labels: [l10n.authSubmit, l10n.authSignUpTab],
+                  selectedIndex: 0,
+                  onChanged: (index) => index == 1 ? _showComingSoon() : null,
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 16),
                 AppTextField(
                   label: l10n.authLoginId,
                   controller: _loginController,
@@ -131,55 +135,62 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   onSubmitted: (_) => _submit(),
                   suffix: IconButton(
                     tooltip: _isPasswordVisible ? l10n.authHidePassword : l10n.authShowPassword,
-                    icon: Icon(_isPasswordVisible ? Icons.visibility_off_outlined : Icons.visibility_outlined),
+                    icon: AppIcon(AppIcons.eye, color: _isPasswordVisible ? AppColors.brand : AppColors.ink),
                     onPressed: () => setState(() => _isPasswordVisible = !_isPasswordVisible),
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 6),
                 Row(
                   children: [
-                    Checkbox(
-                      value: _rememberLogin,
-                      onChanged: (value) => setState(() => _rememberLogin = value ?? true),
+                    Transform.translate(
+                      offset: const Offset(-11, 0),
+                      child: AppCheckbox(
+                        value: _rememberLogin,
+                        onChanged: (value) => setState(() => _rememberLogin = value),
+                      ),
                     ),
-                    Expanded(child: Text(l10n.authRemember, style: AppText.s)),
-                    TextButton(onPressed: _showComingSoon, child: Text(l10n.authForgot)),
+                    Expanded(
+                      child: Transform.translate(
+                        offset: const Offset(-11, 0),
+                        child: Text(l10n.authRemember, style: AppText.s.copyWith(color: AppColors.ink)),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: _showComingSoon,
+                      style: TextButton.styleFrom(foregroundColor: AppColors.brand, padding: EdgeInsets.zero),
+                      child: Text(
+                        l10n.authForgot,
+                        style: AppText.b.copyWith(color: AppColors.brand, fontWeight: FontWeight.w700),
+                      ),
+                    ),
                   ],
                 ),
-                const SizedBox(height: 12),
-                FilledButton(
-                  onPressed: _isSubmitting ? null : _submit,
-                  child: _isSubmitting
-                      ? const SizedBox(
-                          width: 22,
-                          height: 22,
-                          child: CircularProgressIndicator(strokeWidth: 2.5, color: Colors.white),
-                        )
-                      : Text(l10n.authSubmit),
-                ),
+                const SizedBox(height: 8),
+                AppButton(label: l10n.authSubmit, onPressed: _submit, isLoading: _isSubmitting),
                 const SizedBox(height: 20),
                 Row(
                   children: [
-                    const Expanded(child: Divider()),
+                    const Expanded(child: Divider(color: AppColors.line)),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      padding: const EdgeInsets.symmetric(horizontal: 14),
                       child: Text(l10n.authOr, style: AppText.s.copyWith(color: AppColors.ink3)),
                     ),
-                    const Expanded(child: Divider()),
+                    const Expanded(child: Divider(color: AppColors.line)),
                   ],
                 ),
                 const SizedBox(height: 20),
-                OutlinedButton.icon(
+                AppButton(
+                  label: l10n.authContinueGoogle,
+                  variant: AppButtonVariant.secondary,
+                  leading: const AppIcon(AppIcons.google, size: 22),
                   onPressed: _showComingSoon,
-                  icon: const Icon(Icons.g_mobiledata, size: 28),
-                  label: Text(l10n.authContinueGoogle),
                 ),
                 const SizedBox(height: 12),
-                FilledButton.icon(
-                  style: FilledButton.styleFrom(backgroundColor: const Color(0xFF111111)),
+                AppButton(
+                  label: l10n.authContinueApple,
+                  variant: AppButtonVariant.dark,
+                  leading: const AppIcon(AppIcons.apple, size: 22, color: Colors.white),
                   onPressed: _showComingSoon,
-                  icon: const Icon(Icons.apple),
-                  label: Text(l10n.authContinueApple),
                 ),
               ],
             ),

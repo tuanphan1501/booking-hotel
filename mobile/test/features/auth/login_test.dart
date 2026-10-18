@@ -8,6 +8,7 @@ import 'package:vivu_stay/app/providers.dart';
 import 'package:vivu_stay/core/network/api_exception.dart';
 import 'package:vivu_stay/features/auth/application/auth_controller.dart';
 import 'package:vivu_stay/features/auth/presentation/login_screen.dart';
+import 'package:vivu_stay/widgets/app_button.dart';
 
 import 'fake_auth_repository.dart';
 
@@ -96,7 +97,7 @@ void main() {
     testWidgets('requires both fields before calling the API', (tester) async {
       await pumpLoginScreen(tester);
 
-      await tester.tap(find.widgetWithText(FilledButton, 'Sign in'));
+      await tester.tap(find.widgetWithText(AppButton, 'Sign in'));
       await tester.pump();
 
       expect(find.text('Enter your email or phone number'), findsOneWidget);
@@ -107,9 +108,9 @@ void main() {
     testWidgets('shows the server message under the password field', (tester) async {
       await pumpLoginScreen(tester);
 
-      await tester.enterText(find.byType(TextFormField).at(0), FakeAuthRepository.validLogin);
-      await tester.enterText(find.byType(TextFormField).at(1), 'wrong-password');
-      await tester.tap(find.widgetWithText(FilledButton, 'Sign in'));
+      await tester.enterText(find.byType(TextField).at(0), FakeAuthRepository.validLogin);
+      await tester.enterText(find.byType(TextField).at(1), 'wrong-password');
+      await tester.tap(find.widgetWithText(AppButton, 'Sign in'));
       await tester.pumpAndSettle();
 
       expect(find.text('Incorrect email/phone number or password. 4 attempts left.'), findsOneWidget);
