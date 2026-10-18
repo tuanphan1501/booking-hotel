@@ -1,5 +1,6 @@
 # Local development services for Vivu Stay: PostgreSQL 16, Redis 7 and Mailpit.
 # Start: docker compose up -d   ·   Outgoing mail UI: http://localhost:8025
+# Backend in Docker too (no local PHP needed): docker compose --profile app up -d --build --wait
 services:
   postgres:
     image: postgres:16-alpine
@@ -29,5 +30,26 @@ services:
       - "1025:1025"
       - "8025:8025"
 
+  # Laravel API + Web Admin on http://localhost:8000 (optional — enable with --profile app).
+  app:
+    profiles: ["app"]
+    build: ./backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      REDIS_HOST: redis
+      MAIL_HOST: mailpit
+      APP_URL: http://localhost:8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - app-storage:/var/www/html/storage/app/public
+
 volumes:
   pgdata:
+  app-storage:
