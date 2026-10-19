@@ -8,7 +8,10 @@
 <div class="auth">
     <main class="auth__main">
         <div class="auth__card">
-            <img class="auth__logo" src="{{ asset('assets/brand/vivustay-logo.svg') }}" alt="{{ __('admin.app_name') }}" width="186" height="48">
+            <div class="auth__logo" role="img" aria-label="{{ __('admin.app_name') }}">
+                <img src="{{ asset('assets/brand/vivustay-mark.svg') }}" alt="" width="44" height="44">
+                <span>Vivu <b>Stay</b></span>
+            </div>
             @if (session('status'))
                 <div class="toast brand" role="status"><x-admin.icon name="check" size="s" />{{ session('status') }}</div>
             @endif
