@@ -114,5 +114,147 @@
   "accountTerms": "Terms & privacy",
   "accountHelp": "Help center",
   "accountDelete": "Delete account",
-  "languageDataNote": "Hotel names, addresses and descriptions appear in the chosen language when the hotel provides a translation."
+  "languageDataNote": "Hotel names, addresses and descriptions appear in the chosen language when the hotel provides a translation.",
+  "authBrandTagline": "Book direct, best rates guaranteed",
+  "searchTitle": "Available hotels",
+  "searchSummary": "{dates} · {adults} adults",
+  "@searchSummary": {
+    "placeholders": {
+      "dates": {
+        "type": "String"
+      },
+      "adults": {
+        "type": "int"
+      }
+    }
+  },
+  "searchSoldOut": "Sold out for these dates",
+  "searchRoomsLeft": "{count, plural, =1{Only 1 room left} other{{count} rooms left}}",
+  "@searchRoomsLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "searchEmptyTitle": "No rooms for these dates",
+  "searchEmptyBody": "Try other dates or fewer guests.",
+  "searchChangeDates": "Change dates",
+  "perNight": "/ night",
+  "reviewsCount": "{rating} · {count} reviews",
+  "@reviewsCount": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "roomsTitle": "Choose your room",
+  "roomsBreakfast": "Breakfast included",
+  "roomsNoBreakfast": "Room only",
+  "roomsRefundable": "Free cancellation 48h before",
+  "roomsNonRefundable": "Non-refundable",
+  "roomsTotal": "Total {amount} incl. tax & fees",
+  "@roomsTotal": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "roomsSelect": "Select",
+  "roomsArea": "{area} m²",
+  "@roomsArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "roomsMaxGuests": "Up to {count} adults",
+  "@roomsMaxGuests": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bookingStepRoom": "Room",
+  "bookingStepGuest": "Details",
+  "bookingStepPay": "Payment",
+  "guestTitle": "Booking details",
+  "guestName": "Guest full name",
+  "guestPhone": "Phone number",
+  "guestEmail": "Email for the confirmation",
+  "guestArrival": "Arrival time (optional)",
+  "guestRequest": "Special request (optional)",
+  "guestRequired": "Required",
+  "guestInvalidEmail": "Enter a valid email",
+  "guestContinue": "Continue to payment",
+  "guestSubtotal": "Total",
+  "payTitle": "Payment",
+  "payHold": "We hold your room for {time}",
+  "@payHold": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "payHoldExpired": "The room hold has expired. Please book again.",
+  "payRoomAmount": "Room ({nights, plural, =1{1 night} other{{nights} nights}})",
+  "@payRoomAmount": {
+    "placeholders": {
+      "nights": {
+        "type": "int"
+      }
+    }
+  },
+  "payServiceCharge": "Service charge",
+  "payTax": "VAT",
+  "payTotal": "Amount to pay",
+  "payMethod": "Payment method",
+  "payCard": "Credit / debit card",
+  "payButton": "Pay {amount}",
+  "@payButton": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "paySandbox": "Test mode: payment is approved instantly, no money is charged.",
+  "successTitle": "Booking confirmed!",
+  "successBody": "A confirmation was sent to {email}.",
+  "@successBody": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "successCode": "Booking code",
+  "successViewTrip": "View my trip",
+  "successHome": "Back to home",
+  "tripsUpcoming": "Upcoming",
+  "tripsPast": "Past & cancelled",
+  "tripsSignIn": "Sign in to see your trips",
+  "tripDetailTitle": "Trip details",
+  "tripGuest": "Guest",
+  "tripRoom": "Room",
+  "tripPaid": "Paid",
+  "tripCancel": "Cancel booking",
+  "tripCancelTitle": "Cancel this booking?",
+  "tripCancelBody": "Cancellation follows the policy of your rate plan. Refunds go back to the original payment method.",
+  "tripCancelConfirm": "Yes, cancel",
+  "tripKeep": "Keep booking",
+  "tripCancelled": "Booking cancelled.",
+  "tripPayNow": "Pay now",
+  "guestsTitle": "Guests",
+  "guestsAdults": "Adults",
+  "done": "Done",
+  "retry": "Try again"
 }

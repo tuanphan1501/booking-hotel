@@ -16,6 +16,8 @@ import '../../widgets/app_card.dart';
 import '../../widgets/app_chip.dart';
 import '../../widgets/app_icon.dart';
 import '../auth/application/auth_controller.dart';
+import '../booking/data/booking_repository.dart';
+import '../booking/domain/booking_models.dart';
 
 /// Hotel shown in the "Hotels in our chain" carousel.
 ///
@@ -37,8 +39,8 @@ class FeaturedHotel {
 ///
 /// - Layout follows design/mobile/screens/MB-03.png: greeting + points chip + bell, search card,
 ///   "Offers for you" card, horizontal carousel of chain hotels.
-/// - Dates default to tomorrow → +2 nights, 2 adults · 1 room.
-/// - Offers and hotels use local sample data until `GET /api/v1/home` is implemented on the backend.
+/// - Dates default to tomorrow → +2 nights, 2 adults · 1 room; tap a row to change dates (range picker) or adults.
+/// - "Search" opens MB-04 with the stay; offers and the hotel carousel still use local sample data.
 ///
 /// Author: PH.Tuan · Created: 2026-10-18
 class HomeScreen extends ConsumerWidget {
@@ -52,9 +54,6 @@ class HomeScreen extends ConsumerWidget {
     FeaturedHotel(name: 'Vivu Stay Hội An', illustration: 'lantern', fromPrice: 980000),
   ];
 
-  /// Default stay length shown in the search card.
-  static const int _defaultNights = 2;
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
@@ -64,8 +63,8 @@ class HomeScreen extends ConsumerWidget {
     final moneyFormatter = MoneyFormatter(languageCode);
     final dateFormatter = DateFormatter(languageCode);
 
-    final checkIn = DateUtils.dateOnly(DateTime.now()).add(const Duration(days: 1));
-    final checkOut = checkIn.add(const Duration(days: _defaultNights));
+    final stay = ref.watch(stayQueryProvider);
+    void search() => context.push('/search?${stay.routeQuery}');
 
     return Scaffold(
       body: SafeArea(
@@ -111,16 +110,18 @@ class HomeScreen extends ConsumerWidget {
                   _SearchRow(
                     icon: AppIcons.calendar,
                     label: l10n.searchDates,
-                    value: '${dateFormatter.short(checkIn)} – ${dateFormatter.short(checkOut)}',
-                    trailing: AppChip(label: l10n.searchNights(_defaultNights)),
+                    value: '${dateFormatter.short(stay.checkIn)} – ${dateFormatter.short(stay.checkOut)}',
+                    trailing: AppChip(label: l10n.searchNights(stay.nights)),
+                    onTap: () => _pickDates(context, ref, stay),
                   ),
                   _SearchRow(
                     icon: AppIcons.users,
                     label: l10n.searchGuests,
-                    value: l10n.searchGuestsValue(2, 1),
+                    value: l10n.searchGuestsValue(stay.adults, 1),
+                    onTap: () => _pickAdults(context, ref, stay),
                   ),
                   const SizedBox(height: AppSpace.m),
-                  AppButton(label: l10n.searchSubmit, icon: AppIcons.search, onPressed: () {}),
+                  AppButton(label: l10n.searchSubmit, icon: AppIcons.search, onPressed: search),
                 ],
               ),
             ),
@@ -137,7 +138,7 @@ class HomeScreen extends ConsumerWidget {
               children: [
                 Expanded(child: Text(l10n.homeChainHotels, style: AppText.l)),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: search,
                   child: Text(
                     l10n.homeSeeAll,
                     style: AppText.b.copyWith(color: AppColors.brand, fontWeight: FontWeight.w600),
@@ -154,7 +155,10 @@ class HomeScreen extends ConsumerWidget {
                 separatorBuilder: (context, index) => const SizedBox(width: AppSpace.m),
                 itemBuilder: (context, index) {
                   final hotel = _featuredHotels[index];
-                  return _HotelCard(hotel: hotel, priceLabel: l10n.priceFrom(moneyFormatter.format(hotel.fromPrice)));
+                  return GestureDetector(
+                    onTap: search,
+                    child: _HotelCard(hotel: hotel, priceLabel: l10n.priceFrom(moneyFormatter.format(hotel.fromPrice))),
+                  );
                 },
               ),
             ),
@@ -165,19 +169,81 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
+extension on HomeScreen {
+  /// Opens the date range picker (MB-03b) and saves the new stay.
+  Future<void> _pickDates(BuildContext context, WidgetRef ref, StayQuery stay) async {
+    final today = DateUtils.dateOnly(DateTime.now());
+    final range = await showDateRangePicker(
+      context: context,
+      firstDate: today,
+      lastDate: today.add(const Duration(days: 365)),
+      initialDateRange: DateTimeRange(start: stay.checkIn, end: stay.checkOut),
+    );
+    if (range == null || range.duration.inDays < 1) return;
+    ref.read(stayQueryProvider.notifier).state = stay.copyWith(checkIn: range.start, checkOut: range.end);
+  }
+
+  /// Opens a small sheet to choose the number of adults (1–6).
+  Future<void> _pickAdults(BuildContext context, WidgetRef ref, StayQuery stay) async {
+    final l10n = AppLocalizations.of(context);
+    var adults = stay.adults;
+    await showModalBottomSheet<void>(
+      context: context,
+      showDragHandle: true,
+      builder: (sheetContext) => StatefulBuilder(
+        builder: (sheetContext, setSheetState) => SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(AppSpace.xl, 0, AppSpace.xl, AppSpace.l),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(l10n.guestsTitle, style: AppText.l),
+                const SizedBox(height: AppSpace.l),
+                Row(
+                  children: [
+                    Expanded(child: Text(l10n.guestsAdults, style: AppText.m)),
+                    IconButton.outlined(
+                      onPressed: adults > 1 ? () => setSheetState(() => adults--) : null,
+                      icon: const Icon(Icons.remove),
+                    ),
+                    SizedBox(width: 44, child: Text('$adults', style: AppText.l, textAlign: TextAlign.center)),
+                    IconButton.outlined(
+                      onPressed: adults < 6 ? () => setSheetState(() => adults++) : null,
+                      icon: const Icon(Icons.add),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: AppSpace.xl),
+                AppButton(
+                  label: l10n.done,
+                  onPressed: () {
+                    ref.read(stayQueryProvider.notifier).state = stay.copyWith(adults: adults);
+                    Navigator.pop(sheetContext);
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 /// One row of the search card: line icon, small grey label, bold value, optional trailing chip.
 class _SearchRow extends StatelessWidget {
-  const _SearchRow({required this.icon, required this.label, required this.value, this.trailing});
+  const _SearchRow({required this.icon, required this.label, required this.value, this.trailing, this.onTap});
 
   final String icon;
   final String label;
   final String value;
   final Widget? trailing;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10),
         decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: AppColors.line2))),

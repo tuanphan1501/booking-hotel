@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../app/l10n/generated/app_localizations.dart';
@@ -15,7 +16,8 @@ import '../application/auth_controller.dart';
 
 /// MB-02 Sign in with email/phone and password.
 ///
-/// - Layout follows design/mobile/screens/MB-02.png: close button, title, segmented Sign in / Sign up,
+/// - Layout follows design/mobile/screens/MB-02.png: close button, centered Vivu Stay logo + tagline,
+///   centered title, segmented Sign in / Sign up,
 ///   labeled fields, remember-me + forgot password, primary button, social buttons.
 /// - Server errors (wrong password with remaining attempts, lockout) appear under the password field;
 ///   network errors appear as a snackbar.
@@ -88,25 +90,55 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     final l10n = AppLocalizations.of(context);
 
     return Scaffold(
+      backgroundColor: AppColors.paper,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
         leadingWidth: 64,
-        leading: IconButton(
-          onPressed: () => context.canPop() ? context.pop() : context.go('/home'),
-          tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
-          icon: const AppIcon(AppIcons.close, size: 24, color: AppColors.ink),
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 12),
+          child: IconButton.filled(
+            style: IconButton.styleFrom(backgroundColor: Colors.white.withValues(alpha: 0.92)),
+            onPressed: () => context.canPop() ? context.pop() : context.go('/home'),
+            tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
+            icon: const AppIcon(AppIcons.close, size: 22, color: AppColors.ink),
+          ),
         ),
       ),
-      body: SafeArea(
-        top: false,
+      body: Stack(
+        children: [
+          const _LoginBackground(),
+          SafeArea(
         child: Form(
           key: _formKey,
           child: AutofillGroup(
             child: _CenteredFormLayout(
               children: [
-                Text(l10n.authLoginTitle, style: AppText.xl),
-                const SizedBox(height: 8),
-                Text(l10n.authLoginSubtitle, style: AppText.b.copyWith(color: AppColors.ink2)),
-                const SizedBox(height: 20),
+                Semantics(
+                  label: l10n.appName,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset('assets/brand/vivustay-mark.svg', width: 44, height: 44),
+                      const SizedBox(width: 10),
+                      Text.rich(
+                        const TextSpan(children: [
+                          TextSpan(text: 'Vivu '),
+                          TextSpan(text: 'Stay', style: TextStyle(color: AppColors.brand)),
+                        ]),
+                        style: AppText.xl.copyWith(fontSize: 28, letterSpacing: -0.4),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(l10n.authBrandTagline, style: AppText.s.copyWith(color: AppColors.ink3), textAlign: TextAlign.center),
+                const SizedBox(height: 28),
+                Text(l10n.authLoginTitle, style: AppText.xl, textAlign: TextAlign.center),
+                const SizedBox(height: 6),
+                Text(l10n.authLoginSubtitle, style: AppText.b.copyWith(color: AppColors.ink2), textAlign: TextAlign.center),
+                const SizedBox(height: 24),
                 AppSegmentedControl(
                   labels: [l10n.authSubmit, l10n.authSignUpTab],
                   selectedIndex: 0,
@@ -195,11 +227,46 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           ),
         ),
       ),
+        ],
+      ),
     );
   }
 }
 
-/// Scrollable form column that keeps the phone width of the design on tablets and the web.
+/// Hotel photo across the top of the sign-in screen, fading into the page colour.
+///
+/// Author: PH.Tuan · Created: 2026-10-19
+class _LoginBackground extends StatelessWidget {
+  const _LoginBackground();
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: 0,
+      left: 0,
+      right: 0,
+      height: 340,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          SvgPicture.asset('assets/illustrations/sea.svg', fit: BoxFit.cover),
+          const DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Color(0x332B1A16), Color(0x002B1A16), AppColors.paper],
+                stops: [0, 0.55, 1],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Scrollable white card holding the form; keeps the phone width of the design on tablets and the web.
 ///
 /// - Content is limited to [maxWidth] and centered horizontally.
 /// - On phones the content starts at the top like the design; on wider screens it is also centered vertically.
@@ -230,10 +297,19 @@ class _CenteredFormLayout extends StatelessWidget {
             alignment: constraints.maxWidth > _wideLayoutWidth ? Alignment.center : Alignment.topCenter,
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: maxWidth),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: children,
+              child: Container(
+                margin: const EdgeInsets.only(top: 96),
+                padding: const EdgeInsets.fromLTRB(20, 24, 20, 20),
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(24)),
+                  boxShadow: [BoxShadow(color: Color(0x262B1A16), blurRadius: 40, offset: Offset(0, 16))],
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: children,
+                ),
               ),
             ),
           ),
