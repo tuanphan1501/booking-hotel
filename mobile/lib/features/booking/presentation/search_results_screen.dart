@@ -140,7 +140,7 @@ class _HotelCard extends StatelessWidget {
                               Text.rich(TextSpan(children: [
                                 TextSpan(text: money.format(hotel.fromPrice ?? 0), style: AppText.l.merge(AppText.price)),
                                 TextSpan(text: ' ${l10n.perNight}', style: AppText.s.copyWith(color: AppColors.ink3)),
-                              ])),
+                              ],),),
                             ],
                           ),
                       ],

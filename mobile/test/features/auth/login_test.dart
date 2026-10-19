@@ -97,6 +97,7 @@ void main() {
     testWidgets('requires both fields before calling the API', (tester) async {
       await pumpLoginScreen(tester);
 
+      await tester.ensureVisible(find.widgetWithText(AppButton, 'Sign in'));
       await tester.tap(find.widgetWithText(AppButton, 'Sign in'));
       await tester.pump();
 
@@ -110,6 +111,7 @@ void main() {
 
       await tester.enterText(find.byType(TextField).at(0), FakeAuthRepository.validLogin);
       await tester.enterText(find.byType(TextField).at(1), 'wrong-password');
+      await tester.ensureVisible(find.widgetWithText(AppButton, 'Sign in'));
       await tester.tap(find.widgetWithText(AppButton, 'Sign in'));
       await tester.pumpAndSettle();
 

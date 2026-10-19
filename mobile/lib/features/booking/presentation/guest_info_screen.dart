@@ -85,7 +85,7 @@ class _GuestInfoScreenState extends ConsumerState<GuestInfoScreen> {
       final l10n = AppLocalizations.of(context);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(exception.code == ApiException.networkErrorCode ? l10n.errorNetwork : exception.message ?? l10n.errorUnknown),
-      ));
+      ),);
     } finally {
       if (mounted) setState(() => _isSubmitting = false);
     }
@@ -167,7 +167,7 @@ class _GuestInfoScreenState extends ConsumerState<GuestInfoScreen> {
             Text(l10n.guestArrival, style: AppText.s.copyWith(fontWeight: FontWeight.w600)),
             const SizedBox(height: 6),
             DropdownButtonFormField<String>(
-              value: _arrivalTime,
+              initialValue: _arrivalTime,
               items: [for (final time in _arrivalTimes) DropdownMenuItem(value: time, child: Text(time))],
               onChanged: (value) => setState(() => _arrivalTime = value),
               decoration: const InputDecoration(),

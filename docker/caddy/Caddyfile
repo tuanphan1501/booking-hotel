@@ -21,3 +21,10 @@ api.vivustay.localhost {
 mail.vivustay.localhost {
 	reverse_proxy mailpit:8025
 }
+
+# Mobile app web build (flutter build web) — http://localhost:8080, API http://localhost:8000
+:8080 {
+	root * /srv/mobile-web
+	try_files {path} /index.html
+	file_server
+}

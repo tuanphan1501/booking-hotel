@@ -65,7 +65,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
       ref.invalidate(bookingDetailProvider(widget.bookingCode));
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(exception.code == ApiException.networkErrorCode ? l10n.errorNetwork : exception.message ?? l10n.errorUnknown),
-      ));
+      ),);
     } finally {
       if (mounted) setState(() => _isPaying = false);
     }
@@ -114,15 +114,19 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                     const SizedBox(height: AppSpace.xl),
                     Text(l10n.payMethod, style: AppText.l),
                     const SizedBox(height: AppSpace.s),
+                    RadioGroup<String>(
+                      groupValue: _method,
+                      onChanged: (value) => setState(() => _method = value!),
+                      child: Column(children: [
                     for (final method in _methods)
                       RadioListTile<String>(
                         value: method,
-                        groupValue: _method,
-                        onChanged: (value) => setState(() => _method = value!),
                         activeColor: AppColors.brand,
                         contentPadding: EdgeInsets.zero,
                         title: Text(switch (method) { 'VNPAY' => 'VNPay', 'MOMO' => 'MoMo', _ => l10n.payCard }, style: AppText.b),
                       ),
+                      ],),
+                    ),
                     const SizedBox(height: AppSpace.s),
                     Text(l10n.paySandbox, style: AppText.xs.copyWith(color: AppColors.ink3)),
                   ],

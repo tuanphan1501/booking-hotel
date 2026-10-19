@@ -197,7 +197,7 @@ class _RoomTypeCard extends StatelessWidget {
                         Text.rich(TextSpan(children: [
                           TextSpan(text: money.format(ratePlan.pricePerNight), style: AppText.m.merge(AppText.price)),
                           TextSpan(text: ' ${l10n.perNight}', style: AppText.xs.copyWith(color: AppColors.ink3)),
-                        ])),
+                        ],),),
                         Text(l10n.roomsTotal(money.format(ratePlan.quote.totalAmount)), style: AppText.xs.copyWith(color: AppColors.ink3)),
                       ],
                     ),

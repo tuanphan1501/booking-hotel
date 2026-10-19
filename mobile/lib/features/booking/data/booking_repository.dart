@@ -51,7 +51,7 @@ class BookingRepository {
       'guest_email': guestEmail,
       if (estimatedArrival != null) 'estimated_arrival': estimatedArrival,
       if (specialRequest != null && specialRequest.isNotEmpty) 'special_request': specialRequest,
-    });
+    },);
     return Booking.fromJson(response['data'] as Map<String, dynamic>);
   }
 

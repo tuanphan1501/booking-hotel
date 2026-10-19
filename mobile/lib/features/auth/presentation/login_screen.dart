@@ -126,7 +126,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         const TextSpan(children: [
                           TextSpan(text: 'Vivu '),
                           TextSpan(text: 'Stay', style: TextStyle(color: AppColors.brand)),
-                        ]),
+                        ],),
                         style: AppText.xl.copyWith(fontSize: 28, letterSpacing: -0.4),
                       ),
                     ],

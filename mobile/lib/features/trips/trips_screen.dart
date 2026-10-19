@@ -90,7 +90,7 @@ class _TripList extends ConsumerWidget {
                     onAction: () => context.go('/home'),
                   ),
                 ),
-              ])
+              ],)
             : ListView.separated(
                 padding: const EdgeInsets.all(AppSpace.l),
                 itemCount: items.length,

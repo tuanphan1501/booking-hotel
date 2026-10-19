@@ -69,8 +69,10 @@ services:
     ports:
       - "80:80"
       - "443:443"
+      - "8080:8080"
     volumes:
       - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./mobile/build/web:/srv/mobile-web:ro
       - caddy-data:/data
 
 volumes:
