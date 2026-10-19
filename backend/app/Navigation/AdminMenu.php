@@ -56,7 +56,7 @@ final class AdminMenu
                 new MenuItem('dashboard', 'dash', 'admin.dashboard', 'dashboard.view'),
             ]),
             new MenuGroup('operations', [
-                new MenuItem('bookings', 'list', permission: 'booking.view'),
+                new MenuItem('bookings', 'list', 'admin.bookings.index', 'booking.view'),
                 new MenuItem('counter_booking', 'plus', permission: 'booking.edit'),
                 new MenuItem('rooms_housekeeping', 'door', permission: 'housekeeping.view'),
             ]),

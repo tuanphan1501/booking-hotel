@@ -94,7 +94,7 @@
                     @foreach ($summary->arrivals as $booking)
                         @php($firstRoom = $booking->rooms->first())
                         <tr>
-                            <td class="link">{{ $booking->booking_code }}</td>
+                            <td><a class="link" href="{{ route('admin.bookings.show', $booking->booking_code) }}">{{ $booking->booking_code }}</a></td>
                             <td>{{ $booking->guest_name }}</td>
                             <td>{{ $firstRoom?->roomType->localizedName() }}@if ($booking->rooms->count() > 1) × {{ $booking->rooms->count() }}@endif</td>
                             <td class="num">{{ $booking->estimated_arrival ? substr($booking->estimated_arrival, 0, 5) : '—' }}</td>

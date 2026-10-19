@@ -27,8 +27,6 @@ class LoginRequest extends FormRequest
     /**
      * Get the validation rules.
      *
-     * - `totp_code` is optional here; AdminAuthService requires it when two-factor is enabled.
-     *
      * @return array<string, list<string>>
      */
     public function rules(): array
@@ -36,7 +34,6 @@ class LoginRequest extends FormRequest
         return [
             'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'string', 'max:255'],
-            'totp_code' => ['nullable', 'digits:6'],
         ];
     }
 
@@ -50,7 +47,6 @@ class LoginRequest extends FormRequest
         return [
             'email' => __('admin.auth.email'),
             'password' => __('admin.auth.password'),
-            'totp_code' => __('admin.auth.totp_code'),
         ];
     }
 }

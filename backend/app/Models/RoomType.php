@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -67,5 +68,15 @@ class RoomType extends Model
     public function localizedName(): string
     {
         return app()->getLocale() === 'ja' && filled($this->name_ja) ? (string) $this->name_ja : $this->name;
+    }
+
+    /**
+     * Get the active rate plans.
+     *
+     * @return HasMany<RatePlan, $this>
+     */
+    public function ratePlans(): HasMany
+    {
+        return $this->hasMany(RatePlan::class)->where('status', 'ACTIVE')->orderBy('id');
     }
 }

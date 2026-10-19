@@ -1,1 +1,5 @@
 node_modules/
+
+# Local secrets for docker compose (mail password, Google OAuth) and machine-specific overrides
+.env
+docker-compose.override.yml

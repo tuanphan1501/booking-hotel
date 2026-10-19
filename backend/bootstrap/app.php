@@ -33,6 +33,9 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->api(prepend: [SetApiLocale::class]);
 
+        // Local HTTPS domains are served through the Caddy reverse proxy (docker/caddy/Caddyfile).
+        $middleware->trustProxies(at: '*');
+
         // Sanctum token abilities: access tokens carry "api", refresh tokens carry "token:refresh".
         $middleware->alias([
             'abilities' => CheckAbilities::class,

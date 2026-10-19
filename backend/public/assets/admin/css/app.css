@@ -27,65 +27,6 @@ input.inp:focus {
   min-height: 100vh;
 }
 
-/* AD-01 sign-in screen */
-.login {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 100vh;
-}
-
-.login__visual {
-  position: relative;
-  overflow: hidden;
-  background: var(--ink);
-}
-
-.login__photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.login__visual::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(43, 26, 22, 0) 40%, rgba(43, 26, 22, 0.85));
-}
-
-.login__brand {
-  position: absolute;
-  left: 32px;
-  bottom: 32px;
-  z-index: 1;
-  max-width: 340px;
-  color: #fff;
-}
-
-.login__panel {
-  position: relative;
-  display: grid;
-  place-items: center;
-  background: #fff;
-}
-
-.login__language {
-  justify-content: center;
-  margin: 0 auto;
-}
-
-.login__content {
-  width: 360px;
-  max-width: calc(100vw - 32px);
-}
-
-.login__forgot {
-  color: var(--brand);
-  font-weight: 600;
-}
-
 /* Password input with the show / hide eye button */
 .inp-reveal {
   position: relative;
@@ -113,19 +54,181 @@ input.inp:focus {
   color: var(--brand);
 }
 
-.login__totp {
-  letter-spacing: 6px;
+/* ---------- AD-01 / AD-01b sign-in: hotel photo background + centered card with the logo ---------- */
+.auth {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 40px 16px;
+  overflow: hidden;
+  background:
+    linear-gradient(160deg, rgba(43, 26, 22, 0.35), rgba(43, 26, 22, 0.78)),
+    url("../../../images/placeholders/sea.svg") center / cover no-repeat,
+    var(--ink);
+}
+
+.auth__main {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.auth__card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 36px 32px 28px;
+  background: #fff;
+  border-radius: var(--r-xl);
+  box-shadow: 0 30px 80px rgba(20, 10, 8, 0.45);
+}
+
+.auth__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 4px;
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+
+.auth__logo b {
+  color: var(--brand);
+  font-weight: 700;
+}
+
+.auth__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.auth__badge {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: var(--brand-wash);
+  color: var(--brand);
+  margin-bottom: 6px;
+}
+
+.auth__card .btn.full {
+  height: 50px;
+  gap: 6px;
+}
+
+.auth__or {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--ink-3);
+  font-size: 13px;
+}
+
+.auth__or::before,
+.auth__or::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.auth__google {
+  gap: 10px;
+  text-decoration: none;
+}
+
+.auth__note {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--line-2);
+  color: var(--ink-2);
+  font-size: 12.5px;
+  line-height: 18px;
+}
+
+.auth__note .i {
+  flex: none;
+  margin-top: 1px;
+  color: var(--brand);
+}
+
+.auth__dev {
+  background: var(--amber-wash, #fdf0e1);
+  color: #6e4505;
   font-weight: 600;
+  text-decoration: none;
+}
+
+.auth__forgot {
+  color: var(--brand);
+  font-weight: 600;
+}
+
+.auth__code {
+  height: 60px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 14px;
+  padding-left: 28px;
   font-variant-numeric: tabular-nums;
 }
 
-@media (max-width: 900px) {
-  .login {
-    grid-template-columns: 1fr;
-  }
+.auth__links {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
 
-  .login__visual {
-    display: none;
+.auth__link {
+  border: 0;
+  background: none;
+  padding: 4px 0;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--brand);
+  cursor: pointer;
+}
+
+.auth__link:disabled {
+  color: var(--ink-3);
+  cursor: default;
+}
+
+.auth__link--muted {
+  color: var(--ink-2);
+}
+
+.auth__language {
+  justify-content: center;
+}
+
+.auth__footer {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.82);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 480px) {
+  .auth__card {
+    padding: 28px 20px 22px;
   }
 }
 
@@ -661,4 +764,97 @@ a.btn {
 abbr[title] {
   text-decoration: underline dotted;
   cursor: help;
+}
+
+/* ---------- AD-03 / AD-04 Bookings ---------- */
+.bk-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.bk-filters .inp.s {
+  width: auto;
+  min-height: 38px;
+}
+
+.bk-filters__search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 240px;
+  max-width: 320px;
+}
+
+.bk-filters__search input {
+  flex: 1;
+  border: 0;
+  outline: none;
+  font: inherit;
+  background: none;
+}
+
+.bk-filters__date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.tbl a.link {
+  text-decoration: none;
+}
+
+.bk-pager {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.bk-note {
+  min-height: 72px;
+  padding: 10px 12px;
+  resize: vertical;
+  font: inherit;
+  font-size: 14px;
+}
+
+.bk-pay {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.bk-pay .btn {
+  grid-column: 1 / -1;
+}
+
+.bk-dialog {
+  width: min(440px, calc(100vw - 32px));
+  border: 0;
+  border-radius: var(--r-xl);
+  padding: 20px;
+  box-shadow: 0 30px 80px rgba(43, 26, 22, 0.35);
+}
+
+.bk-dialog::backdrop {
+  background: rgba(30, 18, 15, 0.55);
+}
+
+.crumb a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.crumb a:hover {
+  color: var(--brand-ink);
+}
+
+/* Masked verification code: centre the eye button on the taller input */
+.inp-reveal:has(.auth__code) .inp-reveal__toggle {
+  height: 60px;
 }

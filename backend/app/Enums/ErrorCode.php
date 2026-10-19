@@ -30,6 +30,16 @@ enum ErrorCode: string
     case AccountWithdrawn = 'ACCOUNT_WITHDRAWN';
     case LoginThrottled = 'LOGIN_THROTTLED';
     case InvalidRefreshToken = 'INVALID_REFRESH_TOKEN';
+    case InvalidVerificationCode = 'INVALID_VERIFICATION_CODE';
+    case VerificationExpired = 'VERIFICATION_EXPIRED';
+    case ResendTooSoon = 'RESEND_TOO_SOON';
+    case GoogleAccountNotAllowed = 'GOOGLE_ACCOUNT_NOT_ALLOWED';
+
+    // Booking
+    case RoomNotAvailable = 'ROOM_NOT_AVAILABLE';
+    case InvalidStatusTransition = 'INVALID_STATUS_TRANSITION';
+    case BookingExpired = 'BOOKING_EXPIRED';
+    case CancellationNotAllowed = 'CANCELLATION_NOT_ALLOWED';
 
     /**
      * Get the HTTP status code returned together with this error.
@@ -37,12 +47,13 @@ enum ErrorCode: string
     public function httpStatus(): int
     {
         return match ($this) {
-            self::ValidationError, self::InvalidMfaCode => 422,
+            self::ValidationError, self::InvalidMfaCode, self::InvalidVerificationCode, self::VerificationExpired => 422,
+            self::RoomNotAvailable, self::InvalidStatusTransition, self::BookingExpired, self::CancellationNotAllowed => 409,
             self::Unauthenticated, self::InvalidCredentials, self::InvalidRefreshToken => 401,
-            self::Forbidden, self::AccountLocked, self::AccountWithdrawn => 403,
+            self::Forbidden, self::GoogleAccountNotAllowed, self::AccountLocked, self::AccountWithdrawn => 403,
             self::NotFound => 404,
             self::MethodNotAllowed => 405,
-            self::TooManyRequests, self::LoginThrottled => 429,
+            self::TooManyRequests, self::LoginThrottled, self::ResendTooSoon => 429,
             self::ServerError => 500,
         };
     }

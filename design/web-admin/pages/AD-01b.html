@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AD-01b Xác nhận mã email — Vivu Stay Admin</title>
+    <meta
+      name="description"
+      content="Bước 2: mã 6 số gửi qua email, hiệu lực 10 phút, sai 5 lần hủy, gửi lại sau 60 giây. Tài khoản bật TOTP dùng mã Authenticator."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/tokens.css" />
+    <link rel="stylesheet" href="../css/utilities.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+    <link rel="stylesheet" href="../css/prototype.css" />
+  </head>
+  <body class="proto" data-screen="AD-01b">
+    <script src="../js/icons.js"></script>
+    <div class="adm solo">
+      <div class="amain">
+        <div
+          style="
+            min-height: 620px;
+            display: grid;
+            place-items: center;
+            padding: 40px 16px;
+            position: relative;
+            overflow: hidden;
+            background: var(--ink);
+          "
+        >
+          <svg
+            viewBox="0 0 400 240"
+            preserveAspectRatio="xMidYMid slice"
+            style="position: absolute; inset: 0; width: 100%; height: 100%"
+          >
+            <use href="#sc-sea" />
+          </svg>
+          <div
+            style="
+              position: absolute;
+              inset: 0;
+              background: linear-gradient(160deg, rgba(43, 26, 22, 0.35), rgba(43, 26, 22, 0.78));
+            "
+          ></div>
+          <div class="col g16" style="width: 400px; align-items: stretch; position: relative">
+            <div
+              class="col g16"
+              style="
+                background: #fff;
+                border-radius: 24px;
+                padding: 32px 30px 26px;
+                box-shadow:
+                  0 0 0 1px var(--line),
+                  0 24px 60px rgba(43, 26, 22, 0.1);
+              "
+            >
+              <div class="row g8" style="justify-content: center">
+                <span
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 10px;
+                    background: var(--brand);
+                    display: grid;
+                    place-items: center;
+                    color: #fff;
+                  "
+                  ><svg class="i" aria-hidden="true" style="width: 24px; height: 24px">
+                    <use href="#i-logo" /></svg></span
+                ><span style="font-size: 25px; font-weight: 700; letter-spacing: -0.4px"
+                  >Vivu <span style="color: var(--brand)">Stay</span></span
+                >
+              </div>
+              <div class="col g4 center" style="align-items: center">
+                <span
+                  style="
+                    width: 52px;
+                    height: 52px;
+                    border-radius: 16px;
+                    background: var(--brand-wash);
+                    color: var(--brand);
+                    display: grid;
+                    place-items: center;
+                  "
+                  ><svg class="i" aria-hidden="true"><use href="#i-bell" /></svg
+                ></span>
+                <div class="t-xl"><span data-ja="ログインの確認">Xác nhận đăng nhập</span></div>
+                <div class="t-s sub">
+                  <span data-ja="ph•••c@gmail.com に6桁のコードを送信しました。有効期限は10分です。"
+                    >Chúng tôi đã gửi mã 6 số tới ph•••c@gmail.com. Mã có hiệu lực trong 10 phút.</span
+                  >
+                </div>
+              </div>
+              <div class="fld">
+                <label><b class="ann">1</b><span data-ja="確認コード">Mã xác nhận</span></label>
+                <div
+                  class="inp focus num"
+                  style="height: 60px; justify-content: center; font-size: 26px; font-weight: 700; letter-spacing: 14px"
+                >
+                  482 91_
+                </div>
+              </div>
+              <button class="btn full">
+                <b class="ann">2</b><span data-ja="確認してログイン">Xác nhận & đăng nhập</span>
+              </button>
+              <div class="row between t-s w6">
+                <a class="brand" style="opacity: 0.6"
+                  ><b class="ann">3</b><span data-ja="42秒後に再送できます">Gửi lại sau 42 giây</span></a
+                ><a style="color: var(--ink-2)"
+                  ><b class="ann">4</b><span data-ja="別のアカウントを使う">Dùng tài khoản khác</span></a
+                >
+              </div>
+              <div
+                class="row g8 t-xs"
+                style="
+                  align-items: flex-start;
+                  padding: 10px 12px;
+                  border-radius: 12px;
+                  background: var(--line-2);
+                  color: var(--ink-2);
+                "
+              >
+                <svg class="i s brand" aria-hidden="true"><use href="#i-info" /></svg
+                ><span
+                  ><span
+                    data-ja="メールが届かない場合は迷惑メールフォルダをご確認ください。5回間違えると最初からやり直しです。"
+                    >Không thấy email? Kiểm tra thư mục Spam. Sai 5 lần phải đăng nhập lại.</span
+                  ></span
+                >
+              </div>
+            </div>
+            <div class="row g4" style="justify-content: center"><b class="ann">L</b></div>
+            <div class="t-xs center" style="color: rgba(255, 255, 255, 0.85)">
+              © 2026 Vivu Stay · <span data-ja="社内管理システム">Hệ thống quản trị nội bộ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="proto-bar" aria-label="Prototype">
+      <a href="../index.html" title="Danh sách màn hình">☰</a>
+      <a data-nav="prev" href="AD-01.html" title="Màn trước (←)">‹</a>
+      <select class="proto-jump" aria-label="Chuyển màn">
+        <optgroup label="Bắt đầu">
+          <option value="AD-01">AD-01 · Đăng nhập quản trị</option>
+          <option value="AD-01b" selected>AD-01b · Xác nhận mã email</option>
+          <option value="AD-02">AD-02 · Tổng quan</option>
+        </optgroup>
+        <optgroup label="Vận hành">
+          <option value="AD-03">AD-03 · Danh sách đặt phòng</option>
+          <option value="AD-04">AD-04 · Chi tiết đặt phòng</option>
+          <option value="AD-05">AD-05 · Đặt phòng tại quầy</option>
+          <option value="AD-08">AD-08 · Phòng &amp; tình trạng buồng</option>
+        </optgroup>
+        <optgroup label="Sản phẩm">
+          <option value="AD-06">AD-06 · Giá &amp; tồn kho</option>
+          <option value="AD-07">AD-07 · Loại phòng</option>
+          <option value="AD-09">AD-09 · Gói giá &amp; chính sách hủy</option>
+          <option value="AD-10">AD-10 · Dịch vụ thêm</option>
+        </optgroup>
+        <optgroup label="Khách hàng">
+          <option value="AD-11">AD-11 · Khuyến mãi &amp; voucher</option>
+          <option value="AD-12">AD-12 · Đánh giá</option>
+          <option value="AD-13">AD-13 · Khách hàng &amp; điểm</option>
+        </optgroup>
+        <optgroup label="Tài chính">
+          <option value="AD-14">AD-14 · Thanh toán &amp; hoàn tiền</option>
+          <option value="AD-15">AD-15 · Báo cáo</option>
+        </optgroup>
+        <optgroup label="Hệ thống">
+          <option value="AD-16">AD-16 · Khách sạn (chi nhánh)</option>
+          <option value="AD-17">AD-17 · Admin &amp; phân quyền</option>
+          <option value="AD-18">AD-18 · Cấu hình hệ thống</option>
+        </optgroup>
+        <optgroup label="Tài khoản"><option value="AD-19">AD-19 · Cài đặt cá nhân</option></optgroup>
+      </select>
+      <a data-nav="next" href="AD-02.html" title="Màn sau (→)">›</a>
+      <label title="Hiện số chú thích"><input type="checkbox" id="annToggle" />Chú thích</label>
+    </div>
+    <script src="../js/i18n.js"></script>
+    <script src="../js/links.js"></script>
+    <script src="../js/prototype.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>

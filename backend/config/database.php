@@ -97,6 +97,8 @@ return [
             'prefix_indexes' => true,
             'search_path' => 'public',
             'sslmode' => env('DB_SSLMODE', 'prefer'),
+            // Same zone as config('app.timezone') so timestamps without an offset are stored correctly.
+            'timezone' => env('APP_TIMEZONE', 'Asia/Ho_Chi_Minh'),
         ],
 
         'sqlsrv' => [

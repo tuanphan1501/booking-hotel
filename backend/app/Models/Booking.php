@@ -32,9 +32,26 @@ use Illuminate\Support\Carbon;
  * @property int $payable_amount
  * @property int $paid_amount
  * @property int $refunded_amount
+ * @property int $room_amount
+ * @property int $service_charge
+ * @property int $tax_amount
+ * @property int $cancel_fee
+ * @property string $guest_email
+ * @property string $guest_phone
+ * @property string|null $special_request
+ * @property string|null $internal_note
+ * @property array<string, mixed>|null $cancel_policy_snapshot
+ * @property Carbon|null $hold_expires_at
+ * @property Carbon|null $confirmed_at
+ * @property Carbon|null $checked_in_at
+ * @property Carbon|null $checked_out_at
+ * @property Carbon|null $cancelled_at
+ * @property Carbon $created_at
  * @property-read Hotel $hotel
  * @property-read User|null $user
  * @property-read Collection<int, BookingRoom> $rooms
+ * @property-read Collection<int, BookingStatusHistory> $statusHistories
+ * @property-read Collection<int, Payment> $payments
  *
  * @author PH.Tuan
  * @created 2026-10-18
@@ -68,6 +85,8 @@ class Booking extends Model
             'payable_amount' => 'integer',
             'paid_amount' => 'integer',
             'refunded_amount' => 'integer',
+            'tax_amount' => 'integer',
+            'cancel_fee' => 'integer',
             'cancel_policy_snapshot' => 'array',
             'hold_expires_at' => 'datetime',
             'confirmed_at' => 'datetime',
@@ -105,6 +124,26 @@ class Booking extends Model
     public function rooms(): HasMany
     {
         return $this->hasMany(BookingRoom::class);
+    }
+
+    /**
+     * Get the status changes, newest first (AD-04 timeline).
+     *
+     * @return HasMany<BookingStatusHistory, $this>
+     */
+    public function statusHistories(): HasMany
+    {
+        return $this->hasMany(BookingStatusHistory::class)->latest('id');
+    }
+
+    /**
+     * Get the payment transactions.
+     *
+     * @return HasMany<Payment, $this>
+     */
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class)->orderBy('id');
     }
 
     /**
