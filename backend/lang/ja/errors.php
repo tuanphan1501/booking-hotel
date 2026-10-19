@@ -16,4 +16,13 @@ return [
     'ACCOUNT_WITHDRAWN' => 'このアカウントは削除されています。',
     'LOGIN_THROTTLED' => 'ログインに続けて失敗しました。:minutes分後に再度お試しください。',
     'INVALID_REFRESH_TOKEN' => 'ログインの有効期限が切れました。再度ログインしてください。',
+    'INVALID_VERIFICATION_CODE' => '確認コードが正しくありません。残り:remaining回です。',
+    'VERIFICATION_EXPIRED' => '確認コードの有効期限が切れたか、無効になりました。もう一度ログインしてください。',
+    'GOOGLE_ACCOUNT_NOT_ALLOWED' => 'このGoogleアカウントには管理者権限がありません。本部管理者へご連絡ください。',
+    'RESEND_TOO_SOON' => ':seconds秒後にもう一度お試しください。',
+
+    'ROOM_NOT_AVAILABLE' => '選択した日程ではこの客室タイプは満室です。',
+    'INVALID_STATUS_TRANSITION' => '現在のステータスからは変更できません。',
+    'BOOKING_EXPIRED' => '客室の確保時間が過ぎました。もう一度予約してください。',
+    'CANCELLATION_NOT_ALLOWED' => 'この予約はキャンセルできません。',
 ];

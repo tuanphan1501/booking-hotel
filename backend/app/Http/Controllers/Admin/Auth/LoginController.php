@@ -7,6 +7,7 @@ use App\Exceptions\BusinessException;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\SetAdminLocale;
 use App\Http\Requests\Admin\Auth\LoginRequest;
+use App\Http\Requests\Admin\Auth\VerifyLoginRequest;
 use App\Services\Auth\AdminAuthService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 /**
- * Web Admin sign-in and sign-out (AD-01).
+ * Web Admin sign-in (AD-01 password → AD-01b verification code) and sign-out.
  *
  * @author PH.Tuan
  * @created 2026-10-18
@@ -22,7 +23,7 @@ use Illuminate\View\View;
 class LoginController extends Controller
 {
     /**
-     * @param  AdminAuthService  $adminAuthService  Credential and TOTP verification.
+     * @param  AdminAuthService  $adminAuthService  Password and verification-code checks.
      */
     public function __construct(private readonly AdminAuthService $adminAuthService) {}
 
@@ -38,38 +39,126 @@ class LoginController extends Controller
         return view('admin.auth.login');
     }
 
+    /** Session key holding the id of the pending verification step. */
+    public const CHALLENGE_SESSION_KEY = 'admin_login_challenge';
+
     /**
-     * Sign the administrator in.
+     * Check the email + password and continue to the verification step.
      *
      * - POST /admin/login
-     * - Regenerates the session ID to prevent session fixation.
-     * - On failure, redirects back with the email kept and the error shown under the related field
-     *   (TOTP errors under the code field, every other error under the email field).
+     * - On failure, redirects back with the email kept and the error shown under the email field.
      *
      * @param  LoginRequest  $request  Validated sign-in form.
      *
-     * @return RedirectResponse Intended page, or the dashboard by default.
+     * @return RedirectResponse Verification screen (AD-01b).
      */
     public function store(LoginRequest $request): RedirectResponse
     {
         try {
-            $this->adminAuthService->login(
+            $challenge = $this->adminAuthService->startLogin(
                 email: $request->string('email')->toString(),
                 password: $request->string('password')->toString(),
-                totpCode: $request->input('totp_code'),
                 ipAddress: (string) $request->ip(),
             );
         } catch (BusinessException $exception) {
-            $errorField = $exception->errorCode === ErrorCode::InvalidMfaCode ? 'totp_code' : 'email';
-
-            return back()
-                ->withInput($request->only('email'))
-                ->withErrors([$errorField => $exception->getMessage()]);
+            return back()->withInput($request->only('email'))->withErrors(['email' => $exception->getMessage()]);
         }
 
+        $request->session()->put(self::CHALLENGE_SESSION_KEY, $challenge->id);
+
+        return redirect()->route('admin.login.verify');
+    }
+
+    /**
+     * Render the verification code screen.
+     *
+     * - GET /admin/login/verify
+     *
+     * @param  Request  $request  Current request.
+     *
+     * @return View|RedirectResponse Sign-in screen when no verification step is pending.
+     */
+    public function verifyForm(Request $request): View|RedirectResponse
+    {
+        $challenge = $this->adminAuthService->pendingChallenge($request->session()->get(self::CHALLENGE_SESSION_KEY));
+
+        if ($challenge === null) {
+            return redirect()->route('admin.login')->withErrors(['email' => ErrorCode::VerificationExpired->message()]);
+        }
+
+        return view('admin.auth.verify', ['challenge' => $challenge]);
+    }
+
+    /**
+     * Check the verification code and sign the administrator in.
+     *
+     * - POST /admin/login/verify
+     * - Regenerates the session ID to prevent session fixation.
+     *
+     * @param  VerifyLoginRequest  $request  Validated code form.
+     *
+     * @return RedirectResponse Intended page, or the dashboard by default.
+     */
+    public function verify(VerifyLoginRequest $request): RedirectResponse
+    {
+        $challengeId = $request->session()->get(self::CHALLENGE_SESSION_KEY);
+
+        try {
+            $this->adminAuthService->verifyLogin($challengeId, $request->string('code')->toString());
+        } catch (BusinessException $exception) {
+            if (in_array($exception->errorCode, [ErrorCode::InvalidVerificationCode, ErrorCode::InvalidMfaCode], true)) {
+                return back()->withErrors(['code' => $exception->getMessage()]);
+            }
+
+            $request->session()->forget(self::CHALLENGE_SESSION_KEY);
+
+            return redirect()->route('admin.login')->withErrors(['email' => $exception->getMessage()]);
+        }
+
+        $request->session()->forget(self::CHALLENGE_SESSION_KEY);
         $request->session()->regenerate();
 
         return redirect()->intended(route('admin.dashboard'));
+    }
+
+    /**
+     * Email a new verification code.
+     *
+     * - POST /admin/login/resend
+     *
+     * @param  Request  $request  Current request.
+     *
+     * @return RedirectResponse Back to the verification screen with a notice.
+     */
+    public function resend(Request $request): RedirectResponse
+    {
+        try {
+            $this->adminAuthService->resendCode($request->session()->get(self::CHALLENGE_SESSION_KEY));
+        } catch (BusinessException $exception) {
+            if ($exception->errorCode === ErrorCode::ResendTooSoon) {
+                return back()->withErrors(['code' => $exception->getMessage()]);
+            }
+
+            return redirect()->route('admin.login')->withErrors(['email' => $exception->getMessage()]);
+        }
+
+        return back()->with('status', __('admin.verify.resent'));
+    }
+
+    /**
+     * Cancel the verification step and go back to the sign-in screen.
+     *
+     * - POST /admin/login/cancel
+     *
+     * @param  Request  $request  Current request.
+     *
+     * @return RedirectResponse
+     */
+    public function cancel(Request $request): RedirectResponse
+    {
+        $this->adminAuthService->cancelLogin($request->session()->pull(self::CHALLENGE_SESSION_KEY));
+
+        return redirect()->route('admin.login');
     }
 
     /**

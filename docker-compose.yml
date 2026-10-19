@@ -1,6 +1,7 @@
 # Local development services for Vivu Stay: PostgreSQL 16, Redis 7 and Mailpit.
 # Start: docker compose up -d   ·   Outgoing mail UI: http://localhost:8025
-# Backend in Docker too (no local PHP needed): docker compose --profile app up -d --build --wait
+# Full stack with local HTTPS domains: docker compose --profile app up -d --build --wait
+#   https://admin.vivustay.localhost · https://api.vivustay.localhost · https://mail.vivustay.localhost
 services:
   postgres:
     image: postgres:16-alpine
@@ -44,12 +45,27 @@ services:
       DB_PORT: 5432
       REDIS_HOST: redis
       MAIL_HOST: mailpit
-      APP_URL: http://localhost:8000
+      APP_URL: https://admin.vivustay.localhost
     ports:
       - "8000:8000"
     volumes:
       - app-storage:/var/www/html/storage/app/public
 
+  # HTTPS reverse proxy for the local domains (see docker/caddy/Caddyfile).
+  caddy:
+    profiles: ["app"]
+    image: caddy:2.8-alpine
+    depends_on:
+      - app
+      - mailpit
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+
 volumes:
+  caddy-data:
   pgdata:
   app-storage:

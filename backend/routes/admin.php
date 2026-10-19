@@ -9,6 +9,7 @@
 |
 */
 
+use App\Http\Controllers\Admin\Auth\GoogleLoginController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -17,6 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('guest:admin')->group(function (): void {
     Route::get('login', [LoginController::class, 'create'])->name('login');
     Route::post('login', [LoginController::class, 'store'])->middleware('throttle:20,1')->name('login.store');
+    Route::get('login/verify', [LoginController::class, 'verifyForm'])->name('login.verify');
+    Route::post('login/verify', [LoginController::class, 'verify'])->middleware('throttle:20,1')->name('login.verify.store');
+    Route::post('login/resend', [LoginController::class, 'resend'])->middleware('throttle:6,1')->name('login.resend');
+    Route::post('login/cancel', [LoginController::class, 'cancel'])->name('login.cancel');
+    Route::get('auth/google', [GoogleLoginController::class, 'redirect'])->name('login.google');
+    Route::get('auth/google/callback', [GoogleLoginController::class, 'callback'])->name('login.google.callback');
     Route::post('language', [LoginController::class, 'switchLanguage'])->name('language');
 });
 

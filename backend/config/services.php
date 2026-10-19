@@ -14,6 +14,13 @@ return [
     |
     */
 
+    // "Sign in with Google" on the Web Admin (AD-01). The button is hidden while client_id is empty.
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_URI', '/admin/auth/google/callback'),
+    ],
+
     'postmark' => [
         'key' => env('POSTMARK_API_KEY'),
     ],

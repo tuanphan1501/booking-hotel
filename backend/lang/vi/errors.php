@@ -16,4 +16,13 @@ return [
     'ACCOUNT_WITHDRAWN' => 'Tài khoản đã bị xóa.',
     'LOGIN_THROTTLED' => 'Bạn đã nhập sai quá nhiều lần. Thử lại sau :minutes phút.',
     'INVALID_REFRESH_TOKEN' => 'Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.',
+    'INVALID_VERIFICATION_CODE' => 'Mã xác nhận không đúng. Còn :remaining lần thử.',
+    'VERIFICATION_EXPIRED' => 'Mã xác nhận đã hết hạn hoặc bị hủy. Vui lòng đăng nhập lại.',
+    'GOOGLE_ACCOUNT_NOT_ALLOWED' => 'Tài khoản Google này chưa được cấp quyền quản trị. Liên hệ Super Admin.',
+    'RESEND_TOO_SOON' => 'Vui lòng chờ :seconds giây trước khi gửi lại mã.',
+
+    'ROOM_NOT_AVAILABLE' => 'Loại phòng này đã hết phòng trong ngày bạn chọn.',
+    'INVALID_STATUS_TRANSITION' => 'Không thể chuyển đặt phòng từ trạng thái hiện tại.',
+    'BOOKING_EXPIRED' => 'Đã hết thời gian giữ phòng. Vui lòng đặt lại.',
+    'CANCELLATION_NOT_ALLOWED' => 'Đặt phòng này không thể hủy.',
 ];

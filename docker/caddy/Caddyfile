@@ -1,0 +1,23 @@
+# Local HTTPS domains for Vivu Stay (docker compose --profile app up -d).
+# *.localhost always resolves to 127.0.0.1 in Chrome / Edge / Firefox — no hosts-file edit needed.
+# Certificates come from Caddy's local CA; trust it once with scripts/trust-local-ca.ps1.
+{
+	local_certs
+}
+
+# Web Admin — https://admin.vivustay.localhost
+admin.vivustay.localhost {
+	redir / /admin 302
+	reverse_proxy app:8000
+}
+
+# Mobile App API — https://api.vivustay.localhost/api/v1/...
+api.vivustay.localhost {
+	redir / /api/v1/hotels 302
+	reverse_proxy app:8000
+}
+
+# Outgoing mail viewer (sign-in codes) — https://mail.vivustay.localhost
+mail.vivustay.localhost {
+	reverse_proxy mailpit:8025
+}
