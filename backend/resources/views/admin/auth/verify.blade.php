@@ -17,7 +17,7 @@
 
 <form method="POST" action="{{ route('admin.login.verify.store') }}" class="col g16" novalidate>
     @csrf
-    <x-admin.field name="code" :label="__('admin.verify.code')" inputmode="numeric" maxlength="6" pattern="\d{6}"
+    <x-admin.field name="code" type="password" revealable :label="__('admin.verify.code')" inputmode="numeric" maxlength="6" pattern="\d{6}"
                    autocomplete="one-time-code" placeholder="••••••" class="auth__code" autofocus required />
     <button type="submit" class="btn full">{{ __('admin.verify.submit') }}</button>
 </form>

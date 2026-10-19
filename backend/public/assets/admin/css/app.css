@@ -853,3 +853,8 @@ abbr[title] {
 .crumb a:hover {
   color: var(--brand-ink);
 }
+
+/* Masked verification code: centre the eye button on the taller input */
+.inp-reveal:has(.auth__code) .inp-reveal__toggle {
+  height: 60px;
+}
