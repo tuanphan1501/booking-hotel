@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -72,9 +73,9 @@ class RoomType extends Model
     /**
      * Get the active rate plans.
      *
-     * @return IlluminateDatabaseEloquentRelationsHasMany<RatePlan, $this>
+     * @return HasMany<RatePlan, $this>
      */
-    public function ratePlans(): IlluminateDatabaseEloquentRelationsHasMany
+    public function ratePlans(): HasMany
     {
         return $this->hasMany(RatePlan::class)->where('status', 'ACTIVE')->orderBy('id');
     }

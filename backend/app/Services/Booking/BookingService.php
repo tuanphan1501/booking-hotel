@@ -14,6 +14,7 @@ use App\Models\RatePlan;
 use App\Models\Room;
 use App\Models\User;
 use Carbon\CarbonImmutable;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -134,14 +135,25 @@ class BookingService
      */
     public function payInApp(Booking $booking, string $method): Booking
     {
-        return DB::transaction(function () use ($booking, $method): Booking {
+        // Expire in its own transaction so the release of the rooms is kept when the error is thrown.
+        $isExpired = DB::transaction(function () use ($booking): bool {
             $booking = Booking::query()->lockForUpdate()->findOrFail($booking->id);
 
-            if ($booking->status === BookingStatus::PendingPayment && $booking->hold_expires_at?->isPast()) {
-                $this->expire($booking);
-
-                throw new BusinessException(ErrorCode::BookingExpired);
+            if ($booking->status !== BookingStatus::PendingPayment || ! $booking->hold_expires_at?->isPast()) {
+                return false;
             }
+
+            $this->expire($booking);
+
+            return true;
+        });
+
+        if ($isExpired) {
+            throw new BusinessException(ErrorCode::BookingExpired);
+        }
+
+        return DB::transaction(function () use ($booking, $method): Booking {
+            $booking = Booking::query()->lockForUpdate()->findOrFail($booking->id);
 
             $this->ensureStatus($booking, [BookingStatus::PendingPayment]);
             $amount = $booking->outstandingAmount();
@@ -388,9 +400,9 @@ class BookingService
      *
      * @param  int  $roomTypeId  Booked room type.
      *
-     * @return \Illuminate\Support\Collection<int, Room>
+     * @return Collection<int, Room>
      */
-    public function assignableRooms(int $roomTypeId): \Illuminate\Support\Collection
+    public function assignableRooms(int $roomTypeId): Collection
     {
         return Room::query()->where('room_type_id', $roomTypeId)->where('status', 'AVAILABLE')->orderBy('room_number')->get();
     }
