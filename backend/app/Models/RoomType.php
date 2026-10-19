@@ -68,4 +68,14 @@ class RoomType extends Model
     {
         return app()->getLocale() === 'ja' && filled($this->name_ja) ? (string) $this->name_ja : $this->name;
     }
+
+    /**
+     * Get the active rate plans.
+     *
+     * @return IlluminateDatabaseEloquentRelationsHasMany<RatePlan, $this>
+     */
+    public function ratePlans(): IlluminateDatabaseEloquentRelationsHasMany
+    {
+        return $this->hasMany(RatePlan::class)->where('status', 'ACTIVE')->orderBy('id');
+    }
 }

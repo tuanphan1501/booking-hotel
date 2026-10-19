@@ -762,3 +762,82 @@ abbr[title] {
   text-decoration: underline dotted;
   cursor: help;
 }
+
+/* ---------- AD-03 / AD-04 Bookings ---------- */
+.bk-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.bk-filters .inp.s {
+  width: auto;
+  min-height: 38px;
+}
+
+.bk-filters__search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 240px;
+  max-width: 320px;
+}
+
+.bk-filters__search input {
+  flex: 1;
+  border: 0;
+  outline: none;
+  font: inherit;
+  background: none;
+}
+
+.bk-filters__date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.tbl a.link {
+  text-decoration: none;
+}
+
+.bk-pager {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.bk-note {
+  min-height: 72px;
+  padding: 10px 12px;
+  resize: vertical;
+  font: inherit;
+  font-size: 14px;
+}
+
+.bk-pay {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.bk-pay .btn {
+  grid-column: 1 / -1;
+}
+
+.bk-dialog {
+  width: min(440px, calc(100vw - 32px));
+  border: 0;
+  border-radius: var(--r-xl);
+  padding: 20px;
+  box-shadow: 0 30px 80px rgba(43, 26, 22, 0.35);
+}
+
+.bk-dialog::backdrop {
+  background: rgba(30, 18, 15, 0.55);
+}

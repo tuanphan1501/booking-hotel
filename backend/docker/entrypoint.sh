@@ -15,14 +15,13 @@ fi
 
 # `php artisan serve` does not pass container environment variables to the web workers,
 # so write the compose service addresses into .env.
-for name in DB_HOST DB_PORT REDIS_HOST MAIL_HOST APP_URL; do
+# Values are quoted so passwords with spaces (Gmail app passwords) stay intact.
+for name in DB_HOST DB_PORT REDIS_HOST APP_URL MAIL_HOST MAIL_PORT MAIL_SCHEME MAIL_USERNAME MAIL_PASSWORD \
+    MAIL_FROM_ADDRESS GOOGLE_CLIENT_ID GOOGLE_CLIENT_SECRET; do
     value=$(printenv "$name" || true)
     if [ -n "$value" ]; then
-        if grep -q "^$name=" .env; then
-            sed -i "s#^$name=.*#$name=$value#" .env
-        else
-            echo "$name=$value" >> .env
-        fi
+        sed -i "/^$name=/d" .env
+        printf '%s="%s"\n' "$name" "$value" >> .env
     fi
 done
 

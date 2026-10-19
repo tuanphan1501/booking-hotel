@@ -44,7 +44,15 @@ services:
       DB_HOST: postgres
       DB_PORT: 5432
       REDIS_HOST: redis
-      MAIL_HOST: mailpit
+      # Mail: Mailpit by default; set MAIL_* in ./.env (see .env.example) to deliver to real inboxes (Gmail SMTP).
+      MAIL_HOST: ${MAIL_HOST:-mailpit}
+      MAIL_PORT: ${MAIL_PORT:-1025}
+      MAIL_SCHEME: ${MAIL_SCHEME:-}
+      MAIL_USERNAME: ${MAIL_USERNAME:-}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+      MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS:-no-reply@vivustay.vn}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
       APP_URL: https://admin.vivustay.localhost
     ports:
       - "8000:8000"

@@ -72,6 +72,16 @@ class BookingRoom extends Model
     }
 
     /**
+     * Get the booked rate plan.
+     *
+     * @return BelongsTo<RatePlan, $this>
+     */
+    public function ratePlan(): BelongsTo
+    {
+        return $this->belongsTo(RatePlan::class);
+    }
+
+    /**
      * Get the assigned physical room, if any.
      *
      * @return BelongsTo<Room, $this>

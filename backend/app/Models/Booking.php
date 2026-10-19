@@ -35,6 +35,8 @@ use Illuminate\Support\Carbon;
  * @property-read Hotel $hotel
  * @property-read User|null $user
  * @property-read Collection<int, BookingRoom> $rooms
+ * @property-read Collection<int, BookingStatusHistory> $statusHistories
+ * @property-read Collection<int, Payment> $payments
  *
  * @author PH.Tuan
  * @created 2026-10-18
@@ -105,6 +107,26 @@ class Booking extends Model
     public function rooms(): HasMany
     {
         return $this->hasMany(BookingRoom::class);
+    }
+
+    /**
+     * Get the status changes, newest first (AD-04 timeline).
+     *
+     * @return HasMany<BookingStatusHistory, $this>
+     */
+    public function statusHistories(): HasMany
+    {
+        return $this->hasMany(BookingStatusHistory::class)->latest('id');
+    }
+
+    /**
+     * Get the payment transactions.
+     *
+     * @return HasMany<Payment, $this>
+     */
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class)->orderBy('id');
     }
 
     /**
