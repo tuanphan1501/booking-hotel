@@ -8,6 +8,9 @@ use App\Services\Auth\AdminAuthService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Two\GoogleProvider;
+use Laravel\Socialite\Two\User as GoogleUser;
+use LogicException;
 use Symfony\Component\HttpFoundation\RedirectResponse as SymfonyRedirectResponse;
 use Throwable;
 
@@ -49,7 +52,7 @@ class GoogleLoginController extends Controller
     {
         abort_unless(self::isEnabled(), 404);
 
-        return Socialite::driver('google')->redirectUrl(url(config('services.google.redirect')))->scopes(['email'])->redirect();
+        return $this->googleDriver()->scopes(['email'])->redirect();
     }
 
     /**
@@ -66,12 +69,12 @@ class GoogleLoginController extends Controller
         abort_unless(self::isEnabled(), 404);
 
         try {
-            $googleUser = Socialite::driver('google')->redirectUrl(url(config('services.google.redirect')))->user();
+            $googleUser = $this->googleDriver()->user();
         } catch (Throwable) {
             return redirect()->route('admin.login')->withErrors(['email' => __('admin.auth.google_failed')]);
         }
 
-        if (($googleUser->getRaw()['email_verified'] ?? false) !== true || blank($googleUser->getEmail())) {
+        if (! $googleUser instanceof GoogleUser || ($googleUser->getRaw()['email_verified'] ?? false) !== true || blank($googleUser->getEmail())) {
             return redirect()->route('admin.login')->withErrors(['email' => __('admin.auth.google_failed')]);
         }
 
@@ -90,5 +93,21 @@ class GoogleLoginController extends Controller
         $request->session()->regenerate();
 
         return redirect()->intended(route('admin.dashboard'));
+    }
+
+    /**
+     * Google driver with the callback URL of the current host (works behind the local HTTPS domains).
+     *
+     * @return GoogleProvider
+     */
+    private function googleDriver(): GoogleProvider
+    {
+        $driver = Socialite::driver('google');
+
+        if (! $driver instanceof GoogleProvider) {
+            throw new LogicException('The "google" Socialite driver must be the OAuth 2 Google provider.');
+        }
+
+        return $driver->redirectUrl(url((string) config('services.google.redirect')));
     }
 }

@@ -32,6 +32,21 @@ use Illuminate\Support\Carbon;
  * @property int $payable_amount
  * @property int $paid_amount
  * @property int $refunded_amount
+ * @property int $room_amount
+ * @property int $service_charge
+ * @property int $tax_amount
+ * @property int $cancel_fee
+ * @property string $guest_email
+ * @property string $guest_phone
+ * @property string|null $special_request
+ * @property string|null $internal_note
+ * @property array<string, mixed>|null $cancel_policy_snapshot
+ * @property Carbon|null $hold_expires_at
+ * @property Carbon|null $confirmed_at
+ * @property Carbon|null $checked_in_at
+ * @property Carbon|null $checked_out_at
+ * @property Carbon|null $cancelled_at
+ * @property Carbon $created_at
  * @property-read Hotel $hotel
  * @property-read User|null $user
  * @property-read Collection<int, BookingRoom> $rooms
@@ -70,6 +85,8 @@ class Booking extends Model
             'payable_amount' => 'integer',
             'paid_amount' => 'integer',
             'refunded_amount' => 'integer',
+            'tax_amount' => 'integer',
+            'cancel_fee' => 'integer',
             'cancel_policy_snapshot' => 'array',
             'hold_expires_at' => 'datetime',
             'confirmed_at' => 'datetime',
