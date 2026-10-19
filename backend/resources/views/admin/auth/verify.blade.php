@@ -40,6 +40,12 @@
 
 @if ($challenge->usesEmail())
     <p class="auth__note"><x-admin.icon name="info" size="s" />{{ __('admin.verify.not_received') }}</p>
+    {{-- Local development: mail is caught by Mailpit instead of reaching the real inbox. --}}
+    @if (app()->isLocal() && in_array(config('mail.mailers.smtp.host'), ['mailpit', '127.0.0.1', 'localhost'], true))
+        <a class="auth__note auth__dev" href="{{ config('booking.dev_mailbox_url') }}" target="_blank" rel="noopener">
+            <x-admin.icon name="bell" size="s" />{{ __('admin.verify.dev_mailbox') }}
+        </a>
+    @endif
 @endif
 @endsection
 

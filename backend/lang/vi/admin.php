@@ -39,6 +39,7 @@ return [
     ],
 
     'verify' => [
+        'dev_mailbox' => 'Môi trường dev: email không tới Gmail thật — mở hộp thư test (Mailpit) để lấy mã ›',
         'title' => 'Xác nhận đăng nhập',
         'email_intro' => 'Chúng tôi đã gửi mã 6 số tới :email. Mã có hiệu lực trong 10 phút.',
         'totp_intro' => 'Mở ứng dụng Authenticator và nhập mã 6 số của tài khoản :email.',

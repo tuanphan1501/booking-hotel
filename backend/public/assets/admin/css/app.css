@@ -173,6 +173,13 @@ input.inp:focus {
   color: var(--brand);
 }
 
+.auth__dev {
+  background: var(--amber-wash, #fdf0e1);
+  color: #6e4505;
+  font-weight: 600;
+  text-decoration: none;
+}
+
 .auth__forgot {
   color: var(--brand);
   font-weight: 600;

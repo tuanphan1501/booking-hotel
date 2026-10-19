@@ -30,6 +30,9 @@ return [
         'super_admin_email' => env('SEED_SUPER_ADMIN_EMAIL', 'phtuancntt@gmail.com'),
     ],
 
+    // Local test mailbox (Mailpit) linked from the sign-in code screen in APP_ENV=local.
+    'dev_mailbox_url' => env('DEV_MAILBOX_URL', 'http://localhost:8025'),
+
     // Locales with UI translations (lang/vi, lang/ja, lang/en).
     'locales' => ['vi', 'ja', 'en'],
 

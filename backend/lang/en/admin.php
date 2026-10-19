@@ -39,6 +39,7 @@ return [
     ],
 
     'verify' => [
+        'dev_mailbox' => 'Dev environment: email does not reach real inboxes — open the test mailbox (Mailpit) ›',
         'title' => 'Verify sign-in',
         'email_intro' => 'We sent a 6-digit code to :email. It is valid for 10 minutes.',
         'totp_intro' => 'Open your authenticator app and enter the 6-digit code for :email.',

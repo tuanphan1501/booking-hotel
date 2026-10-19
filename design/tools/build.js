@@ -180,7 +180,7 @@ ${row("money", vj("Hoàn tiền chờ duyệt", "承認待ちの返金"), sw(fal
 }
 // nhóm theo sidebar
 const adGroups = [
-  ["Bắt đầu", ["AD-01", "AD-02"]],
+  ["Bắt đầu", ["AD-01", "AD-01b", "AD-02"]],
   ["Vận hành", ["AD-03", "AD-04", "AD-05", "AD-08"]],
   ["Sản phẩm", ["AD-06", "AD-07", "AD-09", "AD-10"]],
   ["Khách hàng", ["AD-11", "AD-12", "AD-13"]],
@@ -242,7 +242,7 @@ write(
 <p class="lead">Prototype bấm được của Web Admin, ${adScreens.length} màn hình. Bấm nút / menu trong màn để chuyển trang; bấm vùng trống để hiện các vùng bấm được; phím <kbd>←</kbd> <kbd>→</kbd> chuyển màn kế tiếp. Đổi ngôn ngữ VI / JA ở thanh trên của mỗi màn.</p>
 <a class="btn dh-start" href="pages/AD-01.html">Bắt đầu demo từ màn đăng nhập ›</a>
 <div class="dh-path"><h2>Kịch bản demo gợi ý</h2>
-<div><b>Lễ tân nhận khách</b><a href="pages/AD-01.html">Đăng nhập</a>→<a href="pages/AD-02.html">Tổng quan</a>→<a href="pages/AD-03.html">Danh sách đặt phòng</a>→<a href="pages/AD-04.html">Chi tiết · Nhận phòng</a>→<a href="pages/AD-08.html">Tình trạng buồng</a></div>
+<div><b>Lễ tân nhận khách</b><a href="pages/AD-01.html">Đăng nhập</a>→<a href="pages/AD-01b.html">Mã email</a>→<a href="pages/AD-02.html">Tổng quan</a>→<a href="pages/AD-03.html">Danh sách đặt phòng</a>→<a href="pages/AD-04.html">Chi tiết · Nhận phòng</a>→<a href="pages/AD-08.html">Tình trạng buồng</a></div>
 <div><b>Đặt phòng tại quầy</b><a href="pages/AD-03.html">Danh sách</a>→<a href="pages/AD-05.html">Đặt tại quầy</a>→<a href="pages/AD-04.html">Chi tiết đặt phòng</a></div>
 <div><b>Quản lý giá & sản phẩm</b><a href="pages/AD-06.html">Giá & tồn kho</a>→<a href="pages/AD-07.html">Loại phòng</a>→<a href="pages/AD-09.html">Gói giá & hủy</a>→<a href="pages/AD-10.html">Dịch vụ thêm</a></div>
 <div><b>Marketing & CSKH</b><a href="pages/AD-11.html">Khuyến mãi</a>→<a href="pages/AD-12.html">Đánh giá</a>→<a href="pages/AD-13.html">Khách & điểm</a></div>
