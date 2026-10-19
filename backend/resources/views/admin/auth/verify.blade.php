@@ -51,6 +51,21 @@
 
 @push('scripts')
 <script>
+// Auto-submit: keep digits only and verify as soon as the 6th digit is typed or pasted.
+(function () {
+    const input = document.getElementById('code');
+    if (!input) return;
+    let isSubmitting = false;
+    input.addEventListener('input', () => {
+        input.value = input.value.replace(/\D/g, '').slice(0, 6);
+        if (input.value.length === 6 && !isSubmitting) {
+            isSubmitting = true;
+            input.form.querySelector('button[type="submit"]').disabled = true;
+            input.form.requestSubmit();
+        }
+    });
+})();
+
 // Resend countdown: disable "Resend code" until the server cooldown is over.
 (function () {
     const button = document.querySelector('[data-resend]');
